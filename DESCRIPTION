@@ -1,0 +1,17 @@
+Package: nsphsmlqt
+Title: The Package Does Something
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Richel",
+           family = "Bilderbeek",
+           role = c("aut", "cre"),
+           email = "richel@richelbilderbeek.nl",
+           comment = c(ORCID = "0000-0003-1107-7049"))
+Description: Stuff is very important.
+    Due to this, a lot of R packages do stuff.
+    This package also does stuff.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
