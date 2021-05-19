@@ -1,3 +1,5 @@
 ^nsphs_ml_qt\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE$
+^codecov\.yml$
+^\.github$
