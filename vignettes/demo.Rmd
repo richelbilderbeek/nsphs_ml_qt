@@ -1,0 +1,65 @@
+---
+title: "demo"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(nsphsmlqt)
+```
+
+# Input
+
+Here is a sample of the genetic data:
+
+```{r genetic_data}
+knitr::kable(head(get_genotype_map()))
+```
+
+(this is similar as data stored in a .vcf file)
+
+Here is a sample of the phenotypic data:
+
+```{r phenotypic_data}
+knitr::kable(head(get_traits()))
+```
+
+# Select relevant SNVs
+
+Extract the SNVs from genetic data:
+
+```{r snvs}
+print("First 10 SNVs")
+```
+
+Annotate the SNVs:
+
+```{r snvs_with_annotation}
+print("First 10 SNVs, with gene name and location")
+```
+
+We now have [an amount] of SNV.
+
+List of genes that are associated with CADs:
+
+```{r cad_genes}
+print("t_cad <- knitr::kabel(get_cad_associated_gene_names())")
+```
+
+Select SNVs that have genes association with CADs
+
+```{r snvs_related_to_cads}
+print("select SNV with name in t_cad")
+```
+
+We now have [a lower amount] of SNV.
