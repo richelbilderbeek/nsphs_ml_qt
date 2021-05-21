@@ -20,13 +20,11 @@ library(nsphsmlqt)
 
 # Input
 
-Here is a sample of the genetic data:
+We use whole genome sequence. Here is a sample of genome sequences:
 
 ```{r genetic_data}
-knitr::kable(head(get_genotype_map()))
+knitr::kable(head(get_genome_sequences()))
 ```
-
-(this is similar as data stored in a .vcf file)
 
 Here is a sample of the phenotypic data:
 
@@ -63,3 +61,6 @@ print("select SNV with name in t_cad")
 ```
 
 We now have [a lower amount] of SNV.
+
+
+# Use BEDMatrix to read .bed
