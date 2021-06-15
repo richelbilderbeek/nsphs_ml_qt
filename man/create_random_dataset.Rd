@@ -5,7 +5,7 @@
 \title{Create the \code{random} dataset, as described at
 \url{https://github.com/AJResearchGroup/article_nsphs_ml_qt}}
 \usage{
-create_random_dataset(n_individuals = 1000, n_uniform = 100, n_normal = 100)
+create_random_dataset(n_individuals, n_uniform, n_normal)
 }
 \arguments{
 \item{n_individuals}{number of individuals to simulate}

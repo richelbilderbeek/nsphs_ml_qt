@@ -40,14 +40,14 @@ test_that("create dataset files", {
   )
   plinkr::save_ped_table_to_file(
     ped_table = assoc_qt_params$ped_table,
-    ped_filename = "/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/random.ped"
+    ped_filename = "/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/random.ped" # nolint indeed a long line
   )
   plinkr::save_map_table_to_file(
     map_table = assoc_qt_params$map_table,
-    map_filename = "/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/random.map"
+    map_filename = "/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/random.map" # nolint indeed a long line
   )
   plinkr::save_phenotype_table_to_file(
     phenotype_table = assoc_qt_params$phenotype_table,
-    phenotype_filename = "/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/random.phenotype"
+    phenotype_filename = "/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/random.phenotype" # nolint indeed a long line
   )
 })
