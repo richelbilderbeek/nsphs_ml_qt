@@ -3,8 +3,7 @@
 #
 # Usage:
 #
-# cat scripts/train.R | ./gcaer
-#
+# cat scripts/do_experiment.R | ./gcaer_v0.4.sif
 #
 
 library(gcaer)
@@ -15,12 +14,13 @@ gcae_options <- create_gcae_options()
 # The genetic data
 datadir <- file.path(
   get_gcae_subfolder(gcae_options = gcae_options),
-  "example_tiny/"
+  "/proj/sens2021565/nobackup/NSPHS_data/"
 )
-
 # 'data' is the base file name
-data <- "HumanOrigins249_tiny"
-list.files(datadir, pattern = data)
+data <- "NSPHS.WGS.hg38.plink1"
+# Number of training epochs
+epochs <- 3
+
 
 fam_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.fam$")
 testthat::expect_equals(1, length(fam_filename))
@@ -31,7 +31,7 @@ testthat::expect_equals(1, length(bim_filename))
 bed_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.bed$")
 testthat::expect_equals(1, length(bed_filename))
 
-# See the GCAE setup
+# Create the GCAE setup
 gcae_setup <- create_gcae_setup()
 
 # The model ID
@@ -47,8 +47,6 @@ data_opts_filename <- get_gcae_data_opts_filename(gcae_setup$data_opts_id)
 testthat::expect_true(file.exists(data_opts_filename))
 
 # Training
-
-epochs <- 3
 train_filenames <- gcae_train(
   datadir = datadir,
   data = data,
