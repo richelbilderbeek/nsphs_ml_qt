@@ -10,7 +10,9 @@
 singularity pull library://richelbilderbeek/default/gcaer:v0.4 
 
 # Download this repo
-wget --output-document=nsphs_ml_qt.zip https://github.com/richelbilderbeek/nsphs_ml_qt/archive/v0.1.zip 
+wget --output-document=nsphs_ml_qt.zip https://github.com/richelbilderbeek/nsphs_ml_qt/archive/master.zip
+# wget --output-document=nsphs_ml_qt.zip https://github.com/richelbilderbeek/nsphs_ml_qt/archive/v0.1.1.zip
+
 
 # Zip
 zip nsphsmlqt_and_gcaer.zip gcaer_v0.4.sif nsphs_ml_qt.zip README.md run.sh
