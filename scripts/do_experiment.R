@@ -1,5 +1,5 @@
 #
-# Do a full experiment
+# Do a full experiment on Bianca
 #
 # Usage:
 #
