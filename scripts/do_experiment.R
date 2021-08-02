@@ -7,9 +7,8 @@
 #
 
 library(gcaer)
-testthat::expect_true(is_gcae_installed())
 
-gcae_options <- create_gcae_options()
+gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
 
 # The genetic data
 datadir <- file.path(
@@ -21,6 +20,7 @@ data <- "NSPHS.WGS.hg38.plink1"
 # Number of training epochs
 epochs <- 3
 
+testthat::expect_true(is_gcae_installed(gcae_options = gcae_options))
 
 fam_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.fam$")
 testthat::expect_equals(1, length(fam_filename))

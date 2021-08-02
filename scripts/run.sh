@@ -12,5 +12,5 @@
 #SBATCH --mem=1G
 #SBATCH --job-name=richel
 #SBATCH --output=richel.log
-cat scripts/do_experiment.R | ./gcaer_v0.4.sif
+cat nsphs_ml_qt-master/scripts/do_experiment.R | ./gcaer_v0.4.sif
 
