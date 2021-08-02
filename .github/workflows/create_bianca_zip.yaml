@@ -7,6 +7,10 @@ name: create_bianca_zip
 jobs:
   create_bianca_zip:
 
+    container:
+      image: quay.io/singularity/singularity:v3.7.4
+      options: --privileged
+
     runs-on: ubuntu-latest
 
     env:
