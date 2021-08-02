@@ -1,0 +1,20 @@
+on:
+  push:
+  pull_request:
+
+name: create_bianca_zip
+
+jobs:
+  create_bianca_zip:
+
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create zip
+        run: ./scripts/create_bianca_zip.sh
+
