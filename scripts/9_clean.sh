@@ -17,5 +17,8 @@
 rm -f *.zip
 rm -f *.sif
 rm -f run.sh
+rm -f 1_unzip.sh
+rm -f 2_sbatch_run.sh
+rm -f create_bianca_zip.sh 
 rm -f *.md
 rm -rf nsphs_ml_qt-master

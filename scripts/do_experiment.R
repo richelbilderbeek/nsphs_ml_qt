@@ -9,13 +9,10 @@
 library(gcaer)
 
 
+# Location of GCAE in Singularity container
 gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
-
-# The genetic data
-datadir <- file.path(
-  get_gcae_subfolder(gcae_options = gcae_options),
-  "/proj/sens2021565/nobackup/NSPHS_data/"
-)
+# The genetic data folder
+datadir <- "/proj/sens2021565/nobackup/NSPHS_data/"
 # 'data' is the base file name
 data <- "NSPHS.WGS.hg38.plink1"
 
@@ -28,10 +25,15 @@ if (as.character(Sys.info()["nodename"]) == "N141CU") {
   )
   data <- "HumanOrigins249_tiny"
 }
-
-
 # Number of training epochs
 epochs <- 3
+
+# Be verbose
+message("gcae_options$gcae_folder: ", gcae_options$gcae_folder)
+message("gcae_options$gcae_version: ", gcae_options$gcae_version)
+message("datadir: ", datadir)
+message("data: ", data)
+message("epochs: ", epochs)
 
 testthat::expect_true(is_gcae_installed(gcae_options = gcae_options))
 
