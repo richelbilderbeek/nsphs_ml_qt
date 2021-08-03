@@ -81,6 +81,7 @@ train_filenames <- gcae_train(
   data = data,
   gcae_setup = gcae_setup,
   epochs = epochs,
+  gcae_options = gcae_options,
   save_interval = 1
 )
 message("basename(train_filenames): {", paste0(basename(train_filenames), collapse = ", "), "}")
