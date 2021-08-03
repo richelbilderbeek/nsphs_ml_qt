@@ -36,6 +36,13 @@ if (as.character(Sys.info()["nodename"]) == "N141CU") {
   data <- "HumanOrigins249_tiny"
 } else {
   message("Running on Bianca")
+  message("TEST RUN")
+
+  gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
+  # The genetic data folder
+  datadir <- "."
+  # 'data' is the base file name
+  data <- "HumanOrigins249_tiny"
 }
 
 # Number of training epochs
