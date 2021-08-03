@@ -18,7 +18,7 @@ wget --output-document=nsphs_ml_qt.zip https://github.com/richelbilderbeek/nsphs
 
 
 # Zip
-zip nsphsmlqt_and_gcaer.zip gcaer_v0.4.sif nsphs_ml_qt.zip README.md *.sh
+zip nsphsmlqt_and_gcaer.zip gcaer_v0.4.sif nsphs_ml_qt.zip README.md *.sh HumanOrigins249_tiny.*
 
 rm -rf gcaer_v0.4.sif
 rm -rf nsphs_ml_qt.zip

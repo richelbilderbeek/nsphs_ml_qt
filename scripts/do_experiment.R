@@ -16,15 +16,28 @@ datadir <- "/proj/sens2021565/nobackup/NSPHS_data/"
 # 'data' is the base file name
 data <- "NSPHS.WGS.hg38.plink1"
 
-# Things for local computer
+
 if (as.character(Sys.info()["nodename"]) == "N141CU") {
+  message("Running on local computer")
+
   gcae_options <- create_gcae_options()
   datadir <- file.path(
     get_gcae_subfolder(gcae_options = gcae_options),
     "example_tiny/"
   )
   data <- "HumanOrigins249_tiny"
+} else if (as.character(Sys.info()["nodename"]) == rackham3.uppmax.uu.se) {
+  message("Running on Rackham")
+
+  gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
+  # The genetic data folder
+  datadir <- "."
+  # 'data' is the base file name
+  data <- "HumanOrigins249_tiny"
+} else {
+  message("Running on Bianca")
 }
+
 # Number of training epochs
 epochs <- 3
 
