@@ -8,6 +8,7 @@
 
 library(gcaer)
 
+
 gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
 
 # The genetic data
@@ -17,19 +18,31 @@ datadir <- file.path(
 )
 # 'data' is the base file name
 data <- "NSPHS.WGS.hg38.plink1"
+
+# Things for local computer
+if (as.character(Sys.info()["nodename"]) == "N141CU") {
+  gcae_options <- create_gcae_options()
+  datadir <- file.path(
+    get_gcae_subfolder(gcae_options = gcae_options),
+    "example_tiny/"
+  )
+  data <- "HumanOrigins249_tiny"
+}
+
+
 # Number of training epochs
 epochs <- 3
 
 testthat::expect_true(is_gcae_installed(gcae_options = gcae_options))
 
 fam_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.fam$")
-testthat::expect_equals(1, length(fam_filename))
+testthat::expect_equal(1, length(fam_filename))
 
 bim_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.bim$")
-testthat::expect_equals(1, length(bim_filename))
+testthat::expect_equal(1, length(bim_filename))
 
 bed_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.bed$")
-testthat::expect_equals(1, length(bed_filename))
+testthat::expect_equal(1, length(bed_filename))
 
 # Create the GCAE setup
 gcae_setup <- create_gcae_setup()
@@ -62,7 +75,7 @@ ggplot2::ggplot(
   train_results$train_times_table,
   ggplot2::aes(x = epoch, y = train_times_sec)
 ) + ggplot2::geom_line() +
-  ggplot2::scale_y_continuous(limits = c(0.0, 1.0))
+  ggplot2::scale_y_continuous(limits = c(0.0, NA))
 ggplot::ggsave("train_times.png", width = 7, height = 7)
 
 # Losses from training
