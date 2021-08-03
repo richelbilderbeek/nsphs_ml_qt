@@ -10,7 +10,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --ntasks=1
 #SBATCH --mem=1G
-#SBATCH --job-name=richel
-#SBATCH --output=richel.log
+#SBATCH --job-name=run
+#SBATCH --output=run.log
 cat nsphs_ml_qt-master/scripts/do_experiment.R | ./gcaer_v0.4.sif
 

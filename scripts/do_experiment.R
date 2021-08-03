@@ -50,15 +50,29 @@ testthat::expect_equal(1, length(bed_filename))
 gcae_setup <- create_gcae_setup()
 
 # The model ID
-model_filename <- get_gcae_model_filename(gcae_setup$model_id)
-testthat::expect_true(file.exists(model_filename))
-
+model_filename <- get_gcae_model_filename(
+  model_id = gcae_setup$model_id,
+  gcae_options = gcae_options
+)
 # train_opts_id
-train_opts_filename <- get_gcae_train_opts_filename(gcae_setup$train_opts_id)
-testthat::expect_true(file.exists(train_opts_filename))
+train_opts_filename <- get_gcae_train_opts_filename(
+  train_opts_id = gcae_setup$train_opts_id,
+  gcae_options = gcae_options
+)
 
 # data_opts_id
-data_opts_filename <- get_gcae_data_opts_filename(gcae_setup$data_opts_id)
+data_opts_filename <- get_gcae_data_opts_filename(
+  data_opts_id = gcae_setup$data_opts_id,
+  gcae_options = gcae_options
+)
+
+# Show training filenames
+message("model_filename :", model_filename)
+message("train_opts_filename :", train_opts_filename)
+message("data_opts_filename :", data_opts_filename)
+
+testthat::expect_true(file.exists(model_filename))
+testthat::expect_true(file.exists(train_opts_filename))
 testthat::expect_true(file.exists(data_opts_filename))
 
 # Training
@@ -69,6 +83,7 @@ train_filenames <- gcae_train(
   epochs = epochs,
   save_interval = 1
 )
+message("basename(train_filenames): {", paste0(basename(train_filenames), collapse = ", "), "}")
 
 train_results <- parse_train_filenames(train_filenames)
 
