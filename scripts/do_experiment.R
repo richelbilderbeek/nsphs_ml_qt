@@ -28,7 +28,7 @@ if (as.character(Sys.info()["nodename"]) == "N141CU") {
   data <- "HumanOrigins249_tiny"
 
   # The genetic data folder
-  datadir <- "/home/richel/GitHubs/nsphs_ml_qt/scripts"
+  datadir <- "~/GitHubs/nsphs_ml_qt/scripts/"
   # 'data' is the base file name
   data <- "HumanOrigins249_tiny"
 
@@ -37,7 +37,7 @@ if (as.character(Sys.info()["nodename"]) == "N141CU") {
 
   gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
   # The genetic data folder
-  datadir <- "."
+  datadir <- paste0(getwd(), "/")
   # 'data' is the base file name
   data <- "HumanOrigins249_tiny"
 } else {
@@ -46,7 +46,7 @@ if (as.character(Sys.info()["nodename"]) == "N141CU") {
 
   gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
   # The genetic data folder
-  datadir <- "."
+  datadir <- paste0(getwd(), "/")
   # 'data' is the base file name
   data <- "HumanOrigins249_tiny"
 }
@@ -120,7 +120,7 @@ ggplot2::ggplot(
   ggplot2::aes(x = epoch, y = train_times_sec)
 ) + ggplot2::geom_line() +
   ggplot2::scale_y_continuous(limits = c(0.0, NA))
-ggplot::ggsave("train_times.png", width = 7, height = 7)
+ggplot2::ggsave("train_times.png", width = 7, height = 7)
 
 # Losses from training
 ggplot2::ggplot(
@@ -128,7 +128,7 @@ ggplot2::ggplot(
   ggplot2::aes(x = epoch, y = losses_from_train_t)
 ) + ggplot2::geom_line() +
   ggplot2::scale_y_continuous(limits = c(0.0, 1.0))
-ggplot::ggsave("losses_from_train_t.png", width = 7, height = 7)
+ggplot2::ggsave("losses_from_train_t.png", width = 7, height = 7)
 
 # Losses from validation
 ggplot2::ggplot(
@@ -136,5 +136,5 @@ ggplot2::ggplot(
   ggplot2::aes(x = epoch, y = losses_from_train_v)
 ) + ggplot2::geom_line() +
   ggplot2::scale_y_continuous(limits = c(0.0, 1.0))
-ggplot::ggsave("losses_from_train_v.png", width = 7, height = 7)
+ggplot2::ggsave("losses_from_train_v.png", width = 7, height = 7)
 

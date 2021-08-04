@@ -1,3 +1,7 @@
 *.sif
 *.zip
 nsphs_ml_qt-0.1/
+Rplots.pdf
+losses_from_train_t.png
+losses_from_train_v.png
+train_times.png
