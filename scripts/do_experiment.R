@@ -26,7 +26,13 @@ if (as.character(Sys.info()["nodename"]) == "N141CU") {
     "example_tiny/"
   )
   data <- "HumanOrigins249_tiny"
-} else if (as.character(Sys.info()["nodename"]) == rackham3.uppmax.uu.se) {
+
+  # The genetic data folder
+  datadir <- "/home/richel/GitHubs/nsphs_ml_qt/scripts"
+  # 'data' is the base file name
+  data <- "HumanOrigins249_tiny"
+
+} else if (as.character(Sys.info()["nodename"]) == "rackham3.uppmax.uu.se") {
   message("Running on Rackham")
 
   gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
