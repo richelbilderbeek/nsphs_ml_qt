@@ -1,11 +1,13 @@
 #!/bin/bash
 #
-# Create a .zip file to be used on Bianca
+# Create a .zip file with all files needed, 
+# to be run on either Rackham or Bianca
 #
 # Usage:
 #
-# ./create_bianca_zip.sh
+# ./0_create_zip_with_all_files.sh
 
+# Remove possible old files
 rm -rf gcaer_v0.4.sif
 rm -rf nsphs_ml_qt.zip
 
