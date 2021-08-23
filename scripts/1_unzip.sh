@@ -14,4 +14,9 @@
 #SBATCH --mem=1G
 #SBATCH --job-name=1_unzip
 #SBATCH --output=1_unzip.log
-unzip nsphsmlqt_and_gcaer.zip
+unzip -y nsphsmlqt_and_gcaer.zip
+
+# a README from the zip is extracted, that is usually the same as the local README.md
+# (as it was zipped in step 0). Just to be sure, the newest version of README.md
+# is pulled
+git pull
