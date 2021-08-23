@@ -20,8 +20,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install zip
-        run: sudo apt install zip
+        run: sudo apt-get install zip
 
-      - name: Create zip
-        run: ./scripts/create_bianca_zip.sh
+      - name: Create starter zip
+        run: ./scripts/0_create_starter_zip.sh
 
