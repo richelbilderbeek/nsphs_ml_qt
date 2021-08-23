@@ -33,3 +33,11 @@ zip nsphsmlqt_and_gcaer.zip gcaer_v0.4.sif nsphs_ml_qt.zip README.md *.sh HumanO
 
 rm -rf gcaer_v0.4.sif
 rm -rf nsphs_ml_qt.zip
+
+# Cannot do, as job is not finished yet
+#
+# if command -v finishedjobinfo &> /dev/null
+# then
+#   finishedjobinfo -j $SLURM_JOB_ID
+# fi
+
