@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install zip
-        run: sudo apt-get install zip
+        run: sudo apt install zip
 
       - name: Create starter zip
         run: ./scripts/0_create_starter_zip.sh
