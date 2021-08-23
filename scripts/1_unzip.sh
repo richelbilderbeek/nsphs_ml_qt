@@ -5,9 +5,10 @@
 # Usage: 
 #
 #   ./unzip.sh
-#   sbatch ./unzip.sh
+#   sbatch -A richelbilderbeek unzip.sh
+#   sbatch -A sens2021565 unzip.sh
 #
-#SBATCH -A sens2021565
+#
 #SBATCH --time=1:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1

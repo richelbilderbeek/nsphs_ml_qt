@@ -2,9 +2,12 @@
 #
 # Start the experiment
 #
-# Usage: sbatch run.sh
+# Usage:
 #
-#SBATCH -A sens2021565
+#   ./run.sh
+#   sbatch -A richelbilderbeek run.sh
+#   sbatch -A sens2021565 run.sh
+#
 #SBATCH --time=1:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1

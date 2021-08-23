@@ -1,11 +1,21 @@
 #!/bin/bash
 #
-# Create a .zip file with all files needed, 
+# Create a .zip file with all starter files needed, 
 # to be run on either Rackham or Bianca
 #
 # Usage:
 #
-# ./0_create_zip_with_all_files.sh
+#   ./0_create_starter_zip.sh
+#   sbatch -A richelbilderbeek 0_create_starter_zip.sh
+#   sbatch -A sens2021565 0_create_starter_zip.sh
+#
+#SBATCH --time=1:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks=1
+#SBATCH --mem=1G
+#SBATCH --job-name=create_starter_zip
+#SBATCH --output=create_starter_zip.log
 
 # Remove possible old files
 rm -rf gcaer_v0.4.sif
