@@ -5,7 +5,7 @@
 # Usage: 
 #
 #   ./unzip.sh
-#   sbatch -A richelbilderbeek unzip.sh
+#   sbatch -A snic2021-22-624 unzip.sh
 #   sbatch -A sens2021565 unzip.sh
 #
 #

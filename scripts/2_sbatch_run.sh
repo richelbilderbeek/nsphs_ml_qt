@@ -5,8 +5,9 @@
 # Usage:
 #
 #   ./run.sh
-#   sbatch -A richelbilderbeek run.sh
+#   sbatch -A snic2021-22-624 run.sh
 #   sbatch -A sens2021565 run.sh
+#
 #
 #SBATCH --time=1:00:00
 #SBATCH --nodes=1

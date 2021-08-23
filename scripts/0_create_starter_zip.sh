@@ -6,7 +6,7 @@
 # Usage:
 #
 #   ./0_create_starter_zip.sh
-#   sbatch -A richelbilderbeek 0_create_starter_zip.sh
+#   sbatch -A snic2021-22-624 0_create_starter_zip.sh
 #   sbatch -A sens2021565 0_create_starter_zip.sh
 #
 #SBATCH --time=1:00:00
