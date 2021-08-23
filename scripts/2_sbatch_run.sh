@@ -10,11 +10,10 @@
 #
 #
 #SBATCH --time=1:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --ntasks=1
+#SBATCH --partition core
+#SBATCH --ntasks 1
 #SBATCH --mem=1G
-#SBATCH --job-name=run
-#SBATCH --output=run.log
+#SBATCH --job-name=2_run
+#SBATCH --output=2_run.log
 cat nsphs_ml_qt-master/scripts/do_experiment.R | ./gcaer_v0.4.sif
 

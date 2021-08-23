@@ -10,11 +10,10 @@
 #
 #
 #SBATCH --time=1:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --ntasks=1
+#SBATCH --partition core
+#SBATCH --ntasks 1
 #SBATCH --mem=1G
-#SBATCH --job-name=unzip
-#SBATCH --output=unzip.log
+#SBATCH --job-name=1_unzip
+#SBATCH --output=1_unzip.log
 unzip nsphs_ml_qt.zip
 

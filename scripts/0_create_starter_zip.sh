@@ -10,12 +10,11 @@
 #   sbatch -A sens2021565 0_create_starter_zip.sh
 #
 #SBATCH --time=1:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --ntasks=1
+#SBATCH --partition core
+#SBATCH --ntasks 1
 #SBATCH --mem=1G
-#SBATCH --job-name=create_starter_zip
-#SBATCH --output=create_starter_zip.log
+#SBATCH --job-name=0_create_starter_zip
+#SBATCH --output=0_create_starter_zip.log
 
 # Remove possible old files
 rm -rf gcaer_v0.4.sif

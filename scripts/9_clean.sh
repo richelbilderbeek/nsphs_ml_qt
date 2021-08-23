@@ -8,12 +8,11 @@
 #
 #SBATCH -A sens2021565
 #SBATCH --time=1:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --ntasks=1
+#SBATCH --partition core
+#SBATCH --ntasks 1
 #SBATCH --mem=1G
-#SBATCH --job-name=clean
-#SBATCH --output=clean.log
+#SBATCH --job-name=9_clean
+#SBATCH --output=9_clean.log
 rm -f *.zip
 rm -f *.sif
 rm -f run.sh
