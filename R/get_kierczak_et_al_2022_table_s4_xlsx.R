@@ -1,12 +1,31 @@
-#' Get Supplementary Table 4 of Kierczak et al., 2022
-#' that was supplied as a XLSX
+#' Get Supplementary Table 1 of Kierczak et al., 2022
 #' @note
 #' The article is in pre-print as of 2021. As I predict the publication
 #' will be in 2022, I will use that in the function name.
-#' Full citation (as now in Google Scholar): Kierczak, Marcin, et al.
-#' "The contribution of rare whole genome sequencing variants to plasma protein
-#' levels and to the missing heritability." (2021).
-#' \url{10.21203/rs.3.rs-625433/v1}
-get_kierczak_et_al_2022_table_s4_xlsx <- function() {
-
+#' Pre-print of article is at URL \url{10.21203/rs.3.rs-625433/v1}
+#' @export
+get_kierczak_et_al_2022_table_s4_xlsx <- function(
+  kierczak_et_al_2022_table_s4_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(), "TableS4.V3reduced.xlsx"),
+  url = "https://assets.researchsquare.com/files/rs-625433/v1/3c21e68a0d1b15f652295e4b.xlsx"
+) {
+  if(!file.exists(kierczak_et_al_2022_table_s4_xlsx_filename)) {
+    dir.create(
+      dirname(kierczak_et_al_2022_table_s4_xlsx_filename),
+      recursive = TRUE,
+      showWarnings = FALSE
+    )
+    utils::download.file(
+      url = url,
+      destfile = kierczak_et_al_2022_table_s4_xlsx_filename,
+      quiet = TRUE
+    )
+  }
+  testthat::expect_true(file.exists(kierczak_et_al_2022_table_s4_xlsx_filename))
+  df <- xlsx::read.xlsx(
+    kierczak_et_al_2022_table_s4_xlsx_filename,
+    sheetIndex = 1,
+    startRow = 8
+  )
+  t <- tibble::as_tibble(df)
+  t
 }

@@ -2,20 +2,21 @@
 % Please edit documentation in R/get_kierczak_et_al_2022_table_s3_xlsx.R
 \name{get_kierczak_et_al_2022_table_s3_xlsx}
 \alias{get_kierczak_et_al_2022_table_s3_xlsx}
-\title{Get Supplementary Table 3 of Kierczak et al., 2022
-that was supplied as a XLSX}
+\title{Get Supplementary Table 1 of Kierczak et al., 2022}
 \usage{
-get_kierczak_et_al_2022_table_s3_xlsx()
+get_kierczak_et_al_2022_table_s3_xlsx(
+ 
+    kierczak_et_al_2022_table_s3_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(),
+    "TableS3.finalreduced.xlsx"),
+ 
+    url = "https://assets.researchsquare.com/files/rs-625433/v1/dae8ab58a956bbe10afb47c2.xlsx"
+)
 }
 \description{
-Get Supplementary Table 3 of Kierczak et al., 2022
-that was supplied as a XLSX
+Get Supplementary Table 1 of Kierczak et al., 2022
 }
 \note{
 The article is in pre-print as of 2021. As I predict the publication
 will be in 2022, I will use that in the function name.
-Full citation (as now in Google Scholar): Kierczak, Marcin, et al.
-"The contribution of rare whole genome sequencing variants to plasma protein
-levels and to the missing heritability." (2021).
-\url{10.21203/rs.3.rs-625433/v1}
+Pre-print of article is at URL \url{10.21203/rs.3.rs-625433/v1}
 }
