@@ -1,5 +1,8 @@
 #' Get Supplementary Table 2 of Kierczak et al., 2022,
 #' which contains the associations found
+#' @param kierczak_et_al_2022_table_s2_xlsx_filename name of the file to
+#' save the Excel sheet to
+#' @param url the URL to download the Excel sheet from
 #' @note
 #' The article is in pre-print as of 2021. As I predict the publication
 #' will be in 2022, I will use that in the function name.

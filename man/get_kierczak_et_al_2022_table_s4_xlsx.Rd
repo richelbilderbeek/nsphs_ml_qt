@@ -12,6 +12,12 @@ get_kierczak_et_al_2022_table_s4_xlsx(
     url = "https://assets.researchsquare.com/files/rs-625433/v1/3c21e68a0d1b15f652295e4b.xlsx"
 )
 }
+\arguments{
+\item{kierczak_et_al_2022_table_s4_xlsx_filename}{name of the file to
+save the Excel sheet to}
+
+\item{url}{the URL to download the Excel sheet from}
+}
 \description{
 Get Supplementary Table 1 of Kierczak et al., 2022
 }

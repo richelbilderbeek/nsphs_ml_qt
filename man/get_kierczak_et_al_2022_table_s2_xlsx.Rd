@@ -13,6 +13,12 @@ get_kierczak_et_al_2022_table_s2_xlsx(
     url = "https://assets.researchsquare.com/files/rs-625433/v1/f4dd96342d574206d6ee9ac2.xlsx"
 )
 }
+\arguments{
+\item{kierczak_et_al_2022_table_s2_xlsx_filename}{name of the file to
+save the Excel sheet to}
+
+\item{url}{the URL to download the Excel sheet from}
+}
 \description{
 Get Supplementary Table 2 of Kierczak et al., 2022,
 which contains the associations found

@@ -11,6 +11,9 @@
 #'
 #' Also, the protein `IL-12B` is present twice, as it is detected by
 #' panels `INF_157_IL-12B` and `NEU_186_IL-12B`
+#' @param kierczak_et_al_2022_table_s1_xlsx_filename name of the file to
+#' save the Excel sheet to
+#' @param url the URL to download the Excel sheet from
 #' @export
 get_kierczak_et_al_2022_table_s1_xlsx <- function(
   kierczak_et_al_2022_table_s1_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(), "TableS1.xlsx"),

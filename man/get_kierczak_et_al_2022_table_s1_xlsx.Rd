@@ -13,6 +13,12 @@ get_kierczak_et_al_2022_table_s1_xlsx(
     url = "https://assets.researchsquare.com/files/rs-625433/v1/58f8efdc8eed0b5b5f177ded.xlsx"
 )
 }
+\arguments{
+\item{kierczak_et_al_2022_table_s1_xlsx_filename}{name of the file to
+save the Excel sheet to}
+
+\item{url}{the URL to download the Excel sheet from}
+}
 \description{
 Quote from text: 'In this study, we have analysed SNVs and indels,
 identified by deep coverage WGS, in relation to the protein expression
