@@ -1,0 +1,19 @@
+on:
+  push:
+  pull_request:
+  schedule:
+  - cron: "0 0 1 * *"
+
+name: check_links
+
+jobs:
+  check_links:
+
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: LeandroLS/linksnitch@main
+        with:
+          allowedStatusCodes: '[200, 201]'
