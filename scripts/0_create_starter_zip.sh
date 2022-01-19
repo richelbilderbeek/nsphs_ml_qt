@@ -17,7 +17,7 @@
 #SBATCH --output=0_create_starter_zip.log
 
 # Remove possible old files
-rm -rf gcaer_v0.4.sif
+rm -rf gcaer_*.sif
 rm -rf nsphs_ml_qt.zip
 
 # Download gcaer.sif
