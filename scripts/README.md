@@ -5,6 +5,12 @@
  * `richel-sens2021565/gcaer.sif`: Singularity container with Python packages
  * `gcae_v1_0`: holds GenoCAE, as copied from `gcaer.sif`
 
+To obtain the second folder, do:
+
+```
+singularity exec richel-sens2021565/gcaer.sif cp -r /opt/gcaer/gcae_v1_0/ .
+```
+
 ## Constants due to file structure
 
 ```
