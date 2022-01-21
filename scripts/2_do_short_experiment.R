@@ -39,6 +39,9 @@ message(".bim files found: ", paste(bim_filename, collapse = ", "))
 bed_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.bed$")
 message(".bed files found: ", paste(bed_filename, collapse = ", "))
 
+phe_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.phe$")
+message(".phe files found: ", paste(phe_filename, collapse = ", "))
+
 # Create the GCAE setup
 gcae_setup <- create_gcae_setup(
   datadir = datadir,
