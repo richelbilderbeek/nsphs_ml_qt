@@ -1,5 +1,22 @@
 # nsphs_ml_qt
 
+## File structure
+
+ * `richel-sens2021565/gcaer.sif`: Singularity container with Python packages
+ * `gcae_v1_0`: holds GenoCAE, as copied from `gcaer.sif`
+
+## Constants due to file structure
+
+```
+datadir <- "/proj/sens2021565/nobackup/NSPHS_data/"
+data <- "NSPHS.WGS.hg38.plink1"
+gcae_options <- create_gcae_options(
+  gcae_folder = "~/gcae_v1_0"
+)
+```
+
+##
+
 Do the full NSPHS ML QT experiment.
 
 # `0_create_starter_zip.sh`

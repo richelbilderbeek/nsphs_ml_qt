@@ -11,7 +11,7 @@ library(gcaer)
 
 # Location of GCAE in Singularity container
 gcae_options <- create_gcae_options(
-  gcae_folder = "/opt/gcaer"
+  gcae_folder = "~/gcae_v1_0"
 )
 # The genetic data folder
 datadir <- "/proj/sens2021565/nobackup/NSPHS_data/"
