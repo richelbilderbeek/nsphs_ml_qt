@@ -3,53 +3,20 @@
 #
 # Usage:
 #
-# cat scripts/do_experiment.R | ./gcaer_v0.4.sif
+# cat scripts/2_do_short_experiment.R | ./gcaer.sif
 #
 
 library(gcaer)
 
 
 # Location of GCAE in Singularity container
-gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
+gcae_options <- create_gcae_options(
+  gcae_folder = "/opt/gcaer"
+)
 # The genetic data folder
 datadir <- "/proj/sens2021565/nobackup/NSPHS_data/"
 # 'data' is the base file name
 data <- "NSPHS.WGS.hg38.plink1"
-
-
-if (as.character(Sys.info()["nodename"]) == "N141CU") {
-  message("Running on local computer")
-
-  gcae_options <- create_gcae_options()
-  datadir <- file.path(
-    get_gcae_subfolder(gcae_options = gcae_options),
-    "example_tiny/"
-  )
-  data <- "HumanOrigins249_tiny"
-
-  # The genetic data folder
-  datadir <- "~/GitHubs/nsphs_ml_qt/scripts/"
-  # 'data' is the base file name
-  data <- "HumanOrigins249_tiny"
-
-} else if (as.character(Sys.info()["nodename"]) == "rackham3.uppmax.uu.se") {
-  message("Running on Rackham")
-
-  gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
-  # The genetic data folder
-  datadir <- paste0(getwd(), "/")
-  # 'data' is the base file name
-  data <- "HumanOrigins249_tiny"
-} else {
-  message("Running on Bianca")
-  message("TEST RUN")
-
-  gcae_options <- create_gcae_options(gcae_folder = "/opt/gcaer")
-  # The genetic data folder
-  datadir <- paste0(getwd(), "/")
-  # 'data' is the base file name
-  data <- "HumanOrigins249_tiny"
-}
 
 # Number of training epochs
 epochs <- 3
@@ -61,19 +28,27 @@ message("datadir: ", datadir)
 message("data: ", data)
 message("epochs: ", epochs)
 
-testthat::expect_true(is_gcae_installed(gcae_options = gcae_options))
+message("is_gcae_installed (at '", gcae_options$gcae_folder, "'): ", is_gcae_installed(gcae_options = gcae_options))
 
 fam_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.fam$")
-testthat::expect_equal(1, length(fam_filename))
+message(".fam files found: ", paste(fam_filename, collapse = ", "))
 
 bim_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.bim$")
-testthat::expect_equal(1, length(bim_filename))
+message(".bim files found: ", paste(bim_filename, collapse = ", "))
 
 bed_filename <- list.files(datadir, full.names = TRUE, pattern = "\\.bed$")
-testthat::expect_equal(1, length(bed_filename))
+message(".bed files found: ", paste(bed_filename, collapse = ", "))
 
 # Create the GCAE setup
-gcae_setup <- create_gcae_setup()
+gcae_setup <- create_gcae_setup(
+  datadir = datadir,
+  data = data,
+  model_id = "M1",
+  train_opts_id = "ex3",
+  data_opts_id = "b_0_4",
+  trainedmodelname = "ae_out",
+  pheno_model_id = "p1"
+)
 
 # The model ID
 model_filename <- get_gcae_model_filename(
@@ -97,18 +72,17 @@ message("model_filename :", model_filename)
 message("train_opts_filename :", train_opts_filename)
 message("data_opts_filename :", data_opts_filename)
 
-testthat::expect_true(file.exists(model_filename))
-testthat::expect_true(file.exists(train_opts_filename))
-testthat::expect_true(file.exists(data_opts_filename))
+message("model_filename exists: ", file.exists(model_filename))
+message("train_opts_filename exists: ", file.exists(train_opts_filename))
+message("data_opts_filename exists: ", file.exists(data_opts_filename))
 
 # Training
 train_filenames <- gcae_train(
-  datadir = datadir,
-  data = data,
   gcae_setup = gcae_setup,
   epochs = epochs,
   gcae_options = gcae_options,
-  save_interval = 1
+  save_interval = 1,
+  verbose = TRUE
 )
 message("basename(train_filenames): {", paste0(basename(train_filenames), collapse = ", "), "}")
 

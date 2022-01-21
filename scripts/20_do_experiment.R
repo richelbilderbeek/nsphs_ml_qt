@@ -3,7 +3,7 @@
 #
 # Usage:
 #
-# cat scripts/do_experiment.R | ./gcaer_v0.4.sif
+# cat scripts/do_experiment.R | ./gcaer.sif
 #
 
 library(gcaer)
