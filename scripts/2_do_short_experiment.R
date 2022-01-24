@@ -8,10 +8,19 @@
 
 library(gcaer)
 
+# The 'gcae_folder' is where the GCAE scripts can be read,
+# and where the results are written (as GCAE also manages the
+# data). On Bianca, this must, for example,
+# be a folder within the home folder.
+gcae_folder <- "~/gcae_v1_0"
 
-# Location of GCAE in Singularity container
+# The 'ormr_folder_name' is a folder where all the Python packages
+# are already installed by the Singularity container script
+ormr_folder_name <- "/opt/ormr"
+
 gcae_options <- create_gcae_options(
-  gcae_folder = "~/gcae_v1_0"
+  gcae_folder = gcae_folder,
+  ormr_folder_name = ormr_folder_name
 )
 # The genetic data folder
 datadir <- "/proj/sens2021565/nobackup/NSPHS_data/"
