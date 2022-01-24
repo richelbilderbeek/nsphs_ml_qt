@@ -32,16 +32,18 @@ jobs:
           remotes::install_cran("lintr")
         shell: Rscript {0}
 
+      - name: Install plink
+        run: plinkr::install_plinks()
+        shell: Rscript {0}
+
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
         shell: Rscript {0}
 
       - name: Test coverage
         run: Rscript -e 'covr::codecov()'
-        if: matrix.os == 'ubuntu-latest'
 
       - name: Lint
         run: Rscript -e 'lintr::lint_package()'
-        if: matrix.os == 'ubuntu-latest'
 
 
