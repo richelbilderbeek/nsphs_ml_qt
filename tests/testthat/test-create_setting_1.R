@@ -3,7 +3,9 @@ test_that("use", {
 
   filenames <- create_setting_1()
   base_input_filename <- tools::file_path_sans_ext(filenames$bed_filename)
-  plink_bin_data <- plinkr::read_plink_bin_data(base_input_filename = base_input_filename)
+  plink_bin_data <- plinkr::read_plink_bin_data(
+    base_input_filename = base_input_filename
+  )
   n_snps <- 1
   n_individuals <- 1000
   expect_equal(n_snps, nrow(plink_bin_data$bed_table))
@@ -18,7 +20,13 @@ test_that("use", {
   expect_true(all(labels$super_population == "Global"))
   expect_true(all(labels$population %in% LETTERS[1:3]))
 
-  skip("WIP")
-  expect_silent(plinkr::read_plink_phe_file(filenames$phe_filename))
+  # The same as GCAE
   phe_table <- plinkr::read_plink_phe_file(filenames$phe_filename)
+  expect_true(all(phe_table$FID %in% LETTERS[1:3]))
+  # All FID and IID combinations must be unique
+  expect_equal(
+    nrow(phe_table),
+    nrow(dplyr::distinct(dplyr::select(phe_table, FID, IID)))
+  )
+  expect_true(all(phe_table$FID %in% LETTERS[1:3]))
 })

@@ -42,10 +42,14 @@
 #' #
 #' # First remove all the dashes from the names, and more everything uppercase
 #' t_distinct_simplified <- t_distinct
-#' t_distinct_simplified$Protein <- stringr::str_replace_all(t_distinct_simplified$Protein, "-", "")
-#' t_distinct_simplified$Gene <- stringr::str_replace_all(t_distinct_simplified$Gene, "-", "")
-#' t_distinct_simplified$Protein <- stringr::str_to_upper(t_distinct_simplified$Protein)
-#' t_distinct_simplified$Gene <- stringr::str_to_upper(t_distinct_simplified$Gene)
+#' t_distinct_simplified$Protein <- stringr::str_replace_all(
+#'   t_distinct_simplified$Protein, "-", "")
+#' t_distinct_simplified$Gene <- stringr::str_replace_all(
+#'   t_distinct_simplified$Gene, "-", "")
+#' t_distinct_simplified$Protein <- stringr::str_to_upper(
+#'   t_distinct_simplified$Protein)
+#' t_distinct_simplified$Gene <- stringr::str_to_upper(
+#'   t_distinct_simplified$Gene)
 #' # 204 proteins map to their exact gene
 #' testthat::expect_equal(
 #'   204,
@@ -64,11 +68,11 @@
 #'   nrow(t_distinct_interesting)
 #' )
 #' @export
-get_kierczak_et_al_2022_table_s2_xlsx <- function(
-  kierczak_et_al_2022_table_s2_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(), "TableS2.xlsx"),
-  url = "https://assets.researchsquare.com/files/rs-625433/v1/f4dd96342d574206d6ee9ac2.xlsx"
+get_kierczak_et_al_2022_table_s2_xlsx <- function( # nolint indeed a long function name
+  kierczak_et_al_2022_table_s2_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(), "TableS2.xlsx"),  # nolint indeed a long line
+  url = "https://assets.researchsquare.com/files/rs-625433/v1/f4dd96342d574206d6ee9ac2.xlsx"  # nolint indeed a long line
 ) {
-  if(!file.exists(kierczak_et_al_2022_table_s2_xlsx_filename)) {
+  if (!file.exists(kierczak_et_al_2022_table_s2_xlsx_filename)) {
     dir.create(
       dirname(kierczak_et_al_2022_table_s2_xlsx_filename),
       recursive = TRUE,

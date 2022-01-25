@@ -38,10 +38,18 @@ test_that("count number of unique protein-gene associations", {
   #
   # First remove all the dashes from the names, and more everything uppercase
   t_distinct_simplified <- t_distinct
-  t_distinct_simplified$Protein <- stringr::str_replace_all(t_distinct_simplified$Protein, "-", "")
-  t_distinct_simplified$Gene <- stringr::str_replace_all(t_distinct_simplified$Gene, "-", "")
-  t_distinct_simplified$Protein <- stringr::str_to_upper(t_distinct_simplified$Protein)
-  t_distinct_simplified$Gene <- stringr::str_to_upper(t_distinct_simplified$Gene)
+  t_distinct_simplified$Protein <- stringr::str_replace_all( # nolint variable naming convention used in spreadsheet
+    t_distinct_simplified$Protein, "-", ""
+  )
+  t_distinct_simplified$Gene <- stringr::str_replace_all( # nolint variable naming convention used in spreadsheet
+    t_distinct_simplified$Gene, "-", ""
+  )
+  t_distinct_simplified$Protein <- stringr::str_to_upper( # nolint variable naming convention used in spreadsheet
+    t_distinct_simplified$Protein
+  )
+  t_distinct_simplified$Gene <- stringr::str_to_upper( # nolint variable naming convention used in spreadsheet
+    t_distinct_simplified$Gene
+  )
   # 204 proteins map to their exact gene
   expect_equal(
     204,
@@ -62,7 +70,10 @@ test_that("count number of unique protein-gene associations", {
 
   distances <- rep(NA, nrow(t_distinct_simplified))
   for (i in seq_len(nrow(t_distinct_simplified))) {
-    distances[i] <- adist(t_distinct_simplified$Protein[i], t_distinct_simplified$Gene[i])
+    distances[i] <- adist(
+      t_distinct_simplified$Protein[i],
+      t_distinct_simplified$Gene[i]
+    )
   }
   hist(distances, breaks = max(distances))
   expect_equal(204, sum(distances == 0))

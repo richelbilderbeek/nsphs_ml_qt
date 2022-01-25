@@ -1,4 +1,4 @@
-#' Create setting 1
+#' Create setting 1 for GCAE
 #'
 #' * Date: 2022-01-17
 #' * Goal: do the simplest useful simulation possible
@@ -21,11 +21,6 @@
 #'   * `phe_filename`: contains path to the `.phe` file
 #'   * `labels_filename`: contains path to the file with the labels
 create_setting_1 <- function() {
-  # Code from 'gcaer/scripts/issue_2.R',
-  #
-  # Output must be in PLINK binary format
-  #
-  # Simulate data in PLINK1 text format
   set.seed(1)
   n_individuals <- 1000 # as NSPHS
   assoc_qt_data <- plinkr::create_demo_assoc_qt_data(
@@ -45,10 +40,10 @@ create_setting_1 <- function() {
   testthat::expect_equal(sum(is_b), 516)
   testthat::expect_equal(sum(is_c), 242)
   testthat::expect_equal(sum(is_a) + sum(is_b) + sum(is_c), n_individuals)
-  assoc_qt_data$phenotype_data$phe_table$FID <- "Global"
-  assoc_qt_data$phenotype_data$phe_table$IID[is_a] <- "A"
-  assoc_qt_data$phenotype_data$phe_table$IID[is_b] <- "B"
-  assoc_qt_data$phenotype_data$phe_table$IID[is_c] <- "C"
+  assoc_qt_data$phenotype_data$phe_table$FID[is_a] <- "A"
+  assoc_qt_data$phenotype_data$phe_table$FID[is_b] <- "B"
+  assoc_qt_data$phenotype_data$phe_table$FID[is_c] <- "C"
+  assoc_qt_data$phenotype_data$phe_table$IID <- seq(1, n_individuals) # nolint follow PLINK convention to use upppercase
 
   assoc_qt_data$data <- plinkr::convert_plink_text_data_to_plink_bin_data(
     plink_text_data = assoc_qt_data$data

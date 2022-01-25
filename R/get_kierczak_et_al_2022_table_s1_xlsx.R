@@ -15,11 +15,11 @@
 #' save the Excel sheet to
 #' @param url the URL to download the Excel sheet from
 #' @export
-get_kierczak_et_al_2022_table_s1_xlsx <- function(
-  kierczak_et_al_2022_table_s1_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(), "TableS1.xlsx"),
-  url = "https://assets.researchsquare.com/files/rs-625433/v1/58f8efdc8eed0b5b5f177ded.xlsx"
+get_kierczak_et_al_2022_table_s1_xlsx <- function( # nolint indeed a long function name
+  kierczak_et_al_2022_table_s1_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(), "TableS1.xlsx"), # nolint indeed a long line
+  url = "https://assets.researchsquare.com/files/rs-625433/v1/58f8efdc8eed0b5b5f177ded.xlsx" # nolint indeed a long line
 ) {
-  if(!file.exists(kierczak_et_al_2022_table_s1_xlsx_filename)) {
+  if (!file.exists(kierczak_et_al_2022_table_s1_xlsx_filename)) {
     dir.create(
       dirname(kierczak_et_al_2022_table_s1_xlsx_filename),
       recursive = TRUE,

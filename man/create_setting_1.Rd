@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_setting_1.R
 \name{create_setting_1}
 \alias{create_setting_1}
-\title{Create setting 1}
+\title{Create setting 1 for GCAE}
 \usage{
 create_setting_1()
 }

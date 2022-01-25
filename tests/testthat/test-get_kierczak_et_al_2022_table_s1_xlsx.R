@@ -12,7 +12,7 @@ test_that("data is as documented", {
   expect_equal(414, nrow(t))
 
   t2 <- t[t$Protein == "IL-12B", ]
-  t[duplicated(t$Protein),]
+  t[duplicated(t$Protein), ]
   length(unique(t$Protein))
   length(t$Protein)
   sum(t$Protein %in% t$Protein)

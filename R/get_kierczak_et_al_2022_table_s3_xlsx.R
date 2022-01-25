@@ -7,11 +7,11 @@
 #' save the Excel sheet to
 #' @param url the URL to download the Excel sheet from
 #' @export
-get_kierczak_et_al_2022_table_s3_xlsx <- function(
-  kierczak_et_al_2022_table_s3_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(), "TableS3.finalreduced.xlsx"),
-  url = "https://assets.researchsquare.com/files/rs-625433/v1/dae8ab58a956bbe10afb47c2.xlsx"
+get_kierczak_et_al_2022_table_s3_xlsx <- function( # nolint indeed a long function name
+  kierczak_et_al_2022_table_s3_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(), "TableS3.finalreduced.xlsx"),  # nolint indeed a long line
+  url = "https://assets.researchsquare.com/files/rs-625433/v1/dae8ab58a956bbe10afb47c2.xlsx"  # nolint indeed a long line
 ) {
-  if(!file.exists(kierczak_et_al_2022_table_s3_xlsx_filename)) {
+  if (!file.exists(kierczak_et_al_2022_table_s3_xlsx_filename)) {
     dir.create(
       dirname(kierczak_et_al_2022_table_s3_xlsx_filename),
       recursive = TRUE,
