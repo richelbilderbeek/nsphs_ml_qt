@@ -27,7 +27,7 @@ fi
 # Go to GitHubs folder, will go back later
 cd ..
 
-cp nspshs/scripts/0_create_starter_zip.md README.md
+cp nsphs_ml_qt/scripts/0_create_starter_zip.md README.md
 
 zip -r --must-match 0_starter_zip.zip gcaer/gcaer.sif nsphs_ml_qt/scripts GenoCAE/ README.md
 
