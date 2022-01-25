@@ -4,7 +4,11 @@
 \alias{create_setting_1}
 \title{Create setting 1 for GCAE}
 \usage{
-create_setting_1()
+create_setting_1(folder_name = ".")
+}
+\arguments{
+\item{folder_name}{path to the folder where to create the files.
+Use \code{.} to create the folders in the current working directory.}
 }
 \value{
 a \link{list} with the following elements:
@@ -34,4 +38,14 @@ as there are exactly 3 genotypes
    AC \tab 50 \tab 50\% \tab B \tab Global \cr
    CC \tab 100 \tab 25\% \tab C \tab Global \cr
 }
+}
+\examples{
+# Create the files
+filenames <- create_setting_1()
+
+# Clean up
+file.remove(as.character(unlist(filenames)))
+}
+\author{
+Richèl J.C. Bilderbeek
 }

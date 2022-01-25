@@ -63,10 +63,14 @@ testthat::expect_equal(275, nrow(t_distinct))
 #
 # First remove all the dashes from the names, and more everything uppercase
 t_distinct_simplified <- t_distinct
-t_distinct_simplified$Protein <- stringr::str_replace_all(t_distinct_simplified$Protein, "-", "")
-t_distinct_simplified$Gene <- stringr::str_replace_all(t_distinct_simplified$Gene, "-", "")
-t_distinct_simplified$Protein <- stringr::str_to_upper(t_distinct_simplified$Protein)
-t_distinct_simplified$Gene <- stringr::str_to_upper(t_distinct_simplified$Gene)
+t_distinct_simplified$Protein <- stringr::str_replace_all(
+  t_distinct_simplified$Protein, "-", "")
+t_distinct_simplified$Gene <- stringr::str_replace_all(
+  t_distinct_simplified$Gene, "-", "")
+t_distinct_simplified$Protein <- stringr::str_to_upper(
+  t_distinct_simplified$Protein)
+t_distinct_simplified$Gene <- stringr::str_to_upper(
+  t_distinct_simplified$Gene)
 # 204 proteins map to their exact gene
 testthat::expect_equal(
   204,

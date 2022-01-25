@@ -12,7 +12,7 @@ library(gcaer)
 # and where the results are written (as GCAE also manages the
 # data). On Bianca, this must, for example,
 # be a folder within the home folder.
-gcae_folder <- "~/gcae_v1_0"
+gcae_folder <- "~/gcae"
 
 # The 'ormr_folder_name' is a folder where all the Python packages
 # are already installed by the Singularity container script

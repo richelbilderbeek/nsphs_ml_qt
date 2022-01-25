@@ -24,5 +24,18 @@ if [[ $(pwd) != "/home/richel/GitHubs/nsphs_ml_qt" ]]; then
   exit 42
 fi
 
-zip -r --must-match --paths ~/GitHubs 0_starter_zip.zip ~/GitHubs/gcaer/gcaer.sif ~/GitHubs/nsphs_ml_qt/scripts
+# Go to GitHubs folder, will go back later
+cd ..
+
+cp nspshs/scripts/0_create_starter_zip.md README.md
+
+zip -r --must-match 0_starter_zip.zip gcaer/gcaer.sif nsphs_ml_qt/scripts GenoCAE/ README.md
+
+rm README.md
+
+# Place the zip where it is expected to be
+mv 0_starter_zip.zip nsphs_ml_qt/0_starter_zip.zip
+
+# Go back to original folder
+cd nsphs_ml_qt
 

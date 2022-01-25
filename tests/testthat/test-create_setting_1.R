@@ -2,6 +2,8 @@ test_that("use", {
   testthat::expect_true(plinkr::is_plink_installed())
 
   filenames <- create_setting_1()
+  expect_true(all(file.exists((as.character(unlist(filenames))))))
+
   base_input_filename <- tools::file_path_sans_ext(filenames$bed_filename)
   plink_bin_data <- plinkr::read_plink_bin_data(
     base_input_filename = base_input_filename
@@ -29,4 +31,5 @@ test_that("use", {
     nrow(dplyr::distinct(dplyr::select(phe_table, FID, IID)))
   )
   expect_true(all(phe_table$FID %in% LETTERS[1:3]))
+  file.remove(as.character(unlist(filenames)))
 })
