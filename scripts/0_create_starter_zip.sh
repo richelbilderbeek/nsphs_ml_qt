@@ -27,8 +27,9 @@ fi
 # Go to GitHubs folder, will go back later
 cd ..
 
-# Creata a README
+# Copy files for in the zip's root
 cp nsphs_ml_qt/scripts/0_create_starter_zip.md README.md
+cp nsphs_ml_qt/scripts/98_clean_bianca.sh clean_bianca.sh
 
 # Clone a fresh GenoCAE folder
 rm -rf GenoCAE
@@ -36,7 +37,9 @@ git clone https://github.com/richelbilderbeek/GenoCAE.git --branch Pheno --depth
 
 zip -r --must-match 0_starter_zip.zip gcaer/gcaer.sif nsphs_ml_qt/scripts GenoCAE/ README.md
 
+# Remove files for in the zip's root
 rm README.md
+rm clean_bianca.sh
 
 # Place the zip where it is expected to be
 mv 0_starter_zip.zip nsphs_ml_qt/0_starter_zip.zip
