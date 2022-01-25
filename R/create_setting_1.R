@@ -14,8 +14,7 @@
 #' AC      |50       |50%             |B         |Global
 #' CC      |100      |25%             |C         |Global
 #'
-#' @param folder_name path to the folder where to create the files.
-#' Use `.` to create the folders in the current working directory.
+#' @param base_input_filename base filename of the files to be created
 #' @return a \link{list} with the following elements:
 #'   * `bed_filename`: contains path to the `.bed` file
 #'   * `bim_filename`: contains path to the `.bim` file
@@ -30,7 +29,7 @@
 #' file.remove(as.character(unlist(filenames)))
 #' @author Richèl J.C. Bilderbeek
 #' @export
-create_setting_1 <- function(folder_name = ".") {
+create_setting_1 <- function(base_input_filename = "setting_1") {
   set.seed(1)
   n_individuals <- 1000 # as NSPHS
   assoc_qt_data <- plinkr::create_demo_assoc_qt_data(
@@ -58,7 +57,6 @@ create_setting_1 <- function(folder_name = ".") {
   assoc_qt_data$data <- plinkr::convert_plink_text_data_to_plink_bin_data(
     plink_text_data = assoc_qt_data$data
   )
-  base_input_filename <- file.path(folder_name, "nsphs_nl_qt_setting_1")
   filenames <- plinkr::save_plink_bin_data(
     plink_bin_data = assoc_qt_data$data,
     base_input_filename = base_input_filename

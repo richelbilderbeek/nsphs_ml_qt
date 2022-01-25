@@ -4,11 +4,10 @@
 \alias{create_setting_1}
 \title{Create setting 1 for GCAE}
 \usage{
-create_setting_1(folder_name = ".")
+create_setting_1(base_input_filename = "setting_1")
 }
 \arguments{
-\item{folder_name}{path to the folder where to create the files.
-Use \code{.} to create the folders in the current working directory.}
+\item{base_input_filename}{base filename of the files to be created}
 }
 \value{
 a \link{list} with the following elements:

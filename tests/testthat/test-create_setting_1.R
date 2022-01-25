@@ -22,7 +22,7 @@ test_that("use", {
   expect_true(all(labels$super_population == "Global"))
   expect_true(all(labels$population %in% LETTERS[1:3]))
 
-  # The same as GCAE
+  # The same format as GCAE
   phe_table <- plinkr::read_plink_phe_file(filenames$phe_filename)
   expect_true(all(phe_table$FID %in% LETTERS[1:3]))
   # All FID and IID combinations must be unique
@@ -32,4 +32,43 @@ test_that("use", {
   )
   expect_true(all(phe_table$FID %in% LETTERS[1:3]))
   file.remove(as.character(unlist(filenames)))
+})
+
+test_that("match inst/extdata/setting_1", {
+  testthat::expect_true(plinkr::is_plink_installed())
+
+  # The original data
+  expected_plink_bin_data <- NA
+  {
+    bed_filename <- system.file("extdata", "setting_1.bed", package = "nsphsmlqt")
+    #bim_filename <- system.file("extdata", "setting_1.bim", package = "nsphsmlqt")
+    #fam_filename <- system.file("extdata", "setting_1.fam", package = "nsphsmlqt")
+    phe_filename <- system.file("extdata", "setting_1.phe", package = "nsphsmlqt")
+    labels_filename <- system.file("extdata", "setting_1_labels.csv", package = "nsphsmlqt")
+    plink_bin_data <- plinkr::read_plink_bin_data(tools::file_path_sans_ext(bed_filename))
+    plink_bin_data$phe_table <- plinkr::read_plink_phe_file(phe_filename)
+    plink_bin_data$labels <- readr:::read_csv(labels_filename, show_col_types = FALSE)
+    expected_plink_bin_data <- plink_bin_data
+  }
+  # Re-created data
+  created_plink_bin_data <- NA
+  {
+    filenames <- create_setting_1(tempfile())
+    expect_true(all(file.exists((as.character(unlist(filenames))))))
+    plink_bin_data <- plinkr::read_plink_bin_data(tools::file_path_sans_ext(filenames$bed_filename))
+    plink_bin_data$phe_table <- plinkr::read_plink_phe_file(filenames$phe_filename)
+    plink_bin_data$labels <- readr:::read_csv(filenames$labels_filename, show_col_types = FALSE)
+    created_plink_bin_data <- plink_bin_data
+    file.remove(as.character(unlist(filenames)))
+  }
+  expect_equal(created_plink_bin_data, expected_plink_bin_data)
+})
+
+test_that("use", {
+  if (1 == 2) {
+    # Re-create the files in inst/extdata
+    create_setting_1(
+      base_input_filename = "~/GitHubs/nsphs_ml_qt/inst/extdata/setting_1"
+    )
+  }
 })
