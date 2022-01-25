@@ -27,7 +27,12 @@ fi
 # Go to GitHubs folder, will go back later
 cd ..
 
+# Creata a README
 cp nsphs_ml_qt/scripts/0_create_starter_zip.md README.md
+
+# Clone a fresh GenoCAE folder
+rm -rf GenoCAE
+git clone https://github.com/richelbilderbeek/GenoCAE.git --branch Pheno --depth 1
 
 zip -r --must-match 0_starter_zip.zip gcaer/gcaer.sif nsphs_ml_qt/scripts GenoCAE/ README.md
 
