@@ -13,6 +13,7 @@ rm -f richel-sens2021565/0_starter_zip.zip
 # Path at Rackham
 rm -f 0_starter_zip.zip
 
-rm -f README.md *.log *.png *.sh
+rm -f README.md *.log *.png
 rm -rf gcaer  GenoCAE  nsphs_ml_qt
+rm -f clean_bianca.sh
 
