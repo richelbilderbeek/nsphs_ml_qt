@@ -6,7 +6,10 @@
 #
 #   sbatch nsphs_ml_qt/scripts/3_run_setting_1.sh
 #
-#SBATCH -A sens2021565
+# For Bianca:
+##SBATCH -A sens2021565
+# For Rackham:
+#SBATCH -A snic2021-22-624
 #SBATCH --time=1:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
