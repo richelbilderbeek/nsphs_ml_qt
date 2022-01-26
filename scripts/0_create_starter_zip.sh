@@ -35,7 +35,7 @@ cp nsphs_ml_qt/scripts/98_clean_bianca.sh clean_bianca.sh
 rm -rf GenoCAE
 git clone https://github.com/richelbilderbeek/GenoCAE.git --branch Pheno --depth 1
 
-zip -r --must-match 0_starter_zip.zip gcaer/gcaer.sif nsphs_ml_qt/scripts GenoCAE/ README.md clean_bianca.sh
+zip -r --must-match 0_starter_zip.zip gcaer/gcaer.sif nsphs_ml_qt/ GenoCAE/ README.md clean_bianca.sh
 
 # Remove files for in the zip's root
 rm README.md
