@@ -10,7 +10,8 @@
 #SBATCH --time=1:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
-#SBATCH --mem=1G
+# 128G is a thin node, see https://www.uppmax.uu.se/support/user-guides/bianca-user-guide/ at 'Node types'
+#SBATCH --mem=128G
 #SBATCH --job-name=2_do_short_experiment
 #SBATCH --output=2_do_short_experiment.log
 cat nsphs_ml_qt/scripts/2_do_short_experiment.R | gcaer/gcaer.sif
