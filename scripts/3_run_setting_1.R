@@ -24,7 +24,7 @@ gcae_options <- create_gcae_options(
   ormr_folder_name = ormr_folder_name
 )
 # The genetic data folder, datadir must end with a slash
-datadir <- normalizePath("~/nsphs_ml_qt/inst/extdata/")
+datadir <- paste0(normalizePath("~/nsphs_ml_qt/inst/extdata"), "/")
 # 'data' is the base file name
 data <- "setting_1"
 
