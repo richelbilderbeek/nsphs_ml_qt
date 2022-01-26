@@ -24,9 +24,9 @@ gcae_options <- create_gcae_options(
   ormr_folder_name = ormr_folder_name
 )
 # The genetic data folder
-datadir <- "/proj/sens2021565/nobackup/NSPHS_data/"
+datadir <- normalizePath("~/nsphs_ml_qt/inst/extdata")
 # 'data' is the base file name
-data <- "NSPHS.WGS.hg38.plink1"
+data <- "setting_1"
 
 # Number of training epochs
 epochs <- 3
