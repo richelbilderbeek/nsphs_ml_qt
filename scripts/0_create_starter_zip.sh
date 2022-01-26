@@ -47,3 +47,8 @@ mv 0_starter_zip.zip nsphs_ml_qt/0_starter_zip.zip
 # Go back to original folder
 cd nsphs_ml_qt
 
+if [[ $HOSTNAME == "N141CU" ]]; then
+  notify-send "Done creating starter zip" "Done creating starter zip"
+fi
+
+

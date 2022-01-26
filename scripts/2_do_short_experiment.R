@@ -16,7 +16,7 @@ gcae_folder <- normalizePath("~/GenoCAE")
 
 # The 'ormr_folder_name' is a folder where all the Python packages
 # are already installed by the Singularity container script
-ormr_folder_name <- "/opt/ormr"
+ormr_folder_name <- "/opt/ormr_gcaer"
 
 gcae_options <- create_gcae_options(
   gcae_folder = gcae_folder,
@@ -32,6 +32,7 @@ epochs <- 3
 
 # Be verbose
 message("gcae_options$gcae_folder: ", gcae_options$gcae_folder)
+message("gcae_options$ormr_folder_name: ", gcae_options$ormr_folder_name)
 message("gcae_options$gcae_version: ", gcae_options$gcae_version)
 message("datadir: ", datadir)
 message("data: ", data)
