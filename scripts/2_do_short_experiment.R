@@ -22,7 +22,7 @@ gcae_options <- create_gcae_options(
   gcae_folder = gcae_folder,
   ormr_folder_name = ormr_folder_name
 )
-# The genetic data folder
+# The genetic data folder, datadir must end with a slash
 datadir <- "/proj/sens2021565/nobackup/NSPHS_data/"
 # 'data' is the base file name
 data <- "NSPHS.WGS.hg38.plink1"
