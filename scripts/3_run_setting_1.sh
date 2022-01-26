@@ -13,8 +13,11 @@
 #SBATCH --time=1:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
-# 128G is a thin node, see https://www.uppmax.uu.se/support/user-guides/bianca-user-guide/ at 'Node types'
-# 128G / 8 = 16G
+#SBATCH -C usage_mail
+# From https://www.uppmax.uu.se/support/user-guides/slurm-user-guide
+# Be light first
+# Could do, for 256GB: -C mem256GB
+# Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
 #SBATCH --job-name=3_run_setting_1
 #SBATCH --output=3_run_setting_1.log
