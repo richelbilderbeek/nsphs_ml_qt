@@ -41,8 +41,6 @@ test_that("match inst/extdata/setting_1", {
   expected_plink_bin_data <- NA
   {
     bed_filename <- system.file("extdata", "setting_1.bed", package = "nsphsmlqt")
-    #bim_filename <- system.file("extdata", "setting_1.bim", package = "nsphsmlqt")
-    #fam_filename <- system.file("extdata", "setting_1.fam", package = "nsphsmlqt")
     phe_filename <- system.file("extdata", "setting_1.phe", package = "nsphsmlqt")
     labels_filename <- system.file("extdata", "setting_1_labels.csv", package = "nsphsmlqt")
     plink_bin_data <- plinkr::read_plink_bin_data(tools::file_path_sans_ext(bed_filename))

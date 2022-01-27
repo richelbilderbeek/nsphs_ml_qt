@@ -36,15 +36,15 @@ create_setting_1 <- function(base_input_filename = "setting_1") {
     n_individuals = n_individuals,
     traits = plinkr::create_additive_trait(
       mafs = 0.499999,
-      base_phenotype_value = 0,
-      phenotype_increase = 50
+      base_phenotype_value = pi,
+      phenotype_increase = pi
     )
   )
 
   # Set populations
-  is_a <- assoc_qt_data$phenotype_data$phe_table$additive == 0
-  is_b <- assoc_qt_data$phenotype_data$phe_table$additive == 50
-  is_c <- assoc_qt_data$phenotype_data$phe_table$additive == 100
+  is_a <- assoc_qt_data$phenotype_data$phe_table$additive == 1.0 * pi
+  is_b <- assoc_qt_data$phenotype_data$phe_table$additive == 2.0 * pi
+  is_c <- assoc_qt_data$phenotype_data$phe_table$additive == 3.0 * pi
   testthat::expect_equal(sum(is_a), 242)
   testthat::expect_equal(sum(is_b), 516)
   testthat::expect_equal(sum(is_c), 242)
