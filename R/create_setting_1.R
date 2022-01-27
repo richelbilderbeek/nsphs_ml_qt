@@ -53,8 +53,6 @@ create_setting_1 <- function(base_input_filename = "setting_1") {
   assoc_qt_data$phenotype_data$phe_table$FID[is_b] <- "B"
   assoc_qt_data$phenotype_data$phe_table$FID[is_c] <- "C"
   assoc_qt_data$phenotype_data$phe_table$IID <- seq(1, n_individuals) # nolint follow PLINK convention to use upppercase
-  assoc_qt_data$phenotype_data$phe_table$additive_2 <- assoc_qt_data$phenotype_data$phe_table$additive
-  assoc_qt_data$phenotype_data$phe_table$additive_3 <- assoc_qt_data$phenotype_data$phe_table$additive
 
   assoc_qt_data$data$ped_table$FID <- assoc_qt_data$phenotype_data$phe_table$FID
   assoc_qt_data$data$ped_table$IID <- assoc_qt_data$phenotype_data$phe_table$IID
