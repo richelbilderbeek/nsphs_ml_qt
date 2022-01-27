@@ -17,8 +17,11 @@ test_that("use", {
 
   labels <- readr::read_csv(
     filenames$labels_filename,
+    col_names = FALSE, # GenoCAE does not use column names
     show_col_types = FALSE
   )
+  names(labels) <- c("super_population", "population") # Easier to work with
+
   expect_true(all(labels$super_population == "Global"))
   expect_true(all(labels$population %in% LETTERS[1:3]))
 
@@ -31,6 +34,10 @@ test_that("use", {
     nrow(dplyr::distinct(dplyr::select(phe_table, FID, IID)))
   )
   expect_true(all(phe_table$FID %in% LETTERS[1:3]))
+
+  expect_equal(phe_table$FID, plink_bin_data$fam_table$fam)
+  expect_equal(as.character(phe_table$IID), plink_bin_data$fam_table$id)
+
   file.remove(as.character(unlist(filenames)))
 })
 

@@ -56,6 +56,10 @@ create_setting_1 <- function(base_input_filename = "setting_1") {
   assoc_qt_data$phenotype_data$phe_table$additive_2 <- assoc_qt_data$phenotype_data$phe_table$additive
   assoc_qt_data$phenotype_data$phe_table$additive_3 <- assoc_qt_data$phenotype_data$phe_table$additive
 
+  assoc_qt_data$data$ped_table$FID <- assoc_qt_data$phenotype_data$phe_table$FID
+  assoc_qt_data$data$ped_table$IID <- assoc_qt_data$phenotype_data$phe_table$IID
+
+
   assoc_qt_data$data <- plinkr::convert_plink_text_data_to_plink_bin_data(
     plink_text_data = assoc_qt_data$data
   )
