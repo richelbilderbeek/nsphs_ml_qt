@@ -15,3 +15,7 @@ cat sample_ids.txt
   --keep sample_ids.txt \
   --make-bed \
   --out subsetted_data
+
+Rscript -e 'plinkr::read_plink_bin_data("subsetted_data")'
+
+
