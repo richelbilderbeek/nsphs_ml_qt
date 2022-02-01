@@ -1,0 +1,5 @@
+sample_ids.txt
+*.log
+*.bed
+*.bim
+*.fam
