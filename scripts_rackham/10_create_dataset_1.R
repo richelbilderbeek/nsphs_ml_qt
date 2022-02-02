@@ -1,5 +1,5 @@
 #
-# Create simulated data
+# Create simulated data in inst/extdata
 #
 # Usage:
 #
@@ -7,7 +7,7 @@
 #
 
 gcaer::create_gcae_input_files_1(
-  base_input_filename = "nsphs_ml_qt/sim_data_1/sim_data_1"
+  base_input_filename = "nsphs_ml_qt/inst/extdata/sim_data_1"
 )
 
 

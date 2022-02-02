@@ -34,14 +34,14 @@ jobs:
         shell: Rscript {0}
 
       - name: Copy sim dataset 1
-        run: mv sim_data_1 sim_data_1_expected
+        run: mv inst/extdata inst/extdata_old
 
       - name: Recreate sim dataset 1
         run: scripts_rackham/10_create_dataset_1.R
         shell: Rscript {0}
 
       - name: Check sim_data_1.bed is the same, thanks to https://stackoverflow.com/a/12900693
-        run: cmp --silent sim_data_1_expected/sim_data_1.bed sim_data_1/sim_data_1.bed || echo "sim_data_1.bed is different"; exit 42
+        run: cmp --silent inst/extdata_old/sim_data_1.bed inst/extdata/sim_data_1.bed || echo "sim_data_1.bed is different"; exit 42
 
 #sim_data_1.bim
 #sim_data_1.fam
