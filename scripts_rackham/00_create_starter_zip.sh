@@ -8,6 +8,9 @@
 #   ./scripts_rackham/00_create_starter_zip.sh
 #
 
+echo "Running on computer with HOSTNAME: $HOSTNAME"
+echo "Running at location $(pwd)"
+
 if [[ $HOSTNAME != "N141CU" ]]; then
   echo "Error: this script must run locally"
   echo "HOSTNAME: $HOSTNAME"

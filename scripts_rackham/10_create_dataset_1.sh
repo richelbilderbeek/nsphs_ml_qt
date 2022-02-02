@@ -8,6 +8,9 @@
 #   sbatch ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh
 #
 #
+echo "Running on computer with HOSTNAME: $HOSTNAME"
+echo "Running at location $(pwd)"
+
 Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R
 
 
