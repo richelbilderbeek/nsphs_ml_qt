@@ -22,13 +22,22 @@ if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
   datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/
   superpops=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
+
+  echo "Show 'sim_data_1.fam':"
+  head /home/richel/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1.fam
+
+  echo "Show 'superpops' file:"
+  head $superpops
 fi
 
 echo "datadir: $datadir"
 echo "trainedmodeldir: $trainedmodeldir"
+echo "superpops: $superpops"
 
-# --pdata=<name> 
-
+if [ ! -f $superpops ]; then
+  echo "'superpops' file not found at path $superpops"
+  exit 42
+fi
 
 python3 GenoCAE/run_gcae.py \
   project \
