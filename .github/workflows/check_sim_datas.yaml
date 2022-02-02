@@ -37,8 +37,7 @@ jobs:
         run: mv inst/extdata inst/extdata_old
 
       - name: Recreate sim dataset 1
-        run: scripts_rackham/10_create_dataset_1.R
-        shell: Rscript {0}
+        run: Rscript scripts_rackham/10_create_dataset_1.R
 
       - name: Check sim_data_1.bed is the same, thanks to https://stackoverflow.com/a/12900693
         run: cmp --silent inst/extdata_old/sim_data_1.bed inst/extdata/sim_data_1.bed || echo "sim_data_1.bed is different"; exit 42
