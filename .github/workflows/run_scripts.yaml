@@ -2,10 +2,10 @@ on:
   push:
   pull_request:
 
-name: check_sim_datas
+name: run_scripts
 
 jobs:
-  check_sim_datas:
+  run_scripts:
     runs-on: ubuntu-latest
 
     env:
