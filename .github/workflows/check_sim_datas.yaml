@@ -40,7 +40,7 @@ jobs:
         run: scripts_rackham/10_create_dataset_1.R
         shell: Rscript {0}
 
-      - name: Check sim_data_1.bed is the same
+      - name: Check sim_data_1.bed is the same, thanks to https://stackoverflow.com/a/12900693
         run: cmp --silent sim_data_1_expected/sim_data_1.bed sim_data_1/sim_data_1.bed || echo "sim_data_1.bed is different"; exit 42
 
 #sim_data_1.bim
