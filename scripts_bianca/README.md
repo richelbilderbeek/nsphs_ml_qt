@@ -13,6 +13,8 @@ This is local, in the `nsphs_ml_qt` folder:
 ./scripts_bianca/00_create_starter_zip.sh
 ```
 
+Creates a file called `nsphs_ml_qt_starter_zip.zip`
+
 ## 1. Unzip
 
 First time:
@@ -60,4 +62,11 @@ sbatch nsphs_ml_qt/scripts_bianca/21_train_on_dataset_2.sh
 ```
 
 ## 22. [other steps on dataset 2]
+
+
+## 98. Clean Bianca
+
+```
+./98_clean_bianca.sh
+```
 
