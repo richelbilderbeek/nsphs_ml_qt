@@ -10,7 +10,8 @@
 #
 
 # Works on Rackham
-datadir=~/nsphs_ml_qt/inst/extdata/
+datadir=~/nsphs_ml_qt/inst/extdata
+trainedmodeldir=~/sim_data_1_ae/ # Really need that slash
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
@@ -18,12 +19,13 @@ if [[ $HOSTNAME == "N141CU" ]]; then
 fi
 
 echo "datadir: $datadir"
+echo "trainedmodeldir: $trainedmodeldir"
 
 python3 GenoCAE/run_gcae.py \
   train \
   --datadir $datadir \
   --data sim_data_1 \
-  --trainedmodeldir sim_data_1_ae/ \
+  --trainedmodeldir $trainedmodeldir \
   --model_id M1 \
   --epochs 3 \
   --save_interval 1 \
