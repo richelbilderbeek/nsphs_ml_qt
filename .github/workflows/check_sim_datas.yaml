@@ -33,6 +33,9 @@ jobs:
         run: plinkr::install_plinks()
         shell: Rscript {0}
 
+      - name: Check dataset 1
+        run: Rscript -e 'gcaer::check_gcae_input_filenames(gcaer::create_gcae_input_filenames(bed_filename = "inst/extdata/sim_data_1.bed", bim_filename = "inst/extdata/sim_data_1.bim", fam_filename = "inst/extdata/sim_data_1.fam", phe_filename = "inst/extdata/sim_data_1.phe", labels_filename = "inst/extdata/sim_data_1_labels.csv"))'
+
       - name: Copy sim dataset 1
         run: mv inst/extdata inst/extdata_old
 
