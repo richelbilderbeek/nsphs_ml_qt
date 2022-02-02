@@ -1,0 +1,50 @@
+on:
+  push:
+  pull_request:
+
+name: R-CMD-check
+
+jobs:
+  R-CMD-check:
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+
+      - name: Install libcurl4-openssl-dev
+        run: sudo apt install -qq libcurl4-openssl-dev
+
+      - name: Fix rJava error # from https://travis-ci.community/t/cannot-connect-to-java-from-r/9754/8
+        run: sudo $(which R) CMD javareconf
+
+      - name: Install dependencies
+        run: |
+          install.packages(c("remotes", "rcmdcheck"))
+          remotes::install_github("richelbilderbeek/plinkr")
+          remotes::install_github("richelbilderbeek/gcaer")
+        shell: Rscript {0}
+
+      - name: Install plink
+        run: plinkr::install_plinks()
+        shell: Rscript {0}
+
+      - name: Copy sim dataset 1
+        run: mv sim_data_1 sim_data_1_expected
+
+      - name: Recreate sim dataset 1
+        run: scripts_rackham/10_create_dataset_1.R
+        shell: Rscript {0}
+
+      - name: Check sim_data_1.bed is the same
+        run: cmp --silent sim_data_1_expected/sim_data_1.bed sim_data_1/sim_data_1.bed || echo "sim_data_1.bed is different"; exit 42
+
+#sim_data_1.bim
+#sim_data_1.fam
+#sim_data_1_labels.csv
+#sim_data_1.phe
+
