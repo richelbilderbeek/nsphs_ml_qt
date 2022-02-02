@@ -2,10 +2,10 @@ on:
   push:
   pull_request:
 
-name: R-CMD-check
+name: check_sim_datas
 
 jobs:
-  R-CMD-check:
+  check_sim_datas:
     runs-on: ubuntu-latest
 
     env:
