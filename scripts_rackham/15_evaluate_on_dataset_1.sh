@@ -30,6 +30,7 @@ echo "Running at location $(pwd)"
 datadir=~/nsphs_ml_qt/inst/extdata
 trainedmodeldir=~/sim_data_1_ae/ # Really need that slash at the end
 superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
+metrics="hull_error,f1_score_3"
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
@@ -45,17 +46,14 @@ fi
 echo "datadir: $datadir"
 echo "trainedmodeldir: $trainedmodeldir"
 echo "superpops: $superpops"
+echo "metrics: $metrics"
 
-# --metrics=<name>
 # --pdata=<name>
-# --metrics "hull_error,f1_score" \
-
-
 
 python3 GenoCAE/run_gcae.py \
   evaluate \
   --datadir $datadir \
-  --metrics "hull_error" \
+  --metrics $metrics \
   --data sim_data_1 \
   --model_id M1 \
   --train_opts_id ex3 \
