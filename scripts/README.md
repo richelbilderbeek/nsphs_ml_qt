@@ -1,5 +1,9 @@
 # nsphs_ml_qt
 
+> These are old notes.
+>
+> Use `scripts_bianca` and `scripts_rackham` instead
+
 ## File structure
 
  * `richel-sens2021565/gcaer.sif`: Singularity container with Python packages

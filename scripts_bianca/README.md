@@ -2,6 +2,7 @@
 
 Scripts to be run on Bianca.
 
+
 # Workflow
 
 ## 0. Zip
@@ -9,7 +10,7 @@ Scripts to be run on Bianca.
 This is local, in the `nsphs_ml_qt` folder:
 
 ```
-./scripts_bianca/0_create_starter_zip.sh
+./scripts_bianca/00_create_starter_zip.sh
 ```
 
 ## 1. Unzip
@@ -17,14 +18,14 @@ This is local, in the `nsphs_ml_qt` folder:
 First time:
 
 ```
-unzip [sens-something-folder]/*.zip
+unzip richel-sens2021565/nsphs_ml_qt_starter_zip.zip
 ```
 
-This will create a file called `unzip.sh` in the home folder,
+This will create a file called `01_unzip_starter_zip.sh` in the home folder,
 so after that, one can do:
 
 ```
-./1_unzip_starter_zip.sh
+./01_unzip_starter_zip.sh
 ```
 
 ## 10. Create dataset 1
