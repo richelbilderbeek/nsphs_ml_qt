@@ -41,7 +41,30 @@ sbatch nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh
 sbatch nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh
 ```
 
-## 12. [other steps on dataset 1]
+## 12. Project on dataset 1
+
+```
+sbatch nsphs_ml_qt/scripts_rackham/12_project_on_dataset_1.sh
+```
+
+## 13. Plot on dataset 1
+
+```
+sbatch nsphs_ml_qt/scripts_rackham/13_plot_on_dataset_1.sh
+```
+
+## 14. Animate on dataset 1
+
+```
+sbatch nsphs_ml_qt/scripts_rackham/14_animate_on_dataset_1.sh
+```
+
+## 15. Evaluate on dataset 1
+
+```
+sbatch nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset_1.sh
+```
+
 
 
 ## 98. Clean Rackham

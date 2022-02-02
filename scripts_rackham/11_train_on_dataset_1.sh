@@ -1,12 +1,15 @@
 #!/bin/bash
 #
-# Create simulated dataset 1
+# Train on dataset 1
 #
 # Usage: 
 #
 #   ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh
 #   sbatch ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh
 #
+# From the GCAE help:
+#
+#   run_gcae.py train --datadir=<name> --data=<name> --model_id=<name> --train_opts_id=<name> --data_opts_id=<name> --save_interval=<num> --epochs=<num> [--resume_from=<num> --trainedmodeldir=<name> ] [--pheno_model_id=<name>]
 #
 
 # Works on Rackham
