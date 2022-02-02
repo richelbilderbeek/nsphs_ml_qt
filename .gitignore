@@ -42,3 +42,6 @@ inst/doc
 *.sif
 *.zip
 nsphs_nl_qt_setting_1.*
+nsphs_nl_qt_setting_1_labels.csv
+setting_1.*
+setting_1_labels.csv
