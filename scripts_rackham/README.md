@@ -29,6 +29,13 @@ so after that, one can do:
 ./01_unzip_starter_zip.sh
 ```
 
+## 2. Start simulated dataset 1
+
+
+```
+./nsphs_ml_qt/scripts_rackham/02_start_1.sh
+```
+
 ## 10. Create simulated dataset 1
 
 ```
