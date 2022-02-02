@@ -22,12 +22,6 @@ if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
   datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/
   superpops=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
-
-  echo "Show 'sim_data_1.fam':"
-  head /home/richel/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1.fam
-
-  echo "Show 'superpops' file:"
-  head $superpops
 fi
 
 echo "datadir: $datadir"
