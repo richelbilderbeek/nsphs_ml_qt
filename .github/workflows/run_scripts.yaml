@@ -22,21 +22,33 @@ jobs:
       - name: Fix rJava error # from https://travis-ci.community/t/cannot-connect-to-java-from-r/9754/8
         run: sudo $(which R) CMD javareconf
 
+      - name: Install dependencies
+        run: |
+          install.packages(c("remotes", "rcmdcheck"))
+          remotes::install_github("richelbilderbeek/plinkr")
+          remotes::install_github("richelbilderbeek/ormr")
+          remotes::install_github("richelbilderbeek/gcaer")
+        shell: Rscript {0}
+
+      - name: Install plink
+        run: plinkr::install_plinks()
+        shell: Rscript {0}
+
       - name: Recreate sim dataset 1
         run: cd .. ; ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh ; cd ..
 
       - name: Train on dataset 1
-        run: scripts_rackham/11_train_on_dataset_1.sh
+        run: cd .. ; ./scripts_rackham/11_train_on_dataset_1.sh ; cd ..
 
       - name: project on dataset 1
-        run: scripts_rackham/12_project_on_dataset_1.sh
+        run: cd .. ; ./scripts_rackham/12_project_on_dataset_1.sh ; cd ..
 
       - name: project on dataset 1
-        run: scripts_rackham/13_plot_on_dataset_1.sh
+        run: cd .. ; ./scripts_rackham/13_plot_on_dataset_1.sh ; cd ..
 
       - name: project on dataset 1
-        run: scripts_rackham/14_animate_on_dataset_1.sh
+        run: cd .. ; ./scripts_rackham/14_animate_on_dataset_1.sh ; cd ..
 
       - name: project on dataset 1
-        run: scripts_rackham/15_evaluate_on_dataset_1.sh
+        run: cd .. ; ./scripts_rackham/15_evaluate_on_dataset_1.sh ; cd ..
 
