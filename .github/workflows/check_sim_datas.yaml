@@ -44,10 +44,17 @@ jobs:
         run: Rscript scripts_rackham/10_create_dataset_1.R
 
       - name: Check sim_data_1.bed is the same, thanks to https://stackoverflow.com/a/12900693
-        run: cmp --silent inst/extdata_old/sim_data_1.bed inst/extdata/sim_data_1.bed || echo "sim_data_1.bed is different"; exit 42
+        run: cmp --silent inst/extdata_old/sim_data_1.bim inst/extdata/sim_data_1.bim || echo "sim_data_1.bim is different"; exit 42
 
-#sim_data_1.bim
-#sim_data_1.fam
-#sim_data_1_labels.csv
-#sim_data_1.phe
+      - name: Check sim_data_1.fam is the same, thanks to https://stackoverflow.com/a/12900693
+        run: cmp --silent inst/extdata_old/sim_data_1.fam inst/extdata/sim_data_1.fam || echo "sim_data_1.fam is different"; exit 42
+
+      - name: Check sim_data_1.phe is the same, thanks to https://stackoverflow.com/a/12900693
+        run: cmp --silent inst/extdata_old/sim_data_1.phe inst/extdata/sim_data_1.phe || echo "sim_data_1.phe is different"; exit 42
+
+      - name: Check sim_data_1_labels.csv is the same, thanks to https://stackoverflow.com/a/12900693
+        run: cmp --silent inst/extdata_old/sim_data_1_labels.csv inst/extdata/sim_data_1_labels.csv || echo "sim_data_1_labels.csv is different"; exit 42
+
+      - name: Check sim_data_1.bed is the same, thanks to https://stackoverflow.com/a/12900693
+        run: cmp --silent inst/extdata_old/sim_data_1.bed inst/extdata/sim_data_1.bed || echo "sim_data_1.bed is different"; exit 42
 
