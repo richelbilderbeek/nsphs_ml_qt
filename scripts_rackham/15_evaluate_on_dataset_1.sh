@@ -29,24 +29,35 @@ echo "Running at location $(pwd)"
 
 datadir=~/nsphs_ml_qt/inst/extdata
 trainedmodeldir=~/sim_data_1_ae/ # Really need that slash at the end
+superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
   datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/ # Really need that slash at the end
+  superpops=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
+fi
+
+if [ ! -f $superpops ]; then
+  echo "'superpops' file not found at path $superpops"
+  exit 42
 fi
 
 echo "datadir: $datadir"
 echo "trainedmodeldir: $trainedmodeldir"
+echo "superpops: $superpops"
+
+# --metrics=<name>
+# --pdata=<name>
 
 python3 GenoCAE/run_gcae.py \
   evaluate \
   --datadir $datadir \
   --data sim_data_1 \
-  --trainedmodeldir $trainedmodeldir \
   --model_id M1 \
-  --epochs 3 \
-  --save_interval 1 \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
+  --superpops $superpops \
+  --epoch 3 \
+  --trainedmodeldir $trainedmodeldir \
   --pheno_model_id=p1
 
