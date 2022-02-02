@@ -38,17 +38,17 @@ jobs:
         run: cd .. ; ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh ; cd ..
 
       - name: Train on dataset 1
-        run: cd .. ; ./scripts_rackham/11_train_on_dataset_1.sh ; cd ..
+        run: cd .. ; ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh ; cd ..
 
       - name: project on dataset 1
-        run: cd .. ; ./scripts_rackham/12_project_on_dataset_1.sh ; cd ..
+        run: cd .. ; ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset_1.sh ; cd ..
 
       - name: project on dataset 1
-        run: cd .. ; ./scripts_rackham/13_plot_on_dataset_1.sh ; cd ..
+        run: cd .. ; ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset_1.sh ; cd ..
 
       - name: project on dataset 1
-        run: cd .. ; ./scripts_rackham/14_animate_on_dataset_1.sh ; cd ..
+        run: cd .. ; ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset_1.sh ; cd ..
 
       - name: project on dataset 1
-        run: cd .. ; ./scripts_rackham/15_evaluate_on_dataset_1.sh ; cd ..
+        run: cd .. ; ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset_1.sh ; cd ..
 

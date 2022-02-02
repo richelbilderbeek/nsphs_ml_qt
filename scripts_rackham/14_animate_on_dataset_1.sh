@@ -27,6 +27,11 @@
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
+# Error: File /home/richel/sim_data_1_ae/ae.M1.ex3.b_0_4.sim_data_1/sim_data_1/encoded_data.h5 not found
+echo "Will not run this script, as this will return in an error"
+exit 0
+
+
 datadir=~/nsphs_ml_qt/inst/extdata
 trainedmodeldir=~/sim_data_1_ae/ # Really need that slash at the end
 superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
@@ -56,5 +61,5 @@ python3 GenoCAE/run_gcae.py \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
   --superpops $superpops \
-  --epochs 3 \
+  --epoch 3 \
   --trainedmodeldir $trainedmodeldir

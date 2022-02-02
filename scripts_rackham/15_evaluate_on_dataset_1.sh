@@ -48,10 +48,14 @@ echo "superpops: $superpops"
 
 # --metrics=<name>
 # --pdata=<name>
+# --metrics "hull_error,f1_score" \
+
+
 
 python3 GenoCAE/run_gcae.py \
   evaluate \
   --datadir $datadir \
+  --metrics "hull_error" \
   --data sim_data_1 \
   --model_id M1 \
   --train_opts_id ex3 \
