@@ -1,0 +1,42 @@
+on:
+  push:
+  pull_request:
+
+name: check_sim_datas
+
+jobs:
+  check_sim_datas:
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+
+      - name: Install libcurl4-openssl-dev
+        run: sudo apt install -qq libcurl4-openssl-dev
+
+      - name: Fix rJava error # from https://travis-ci.community/t/cannot-connect-to-java-from-r/9754/8
+        run: sudo $(which R) CMD javareconf
+
+      - name: Recreate sim dataset 1
+        run: cd .. ; ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh ; cd ..
+
+      - name: Train on dataset 1
+        run: scripts_rackham/11_train_on_dataset_1.sh
+
+      - name: project on dataset 1
+        run: scripts_rackham/12_project_on_dataset_1.sh
+
+      - name: project on dataset 1
+        run: scripts_rackham/13_plot_on_dataset_1.sh
+
+      - name: project on dataset 1
+        run: scripts_rackham/14_animate_on_dataset_1.sh
+
+      - name: project on dataset 1
+        run: scripts_rackham/15_evaluate_on_dataset_1.sh
+
