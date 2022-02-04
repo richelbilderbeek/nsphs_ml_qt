@@ -21,13 +21,14 @@
 #SBATCH --job-name=10_create_dataset_1
 #SBATCH --output=10_create_dataset_1.log
 
+echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
 full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
-datadir=~/data_1 # datadir is a name used by GCAE
+datadir=~/data_1/ # Really need that slash
 plink_exe=~/.local/share/plinkr/plink_1_9_unix/plink
-thin_count=100 # Number of SNPs that remain
+thin_count=10 # Number of SNPs that remain
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "This script is run locally"
@@ -63,7 +64,7 @@ fi
 mkdir $datadir
 
 # * [ ] Do LD prune in PLINK, use R2 < 0.2
-# * [ ] Remove rare alleles, e.g. MAF <1%
+# * [x] Remove rare alleles, e.g. MAF <1%
 # * [x] Take a random set of SNPs, that must be small enough for GCAE to load the .bed file
 
 $plink_exe \
@@ -78,4 +79,5 @@ if [[ $HOSTNAME == "N141CU" ]]; then
   Rscript -e "min(plinkr::get_minor_alelle_frequencies(plinkr::read_plink_bin_data(\"$datadir/data_1\")$data))"
 fi
 
+echo "End time: $(date --iso-8601=seconds)"
 
