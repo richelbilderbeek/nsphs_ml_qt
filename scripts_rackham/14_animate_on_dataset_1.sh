@@ -24,6 +24,7 @@
 #SBATCH --job-name=14_animate_on_dataset_1
 #SBATCH --output=14_animate_on_dataset_1.log
 
+echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
@@ -35,11 +36,13 @@ exit 0
 datadir=~/nsphs_ml_qt/inst/extdata/ # Really need that slash
 trainedmodeldir=~/sim_data_1_ae/ # Really need that slash at the end
 superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
+epoch=100
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
   datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/ # Really need that slash at the end
   superpops=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
+  epoch=3
 fi
 
 if [ ! -f $superpops ]; then
@@ -50,6 +53,7 @@ fi
 echo "datadir: $datadir"
 echo "trainedmodeldir: $trainedmodeldir"
 echo "superpops: $superpops"
+echo "epoch: $epoch"
 
 module load python/3.8.7
 
@@ -61,5 +65,8 @@ python3 GenoCAE/run_gcae.py \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
   --superpops $superpops \
-  --epoch 3 \
+  --epoch $epoch \
   --trainedmodeldir $trainedmodeldir
+
+echo "End time: $(date --iso-8601=seconds)"
+

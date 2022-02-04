@@ -21,8 +21,11 @@
 #SBATCH --job-name=10_create_dataset_1
 #SBATCH --output=10_create_dataset_1.log
 
+echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
 Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R
+
+echo "End time: $(date --iso-8601=seconds)"
 

@@ -23,6 +23,7 @@
 #SBATCH --job-name=02_start_1
 #SBATCH --output=02_start_1.log
 
+echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
@@ -32,4 +33,6 @@ jobid_12=$(sbatch --dependency=afterok:$jobid_11 ./nsphs_ml_qt/scripts_rackham/1
 jobid_13=$(sbatch --dependency=afterok:$jobid_12 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset_1.sh     | cut -d ' ' -f 4)
 jobid_14=$(sbatch --dependency=afterok:$jobid_13 ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset_1.sh  | cut -d ' ' -f 4)
 jobid_15=$(sbatch --dependency=afterok:$jobid_14 ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset_1.sh | cut -d ' ' -f 4)
+
+echo "End time: $(date --iso-8601=seconds)"
 

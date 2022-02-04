@@ -24,19 +24,26 @@
 #SBATCH --job-name=11_train_on_dataset_1
 #SBATCH --output=11_train_on_dataset_1.log
 
+echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
 datadir=~/nsphs_ml_qt/inst/extdata/ # Really need that slash
 trainedmodeldir=~/sim_data_1_ae/ # Really need that slash
+epochs=100
+save_interval=100
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
   datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/ # Really need that slash
+  epochs=3
+  save_interval=1
 fi
 
 echo "datadir: $datadir"
 echo "trainedmodeldir: $trainedmodeldir"
+echo "epochs: $epochs"
+echo "save_interval: $save_interval"
 
 module load python/3.8.7
 
@@ -46,9 +53,11 @@ python3 GenoCAE/run_gcae.py \
   --data sim_data_1 \
   --trainedmodeldir $trainedmodeldir \
   --model_id M1 \
-  --epochs 3 \
-  --save_interval 1 \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
+  --epochs $epochs \
+  --save_interval $save_interval \
   --pheno_model_id=p1
+
+echo "End time: $(date --iso-8601=seconds)"
 
