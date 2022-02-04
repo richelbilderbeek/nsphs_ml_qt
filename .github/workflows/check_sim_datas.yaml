@@ -37,27 +37,24 @@ jobs:
       - name: Check dataset 1
         run: Rscript -e 'gcaer::check_gcae_input_filenames(gcaer::create_gcae_input_filenames(bed_filename = "inst/extdata/sim_data_1.bed", bim_filename = "inst/extdata/sim_data_1.bim", fam_filename = "inst/extdata/sim_data_1.fam", phe_filename = "inst/extdata/sim_data_1.phe", labels_filename = "inst/extdata/sim_data_1_labels.csv"))'
 
-      - name: Copy sim dataset 1
-        run: mv inst/extdata inst/extdata_old
-
-      - name: Recreate sim dataset 1
+      - name: Recreate sim dataset 1, in 'nsphs_ml_qt/inst/extdata/'
         run: Rscript scripts_rackham/10_create_dataset_1.R
 
       - name: Show sim_data_1.bed
-        run: cat inst/extdata_old/sim_data_1.bim ; cat inst/extdata/sim_data_1.bim
+        run: cat cat nsphs_ml_qt/inst/extdata/sim_data_1.bim inst/extdata/sim_data_1.bim
 
       - name: Check sim_data_1.bed is the same, thanks to https://stackoverflow.com/a/12900693
-        run: cmp --silent inst/extdata_old/sim_data_1.bim inst/extdata/sim_data_1.bim || echo "sim_data_1.bim is different"; exit 42
+        run: cmp --silent nsphs_ml_qt/inst/extdata/sim_data_1.bim inst/extdata/sim_data_1.bim || echo "sim_data_1.bim is different"; exit 42
 
       - name: Check sim_data_1.fam is the same, thanks to https://stackoverflow.com/a/12900693
-        run: cmp --silent inst/extdata_old/sim_data_1.fam inst/extdata/sim_data_1.fam || echo "sim_data_1.fam is different"; exit 42
+        run: cmp --silent nsphs_ml_qt/inst/extdata/sim_data_1.fam inst/extdata/sim_data_1.fam || echo "sim_data_1.fam is different"; exit 42
 
       - name: Check sim_data_1.phe is the same, thanks to https://stackoverflow.com/a/12900693
-        run: cmp --silent inst/extdata_old/sim_data_1.phe inst/extdata/sim_data_1.phe || echo "sim_data_1.phe is different"; exit 42
+        run: cmp --silent nsphs_ml_qt/inst/extdata/sim_data_1.phe inst/extdata/sim_data_1.phe || echo "sim_data_1.phe is different"; exit 42
 
       - name: Check sim_data_1_labels.csv is the same, thanks to https://stackoverflow.com/a/12900693
-        run: cmp --silent inst/extdata_old/sim_data_1_labels.csv inst/extdata/sim_data_1_labels.csv || echo "sim_data_1_labels.csv is different"; exit 42
+        run: cmp --silent nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv inst/extdata/sim_data_1_labels.csv || echo "sim_data_1_labels.csv is different"; exit 42
 
       - name: Check sim_data_1.bed is the same, thanks to https://stackoverflow.com/a/12900693
-        run: cmp --silent inst/extdata_old/sim_data_1.bed inst/extdata/sim_data_1.bed || echo "sim_data_1.bed is different"; exit 42
+        run: cmp --silent nsphs_ml_qt/inst/extdata/sim_data_1.bed inst/extdata/sim_data_1.bed || echo "sim_data_1.bed is different"; exit 42
 
