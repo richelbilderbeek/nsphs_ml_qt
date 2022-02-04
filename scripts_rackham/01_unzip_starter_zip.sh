@@ -10,5 +10,9 @@
 # Note that the first is a copy of the second, as copied by
 # '00_create_starter_zip.sh'
 #
-unzip -y nsphs_ml_qt_starter_zip.zip
+
+zip_filename=nsphs_ml_qt_rackham_starter_zip.zip
+echo "zip_filename: $zip_filename"
+
+unzip -y $zip_filename
 

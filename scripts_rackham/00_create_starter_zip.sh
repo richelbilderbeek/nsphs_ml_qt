@@ -7,9 +7,14 @@
 #
 #   ./scripts_rackham/00_create_starter_zip.sh
 #
+#
+#
+
+zip_filename=nsphs_ml_qt_rackham_starter_zip.zip
 
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
+echo "zip_filename: $zip_filename"
 
 if [[ $HOSTNAME != "N141CU" ]]; then
   echo "Error: this script must run locally"
@@ -39,7 +44,7 @@ cp nsphs_ml_qt/scripts_rackham/README.md README.md
 cp nsphs_ml_qt/scripts_rackham/01_unzip_starter_zip.sh 01_unzip_starter_zip.sh
 cp nsphs_ml_qt/scripts_rackham/98_clean_rackham.sh 98_clean_rackham.sh
 
-zip -r --must-match nsphs_ml_qt_starter_zip.zip \
+zip -r --must-match $zip_filename \
   nsphs_ml_qt/ \
   GenoCAE/ \
   ~/.local/share/plinkr/plink_1_9_unix \
@@ -50,12 +55,12 @@ zip -r --must-match nsphs_ml_qt_starter_zip.zip \
 rm 01_unzip_starter_zip.sh README.md 98_clean_rackham.sh
 
 # Place the zip where it is expected to be
-mv nsphs_ml_qt_starter_zip.zip nsphs_ml_qt/nsphs_ml_qt_starter_zip.zip
+mv $zip_filename nsphs_ml_qt/$zip_filename
 
 # Go back to original folder
 cd nsphs_ml_qt
 
 if [[ $HOSTNAME == "N141CU" ]]; then
-  notify-send "Done creating starter zip" "Done creating starter zip"
+  notify-send "Done creating starter zip" "with filename $zip_filename"
 fi
 

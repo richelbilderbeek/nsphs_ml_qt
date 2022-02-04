@@ -27,10 +27,12 @@ echo "Running at location $(pwd)"
 full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
 datadir=~/data_1 # datadir is a name used by GCAE
 plink_exe=~/.local/share/plinkr/plink_1_9_unix/plink
+thin_count=100 # Number of SNPs that remain
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "This script is run locally"
-  full_data_basename=~/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1
+  full_data_basename=~/GitHubs/nsphs_ml_qt/inst/extdata/nsphs_ml_qt_issue_4_bin
+  thin_count=5 # Number of SNPs that remain
 fi
 
 full_data_bed_filename=$full_data_basename.bed
@@ -45,6 +47,7 @@ echo "plink_exe: $plink_exe"
 echo "full_data_bed_filename: $full_data_bed_filename"
 echo "full_data_bim_filename: $full_data_bim_filename"
 echo "full_data_fam_filename: $full_data_fam_filename"
+echo "thin_count: $thin_count (i.e. number of SNPs that remain)"
 
 if [ ! -f $plink_exe ]; then
   echo "'plink_exe' file not found at path $plink_exe"
@@ -56,29 +59,23 @@ if [ ! -f $full_data_bed_filename ]; then
   exit 43
 fi
 
-exit 314
 
 mkdir $datadir
 
-# Create variant IDs
+# * [ ] Do LD prune in PLINK, use R2 < 0.2
+# * [ ] Remove rare alleles, e.g. MAF <1%
+# * [x] Take a random set of SNPs, that must be small enough for GCAE to load the .bed file
 
-
-$plink_exe --bfile toy_data \
-  --thin-count 100 \
+$plink_exe \
+  --bfile $full_data_basename \
+  --maf 0.01 \
+  --thin-count $thin_count \
   --make-bed \
   --out $datadir/data_1
 
-
-# * Do LD prune in PLINK, use R2 < 0.2
-# * Remove rare alleles, e.g. MAF <1%
-# * Take a random set of SNPs, that must be small enough for GCAE to load the .bed file
-
-
-# Call PLINK to subset the data
-
-$plink_exe --bfile toy_data \
-  --extract nsp_ids.txt \
-  --make-bed \
-  --out $datadir/data_1
+if [[ $HOSTNAME == "N141CU" ]]; then
+  echo "Lowest MAF: "
+  Rscript -e "min(plinkr::get_minor_alelle_frequencies(plinkr::read_plink_bin_data(\"$datadir/data_1\")$data))"
+fi
 
 
