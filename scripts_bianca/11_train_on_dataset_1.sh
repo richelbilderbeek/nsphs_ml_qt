@@ -24,6 +24,7 @@
 #SBATCH --job-name=11_train_on_dataset_1
 #SBATCH --output=11_train_on_dataset_1.log
 
+SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
@@ -60,4 +61,4 @@ python3 GenoCAE/run_gcae.py \
   --pheno_model_id=p1
 
 echo "End time: $(date --iso-8601=seconds)"
-
+echo "Duration: $SECONDS seconds"
