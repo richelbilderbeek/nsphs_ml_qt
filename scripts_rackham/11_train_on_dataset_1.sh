@@ -38,6 +38,8 @@ fi
 echo "datadir: $datadir"
 echo "trainedmodeldir: $trainedmodeldir"
 
+module load python/3.8.7
+
 python3 GenoCAE/run_gcae.py \
   train \
   --datadir $datadir \

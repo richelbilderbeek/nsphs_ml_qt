@@ -23,7 +23,6 @@
 #SBATCH --mem=16G
 #SBATCH --job-name=15_evaluate_on_dataset_1
 #SBATCH --output=15_evaluate_on_dataset_1.log
-
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
@@ -48,7 +47,7 @@ echo "trainedmodeldir: $trainedmodeldir"
 echo "superpops: $superpops"
 echo "metrics: $metrics"
 
-# --pdata=<name>
+module load python/3.8.7
 
 python3 GenoCAE/run_gcae.py \
   evaluate \

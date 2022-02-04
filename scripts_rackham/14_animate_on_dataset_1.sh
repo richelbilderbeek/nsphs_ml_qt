@@ -51,7 +51,7 @@ echo "datadir: $datadir"
 echo "trainedmodeldir: $trainedmodeldir"
 echo "superpops: $superpops"
 
-# --pdata=<name>
+module load python/3.8.7
 
 python3 GenoCAE/run_gcae.py \
   animate \

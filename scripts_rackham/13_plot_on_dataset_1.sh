@@ -46,6 +46,8 @@ if [ ! -f $superpops ]; then
   exit 42
 fi
 
+module load python/3.8.7
+
 python3 GenoCAE/run_gcae.py \
   plot \
   --datadir $datadir \
@@ -57,7 +59,4 @@ python3 GenoCAE/run_gcae.py \
   --epoch 3 \
   --trainedmodeldir $trainedmodeldir \
   --pheno_model_id=p1
-
-# --pdata=<name> 
-# --trainedmodelname=<name>
 
