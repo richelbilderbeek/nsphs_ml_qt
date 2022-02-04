@@ -41,7 +41,7 @@ jobs:
         run: Rscript scripts_rackham/10_create_dataset_1.R
 
       - name: Show sim_data_1.bed
-        run: cat cat nsphs_ml_qt/inst/extdata/sim_data_1.bim inst/extdata/sim_data_1.bim
+        run: cat nsphs_ml_qt/inst/extdata/sim_data_1.bim inst/extdata/sim_data_1.bim
 
       - name: Check sim_data_1.bed is the same, thanks to https://stackoverflow.com/a/12900693
         run: cmp --silent nsphs_ml_qt/inst/extdata/sim_data_1.bim inst/extdata/sim_data_1.bim || echo "sim_data_1.bim is different"; exit 42
