@@ -35,7 +35,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Clone GenoCAE
-        run: git clone https://github.com/richelbilderbeek/GenoCAE ..
+        run: git clone https://github.com/richelbilderbeek/GenoCAE ../GenoCAE
 
       - name: Recreate sim dataset 1
         run: cd .. ; ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh ; cd ..
