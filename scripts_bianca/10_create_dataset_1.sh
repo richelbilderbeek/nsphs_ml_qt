@@ -27,7 +27,7 @@ echo "Running at location $(pwd)"
 
 full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
 datadir=~/data_1/ # Really need that slash
-plink_exe=~/.local/share/plinkr/plink_1_9_unix/plink
+plink_exe=~/plink_1_9_unix/plink
 thin_count=10 # Number of SNPs that remain
 
 if [[ $HOSTNAME == "N141CU" ]]; then
