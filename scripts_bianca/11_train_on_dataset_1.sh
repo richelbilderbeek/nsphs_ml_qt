@@ -46,9 +46,9 @@ echo "trainedmodeldir: $trainedmodeldir"
 echo "epochs: $epochs"
 echo "save_interval: $save_interval"
 
-module load python/3.8.7
+# module load python/3.8.7
 
-python3 GenoCAE/run_gcae.py \
+singularity nsphs_ml_qt/nsphs_ml_qt.sif exec python3 GenoCAE/run_gcae.py \
   train \
   --datadir $datadir \
   --data sim_data_1 \

@@ -1,14 +1,24 @@
 Bootstrap: library
-From: anna872/default/python38:latest
+# From: philarevalo/dev/ubuntu-pymol-biopython
+# From: anna872/default/python38:latest
+# From: omatt/python/python38:undefined
+# From: anna873/default/python36:latest
+# From: niharika2021/default/ubuntu-python
+From: emmeff/default/ubuntu:20.04
 
 %post
-    python3 -m pip install -r ../GenoCAE/requirements.txt    
+    apt-get -y update
+    # apt-get -y install libssl-dev libcurl4-openssl-dev wget --fix-missing
+    apt-get -y install libssl-dev libcurl4-openssl-dev wget python3 --fix-missing
+    apt-get -y install python3-pip
+    wget https://raw.githubusercontent.com/kausmees/GenoCAE/master/requirements.txt
+    python3 -m pip install -r requirements.txt
 
 %runscript
-exec R --vanilla --silent --no-echo "$@"
+exec python3 "$@"
 
 %test
-    python3 ../GenoCAE/run_gcae.py --help
+    python3 -m pip list
 
 %help
 

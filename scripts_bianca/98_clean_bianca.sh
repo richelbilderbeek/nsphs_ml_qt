@@ -11,9 +11,8 @@
 # '00_create_starter_zip.sh'
 #
 rm -f richel-sens2021565/nsphs_ml_qt_starter_zip.zip
+rm -rf GenoCAE nsphs_ml_qt plink_1_9_unix plink_2_0_unix
 rm -f *.log *.png
-rm -rf GenoCAE  nsphs_ml_qt
-rm -rf nsphs_ml_qt
-rm -rf ~/.local/share/plinkr
 rm -f 01_unzip_starter_zip.sh README.md 98_clean_bianca.sh
+rm nsphs_ml_qt.sif
 
