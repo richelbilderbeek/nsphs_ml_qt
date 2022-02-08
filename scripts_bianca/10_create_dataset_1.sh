@@ -29,11 +29,17 @@ full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
 datadir=~/data_1/ # Really need that slash
 plink_exe=~/plink_1_9_unix/plink
 thin_count=10 # Number of SNPs that remain
+maf=0.01 # Minimal frequency of alleles
+ld_window_size=1000
+ld_variant_count_shift=1
+ld_r_squared_threshold=0.2
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "This script is run locally"
+  plink_exe=~/.local/share/plinkr/plink_1_9_unix/plink
   full_data_basename=~/GitHubs/nsphs_ml_qt/inst/extdata/nsphs_ml_qt_issue_4_bin
-  thin_count=5 # Number of SNPs that remain
+  full_data_basename=~/nsphs_ml_qt_issue_4_bin
+  thin_count=10 # Number of SNPs that remain
 fi
 
 full_data_bed_filename=$full_data_basename.bed
@@ -49,6 +55,9 @@ echo "full_data_bed_filename: $full_data_bed_filename"
 echo "full_data_bim_filename: $full_data_bim_filename"
 echo "full_data_fam_filename: $full_data_fam_filename"
 echo "thin_count: $thin_count (i.e. number of SNPs that remain)"
+echo "ld_window_size: $ld_window_size"
+echo "ld_variant_count_shift: $ld_variant_count_shift"
+echo "ld_r_squared_threshold: $ld_r_squared_threshold"
 
 if [ ! -f $plink_exe ]; then
   echo "'plink_exe' file not found at path $plink_exe"
@@ -63,13 +72,15 @@ fi
 
 mkdir $datadir
 
-# * [ ] Do LD prune in PLINK, use R2 < 0.2
+# * [x] Do LD prune in PLINK, use R2 < 0.2
 # * [x] Remove rare alleles, e.g. MAF <1%
 # * [x] Take a random set of SNPs, that must be small enough for GCAE to load the .bed file
 
+
 $plink_exe \
   --bfile $full_data_basename \
-  --maf 0.01 \
+  --maf $maf \
+  --indep-pairwise $ld_window_size $ld_variant_count_shift $ld_r_squared_threshold \
   --thin-count $thin_count \
   --make-bed \
   --out $datadir/data_1
