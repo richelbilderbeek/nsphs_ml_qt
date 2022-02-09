@@ -26,7 +26,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-if [[ $HOSTNAME =~ ^r[0-9]{1-3}$ ]] ; then
+if [[ $HOSTNAME =~ "^r[0-9]{1-3}$ ]]" ; then
   echo "Running on Rackham runner node"
   # No need to load modules here
   # module load python/3.8.7
