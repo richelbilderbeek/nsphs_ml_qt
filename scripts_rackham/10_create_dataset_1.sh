@@ -24,7 +24,7 @@
 echo "Parameters: $@"
 echo "Number of parameters: $#"
 
-if [[ $# -ne 4 ]] ; then
+if [[ "$#" != "4" ]] ; then
   echo "Invalid number of arguments: must have 4 parameters: "
   echo ""
   echo "  1. base_input_filename"
