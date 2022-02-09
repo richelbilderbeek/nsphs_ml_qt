@@ -27,7 +27,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-
+# Original first sim setting
 #base_input_filename=nsphs_ml_qt/inst/extdata/sim_data_1
 #n_individuals=1000
 #n_traits=1
@@ -54,7 +54,7 @@ echo "epochs: $epochs"
 echo "epoch: $epoch"
 echo "save_interval: $save_interval"
 
-jobid_10=$(sbatch                                ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh $base_input_filename | cut -d ' ' -f 4)
+jobid_10=$(sbatch                                ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh $base_input_filename $n_individuals $n_traits $n_snps_per_trait | cut -d ' ' -f 4)
 jobid_11=$(sbatch --dependency=afterok:$jobid_10 ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh    | cut -d ' ' -f 4)
 jobid_12=$(sbatch --dependency=afterok:$jobid_11 ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset_1.sh  | cut -d ' ' -f 4)
 jobid_13=$(sbatch --dependency=afterok:$jobid_12 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset_1.sh     | cut -d ' ' -f 4)
