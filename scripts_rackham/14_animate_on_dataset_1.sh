@@ -32,7 +32,6 @@ echo "Running at location $(pwd)"
 echo "Will not run this script, as this will return in an error"
 exit 0
 
-
 datadir=~/nsphs_ml_qt/inst/extdata/ # Really need that slash
 trainedmodeldir=~/sim_data_1_ae/ # Really need that slash at the end
 superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv

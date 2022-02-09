@@ -33,12 +33,12 @@ if (is_on_rackham()) {
     message("PLINK are already installed")
   } else {
     message("Installing PLINKs")
-    plinkr::install_plinks()
+    plinkr::install_plink()
     message("PLINKs installed")
   }
 }
 
-if [[ $HOSTNAME =~ ^r[0-9]{1-3}$ ]] ; then
+if [[ $HOSTNAME =~ "^r[0-9]{1-3}$" ]] ; then
   echo "Running on Rackham runner node"
   # No need to load modules here
   # module load python/3.8.7
