@@ -21,6 +21,9 @@
 #SBATCH --job-name=10_create_dataset_1
 #SBATCH --output=10_create_dataset_1.log
 
+echo "Parameters: $@"
+echo "Number of parameters: $#"
+
 if [[ $# -ne 4 ]] ; then
   echo "Invalid number of arguments: must have 4 parameters: "
   echo ""
