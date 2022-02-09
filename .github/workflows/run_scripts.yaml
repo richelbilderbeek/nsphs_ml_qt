@@ -38,7 +38,7 @@ jobs:
         run: git clone https://github.com/richelbilderbeek/GenoCAE ../GenoCAE
 
       - name: Create sim dataset 1
-        run: cd .. ; ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh ; cd ..
+        run: cd .. ; ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh temp 2 3 5 ; cd ..
 
       - name: Train on dataset 1
         run: cd .. ; ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh ; cd ..
