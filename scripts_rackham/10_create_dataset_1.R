@@ -29,8 +29,8 @@ if (is_on_gha()) {
 }
 if (is_on_rackham()) {
   message("This R script runs on Rackham")
-  if (plinkr::is_plinks_installed()) {
-    message("PLINKs are already installed")
+  if (plinkr::is_plink_installed()) {
+    message("PLINK are already installed")
   } else {
     message("Installing PLINKs")
     plinkr::install_plinks()
