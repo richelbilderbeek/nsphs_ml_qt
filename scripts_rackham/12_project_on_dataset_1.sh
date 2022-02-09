@@ -48,7 +48,7 @@ echo "epoch: $epoch"
 if [ ! -f $superpops ]; then
   echo "'superpops' file not found at path $superpops"
   echo "Showing content of datadir ($datadir):"
-  cd datadir ; ls ; cd -
+  cd $datadir ; ls ; cd -
   exit 42
 fi
 
