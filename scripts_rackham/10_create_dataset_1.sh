@@ -21,10 +21,30 @@
 #SBATCH --job-name=10_create_dataset_1
 #SBATCH --output=10_create_dataset_1.log
 
+if [[ $# -ne 4 ]] ; then
+  echo "Invalid number of arguments: must have 4 parameters: "
+  echo ""
+  echo "  1. base_input_filename"
+  echo "  2. n_individuals"
+  echo "  3. n_traits"
+  echo "  4. n_snps_per_trait"
+  echo ""
+  echo "Actual number of parameters: $#"
+  exit 42
+fi
+
+base_input_filename=$1
+n_individuals=$2
+n_traits=$3
+n_snps_per_trait=$4
+
+echo "base_input_filename: $base_input_filename"
+
 SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
+
 
 if [[ $HOSTNAME =~ "^r[0-9]{1-3}$" ]] ; then
   echo "Running on Rackham runner node"
@@ -39,7 +59,7 @@ if [ ! -z $GITHUB_ACTIONS ]; then
 fi
 
 
-Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R
+Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R $base_input_filename $n_individuals $n_traits $n_snps_per_trait
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
