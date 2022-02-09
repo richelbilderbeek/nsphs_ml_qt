@@ -7,7 +7,7 @@
 #
 args <- commandArgs(trailingOnly = TRUE)
 
-if (length(args) != 1) {
+if (length(args) != 4) {
   stop(
     "Invalid number of arguments: must have 4 parameters: \n",
     " \n",
