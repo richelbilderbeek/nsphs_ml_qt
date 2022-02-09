@@ -26,22 +26,28 @@ echo "Number of parameters: $#"
 
 if [[ "$#" -ne 4 ]] ; then
   echo "Invalid number of arguments: must have 4 parameters: "
-  echo ""
+  echo " "
   echo "  1. base_input_filename"
   echo "  2. n_individuals"
   echo "  3. n_traits"
   echo "  4. n_snps_per_trait"
-  echo ""
+  echo " "
   echo "Actual number of parameters: $#"
+  echo " "
+  echo "Exiting :-("
   exit 42
 fi
 
+echo "Correct number of arguments: $#"
 base_input_filename=$1
 n_individuals=$2
 n_traits=$3
 n_snps_per_trait=$4
 
 echo "base_input_filename: $base_input_filename"
+echo "n_individuals: $n_individuals"
+echo "n_traits: $n_traits"
+echo "n_snps_per_trait: $n_snps_per_trait"
 
 SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
