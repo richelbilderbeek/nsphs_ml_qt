@@ -44,7 +44,7 @@ Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
 
-if [[ $HOSTNAME =~ ^r[0-9]{1-3}$ ]] ; then
+if [[ $HOSTNAME =~ "^r[0-9]{1-3}$" ]] ; then
   echo "Showing jobstats"
   jobstats -A snic2021-22-624 -p %j 
 fi
