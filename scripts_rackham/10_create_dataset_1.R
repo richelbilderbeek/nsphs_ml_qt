@@ -62,7 +62,7 @@ if (is_on_rackham()) {
 }
 
 gcaer::create_gcae_input_files_1(
-  base_input_filename = base_input_filename
+  base_input_filename = base_input_filename,
   n_individuals = n_individuals,
   n_traits = n_traits,
   n_snps_per_trait = n_snps_per_trait

@@ -57,7 +57,8 @@ echo "Running at location $(pwd)"
 echo "Running on Rackham, for loading module?"
 
 
-if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
+# if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
+if [[ $HOSTNAME =~ "^r[0-9]{1-3}$" ]] ; then
   echo "Running on Rackham runner node"
   # No need to load modules here
   # module load python/3.8.7
@@ -79,7 +80,8 @@ echo "Duration: $SECONDS seconds"
 
 echo "Running on Rackham, for jobstats?"
 
-if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
+# if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
+if [[ $HOSTNAME =~ "^r[0-9]{1-3}$" ]] ; then
   echo "Showing jobstats"
   jobstats -A snic2021-22-624 -p %j 
 fi
