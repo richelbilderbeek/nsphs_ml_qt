@@ -12,8 +12,8 @@ is_on_gha <- function() {
 
 is_on_rackham <- function() {
   stringr::str_count(
-    Sys.getenv("HOSTNAME")), 
-    "^r[0-9]{1-3}$"
+    string = Sys.getenv("HOSTNAME"),
+    pattern = "^r[:digit:]{1,3}$"
   ) == 1
 }
 
