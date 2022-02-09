@@ -19,7 +19,7 @@ is_on_rackham <- function() {
 
 if (is_on_gha()) {
   message("This R script runs on GitHub Actions")
-  if (plinkr::is_plinks_installed()) {
+  if (plinkr::is_plink_installed()) {
     message("PLINKs are already installed")
   } else {
     message("Installing PLINKs")
