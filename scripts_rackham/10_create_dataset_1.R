@@ -61,12 +61,6 @@ if (is_on_rackham()) {
   }
 }
 
-if [[ $HOSTNAME =~ "^r[0-9]{1-3}$" ]] ; then
-  echo "Running on Rackham runner node"
-  # No need to load modules here
-  # module load python/3.8.7
-fi
-
 gcaer::create_gcae_input_files_1(
   base_input_filename = base_input_filename
   n_individuals = n_individuals,
