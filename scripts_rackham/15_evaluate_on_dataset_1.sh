@@ -52,7 +52,11 @@ echo "superpops: $superpops"
 echo "metrics: $metrics"
 echo "epoch: $epoch"
 
-module load python/3.8.7
+
+if [[ $HOSTNAME =~ ^r[0-9]{1-3}$ ]] ; then
+  echo "Running on Rackham runner node $HOSTNAME"
+  module load python/3.8.7
+fi
 
 python3 GenoCAE/run_gcae.py \
   evaluate \

@@ -26,6 +26,12 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
+if [[ $HOSTNAME =~ ^r[0-9]{1-3}$ ]] ; then
+  echo "Running on Rackham runner node $HOSTNAME"
+  # No need to load modules here
+  # module load python/3.8.7
+fi
+
 Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R
 
 echo "End time: $(date --iso-8601=seconds)"
