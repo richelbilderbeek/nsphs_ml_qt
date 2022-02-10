@@ -57,9 +57,9 @@ echo "Running at location $(pwd)"
 echo "Running on Rackham, for loading module?"
 
 
-# if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
-if [[ $HOSTNAME =~ "^r[0-9]{1,3}$" ]] ; then
-  echo "Running on Rackham runner node"
+# if [[ $HOSTNAME =~ "^r[0-9]{1,3}$" ]] ; then
+if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
+  echo "bash: running on Rackham runner node"
   # No need to load modules here
   # module load python/3.8.7
 fi
@@ -78,11 +78,11 @@ Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R $base_input_filename $
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
 
-echo "Running on Rackham, for jobstats?"
+echo "bash: running on Rackham, for jobstats?"
 
-# if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
-if [[ $HOSTNAME =~ "^r[0-9]{1,3}$" ]] ; then
-  echo "Showing jobstats"
+# if [[ $HOSTNAME =~ "^r[0-9]{1,3}$" ]] ; then
+if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
+  echo "bash: showing jobstats"
   jobstats -A snic2021-22-624 -p %j 
 fi
 
