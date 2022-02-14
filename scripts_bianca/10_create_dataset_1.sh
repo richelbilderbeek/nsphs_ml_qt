@@ -76,7 +76,6 @@ mkdir $datadir
 # * [x] Remove rare alleles, e.g. MAF <1%
 # * [x] Take a random set of SNPs, that must be small enough for GCAE to load the .bed file
 
-
 $plink_exe \
   --bfile $full_data_basename \
   --maf $maf \

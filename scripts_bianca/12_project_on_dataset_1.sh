@@ -50,9 +50,7 @@ if [ ! -f $superpops ]; then
   exit 42
 fi
 
-module load python/3.8.7
-
-python3 GenoCAE/run_gcae.py \
+singularity run gcae/gcae.sif \
   project \
   --datadir $datadir \
   --data sim_data_1 \
