@@ -47,6 +47,7 @@ cp nsphs_ml_qt/scripts_rackham/98_clean_rackham.sh 98_clean_rackham.sh
 zip -r --must-match $zip_filename \
   nsphs_ml_qt/ \
   GenoCAE/ \
+  gcae/gcae.sif \
   ~/.local/share/plinkr/plink_1_9_unix \
   ~/.local/share/plinkr/plink_2_0_unix \
   01_unzip_starter_zip.sh README.md 98_clean_rackham.sh
