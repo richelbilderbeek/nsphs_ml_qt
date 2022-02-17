@@ -88,7 +88,7 @@ fi
 
 $plink_exe \
   --bfile $full_data_basename \
-  --pheno $full_data_phe_filename
+  --pheno $full_data_phe_filename \
   --maf $maf \
   --indep-pairwise $ld_window_size $ld_variant_count_shift $ld_r_squared_threshold \
   --thin-count $thin_count \
