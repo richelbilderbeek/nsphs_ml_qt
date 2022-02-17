@@ -30,6 +30,7 @@ echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
 datadir=~/data_1/ # Really need that slash
+data=data_1
 trainedmodeldir=~/data_1_ae/ # Really need that slash
 epochs=3
 save_interval=1
@@ -51,7 +52,7 @@ echo "save_interval: $save_interval"
 singularity run gcae/gcae.sif \
   train \
   --datadir $datadir \
-  --data sim_data_1 \
+  --data $data \
   --trainedmodeldir $trainedmodeldir \
   --model_id M1 \
   --train_opts_id ex3 \
