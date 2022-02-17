@@ -46,7 +46,7 @@ full_data_bed_filename=$full_data_basename.bed
 full_data_bim_filename=$full_data_basename.bim
 full_data_fam_filename=$full_data_basename.fam
 full_data_phe_filename=$full_data_basename.phe
-
+column_index=1
 
 echo "full_data_basename: $full_data_basename"
 echo "datadir: $datadir"
@@ -54,6 +54,8 @@ echo "plink_exe: $plink_exe"
 echo "full_data_bed_filename: $full_data_bed_filename"
 echo "full_data_bim_filename: $full_data_bim_filename"
 echo "full_data_fam_filename: $full_data_fam_filename"
+echo "full_data_phe_filename: $full_data_phe_filename"
+echo "column_index: $column_index"
 echo "thin_count: $thin_count (i.e. number of SNPs that remain)"
 echo "ld_window_size: $ld_window_size"
 echo "ld_variant_count_shift: $ld_variant_count_shift"
@@ -72,12 +74,21 @@ fi
 
 mkdir $datadir
 
+echo "Create phenotype file $full_data_phe_filename from dataset 1 column $column_index"
+Rscript -e 10_create_dataset_1_phenotypes.R $full_data_phe_filename $column_index
+
+if [ ! -f $full_data_phe_filename ]; then
+  echo "'full_data_phe_filename' file not found at path $full_data_phe_filename"
+  exit 43
+fi
+
 # * [x] Do LD prune in PLINK, use R2 < 0.2
 # * [x] Remove rare alleles, e.g. MAF <1%
 # * [x] Take a random set of SNPs, that must be small enough for GCAE to load the .bed file
 
 $plink_exe \
   --bfile $full_data_basename \
+  --pheno $full_data_phe_filename
   --maf $maf \
   --indep-pairwise $ld_window_size $ld_variant_count_shift $ld_r_squared_threshold \
   --thin-count $thin_count \
@@ -92,5 +103,5 @@ fi
 echo "End time: $(date --iso-8601=seconds)"
 
 # Thanks Jerker Nyberg von Below
-jobstats -p $SLURM_JOBID
-jobstats -p $SLURM_JOBID -A sens2021565
+# jobstats -p $SLURM_JOBID
+# jobstats -p $SLURM_JOBID -A sens2021565

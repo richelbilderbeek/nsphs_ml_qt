@@ -24,6 +24,9 @@
 #SBATCH --job-name=12_project_on_dataset_1
 #SBATCH --output=12_project_on_dataset_1.log
 
+echo "Do not project yet"
+exit 0
+
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"

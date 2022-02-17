@@ -43,11 +43,10 @@ if [[ $HOSTNAME == "N141CU" ]]; then
 fi
 
 echo "datadir: $datadir"
+echo "data: $data"
 echo "trainedmodeldir: $trainedmodeldir"
 echo "epochs: $epochs"
 echo "save_interval: $save_interval"
-
-# module load python/3.8.7
 
 singularity run gcae/gcae.sif \
   train \

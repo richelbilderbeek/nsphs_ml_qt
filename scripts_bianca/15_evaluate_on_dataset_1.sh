@@ -29,6 +29,7 @@ echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
 datadir=~/data_1/ # Really need that slash
+data=data_1
 trainedmodeldir=~/data_1_ae/ # Really need that slash at the end
 superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
 metrics="hull_error,f1_score_3"
@@ -47,6 +48,7 @@ if [ ! -f $superpops ]; then
 fi
 
 echo "datadir: $datadir"
+echo "data: $data"
 echo "trainedmodeldir: $trainedmodeldir"
 echo "superpops: $superpops"
 echo "metrics: $metrics"
@@ -55,8 +57,8 @@ echo "epoch: $epoch"
 singularity run gcae/gcae.sif \
   evaluate \
   --datadir $datadir \
+  --data $data \
   --metrics $metrics \
-  --data sim_data_1 \
   --model_id M1 \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
