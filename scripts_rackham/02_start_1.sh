@@ -29,7 +29,7 @@ echo "Running at location $(pwd)"
 
 base_input_filename=nsphs_ml_qt/inst/extdata/sim_data_2
 data=sim_data_2
-superpops=nsphs_ml_qt/inst/extdata/sim_data_2_labels.csv
+superpops=~/nsphs_ml_qt/inst/extdata/sim_data_2_labels.csv
 n_individuals=500
 n_traits=40
 n_snps_per_trait=30
