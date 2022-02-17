@@ -47,6 +47,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
+echo "Correct number of arguments: $#"
 datadir=$1
 trainedmodeldir=$2
 epochs=$3

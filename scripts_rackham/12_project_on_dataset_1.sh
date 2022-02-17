@@ -24,10 +24,28 @@
 #SBATCH --job-name=12_project_on_dataset_1
 #SBATCH --output=12_project_on_dataset_1.log
 
+echo "Parameters: $@"
+echo "Number of parameters: $#"
+
+if [[ "$#" -ne 4 ]] ; then
+  echo "Invalid number of arguments: must have 4 parameters: "
+  echo " "
+  echo "  1. datadir"
+  echo "  2. trainedmodeldir"
+  echo "  3. superpops"
+  echo "  4. epoch"
+  echo " "
+  echo "Actual number of parameters: $#"
+  echo " "
+  echo "Exiting :-("
+  exit 42
+fi
+
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
+echo "Correct number of arguments: $#"
 datadir=~/nsphs_ml_qt/inst/extdata/ # Really need that slash
 trainedmodeldir=~/sim_data_1_ae/ # Really need that slash
 superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
