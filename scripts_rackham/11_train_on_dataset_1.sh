@@ -24,15 +24,33 @@
 #SBATCH --job-name=11_train_on_dataset_1
 #SBATCH --output=11_train_on_dataset_1.log
 
+echo "Parameters: $@"
+echo "Number of parameters: $#"
+
+if [[ "$#" -ne 4 ]] ; then
+  echo "Invalid number of arguments: must have 4 parameters: "
+  echo " "
+  echo "  1. datadir"
+  echo "  2. trainedmodeldir"
+  echo "  3. epochs"
+  echo "  4. save_interval"
+  echo " "
+  echo "Actual number of parameters: $#"
+  echo " "
+  echo "Exiting :-("
+  exit 42
+fi
+
+
 SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-datadir=~/nsphs_ml_qt/inst/extdata/ # Really need that slash
-trainedmodeldir=~/sim_data_1_ae/ # Really need that slash
-epochs=100
-save_interval=100
+datadir=$1
+trainedmodeldir=$2
+epochs=$3
+save_interval=$4
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
@@ -41,8 +59,8 @@ if [[ $HOSTNAME == "N141CU" ]]; then
   save_interval=1
 fi
 
-echo "datadir: $datadir"
-echo "trainedmodeldir: $trainedmodeldir"
+echo "datadir: $datadir (note: really need that slash)"
+echo "trainedmodeldir: $trainedmodeldir (note: really need that slash)"
 echo "epochs: $epochs"
 echo "save_interval: $save_interval"
 
