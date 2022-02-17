@@ -27,6 +27,9 @@ echo "Running at location $(pwd)"
 
 full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
 datadir=~/data_1/ # Really need that slash
+data=data_1
+# Style from https://google.github.io/styleguide/shellguide.html#s5.6-variable-expansion
+pheno="${datadir}/${data}.phe"
 plink_exe=~/plink_1_9_unix/plink
 thin_count=10 # Number of SNPs that remain
 maf=0.01 # Minimal frequency of alleles
@@ -42,14 +45,15 @@ if [[ $HOSTNAME == "N141CU" ]]; then
   thin_count=10 # Number of SNPs that remain
 fi
 
-full_data_bed_filename=$full_data_basename.bed
-full_data_bim_filename=$full_data_basename.bim
-full_data_fam_filename=$full_data_basename.fam
-full_data_phe_filename=$full_data_basename.phe
+full_data_bed_filename="${full_data_basename}.bed"
+full_data_bim_filename="${full_data_basename}.bim"
+full_data_fam_filename="${full_data_basename}.fam"
+full_data_phe_filename="${full_data_basename}.phe"
 column_index=1
 
 echo "full_data_basename: $full_data_basename"
 echo "datadir: $datadir"
+echo "pheno: $pheno"
 echo "plink_exe: $plink_exe"
 echo "full_data_bed_filename: $full_data_bed_filename"
 echo "full_data_bim_filename: $full_data_bim_filename"
@@ -74,30 +78,34 @@ fi
 
 mkdir $datadir
 
-echo "Create phenotype file $full_data_phe_filename from dataset 1 column $column_index"
-Rscript -e 10_create_dataset_1_phenotypes.R $full_data_phe_filename $column_index
+echo "Create phenotype file ${pheno} from dataset 1, column ${column_index}"
+Rscript -e 10_create_dataset_1_phenotypes.R $pheno $column_index
+echo "Done creating phenotype file ${pheno} from dataset 1, column ${column_index}"
 
-if [ ! -f $full_data_phe_filename ]; then
-  echo "'full_data_phe_filename' file not found at path $full_data_phe_filename"
+if [ ! -f $pheno ]; then
+  echo "File 'pheno' not found at path ${pheno}"
   exit 43
 fi
 
 # * [x] Do LD prune in PLINK, use R2 < 0.2
 # * [x] Remove rare alleles, e.g. MAF <1%
 # * [x] Take a random set of SNPs, that must be small enough for GCAE to load the .bed file
+echo "Calling PLINK"
 
 $plink_exe \
   --bfile $full_data_basename \
-  --pheno $full_data_phe_filename \
+  --pheno $pheno \
   --maf $maf \
   --indep-pairwise $ld_window_size $ld_variant_count_shift $ld_r_squared_threshold \
   --thin-count $thin_count \
   --make-bed \
   --out $datadir/data_1
 
+echo "Done call to PLINK"
+
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Lowest MAF: "
-  Rscript -e "min(plinkr::get_minor_alelle_frequencies(plinkr::read_plink_bin_data(\"$datadir/data_1\")$data))"
+  Rscript -e "min(plinkr::get_minor_alelle_frequencies(plinkr::read_plink_bin_data(\"${datadir}/${data}\")$data))"
 fi
 
 echo "End time: $(date --iso-8601=seconds)"
