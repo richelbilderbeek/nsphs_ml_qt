@@ -27,13 +27,14 @@
 echo "Parameters: $@"
 echo "Number of parameters: $#"
 
-if [[ "$#" -ne 4 ]] ; then
-  echo "Invalid number of arguments: must have 4 parameters: "
+if [[ "$#" -ne 5 ]] ; then
+  echo "Invalid number of arguments: must have 5 parameters: "
   echo " "
   echo "  1. datadir"
-  echo "  2. trainedmodeldir"
-  echo "  3. epochs"
-  echo "  4. save_interval"
+  echo "  2. data"
+  echo "  3. trainedmodeldir"
+  echo "  4. epochs"
+  echo "  5. save_interval"
   echo " "
   echo "Actual number of parameters: $#"
   echo " "
@@ -49,9 +50,10 @@ echo "Running at location $(pwd)"
 
 echo "Correct number of arguments: $#"
 datadir=$1
-trainedmodeldir=$2
-epochs=$3
-save_interval=$4
+data=$2
+trainedmodeldir=$3
+epochs=$4
+save_interval=$5
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
@@ -61,6 +63,7 @@ if [[ $HOSTNAME == "N141CU" ]]; then
 fi
 
 echo "datadir: $datadir (note: really need that slash)"
+echo "data: $data"
 echo "trainedmodeldir: $trainedmodeldir (note: really need that slash)"
 echo "epochs: $epochs"
 echo "save_interval: $save_interval"
@@ -74,7 +77,7 @@ fi
 python3 GenoCAE/run_gcae.py \
   train \
   --datadir $datadir \
-  --data sim_data_1 \
+  --data $data \
   --trainedmodeldir $trainedmodeldir \
   --model_id M1 \
   --train_opts_id ex3 \

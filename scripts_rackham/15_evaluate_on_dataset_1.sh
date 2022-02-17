@@ -24,15 +24,36 @@
 #SBATCH --job-name=15_evaluate_on_dataset_1
 #SBATCH --output=15_evaluate_on_dataset_1.log
 
+echo "Parameters: $@"
+echo "Number of parameters: $#"
+
+if [[ "$#" -ne 6 ]] ; then
+  echo "Invalid number of arguments: must have 6 parameters: "
+  echo " "
+  echo "  1. datadir"
+  echo "  2. data"
+  echo "  3. trainedmodeldir"
+  echo "  4. superpops"
+  echo "  5. metrics"
+  echo "  6. epoch"
+  echo " "
+  echo "Actual number of parameters: $#"
+  echo " "
+  echo "Exiting :-("
+  exit 42
+fi
+
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-datadir=~/nsphs_ml_qt/inst/extdata/ # Really need that slash
-trainedmodeldir=~/sim_data_1_ae/ # Really need that slash at the end
-superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
-metrics="hull_error,f1_score_3"
-epoch=100
+echo "Correct number of arguments: $#"
+datadir=$1
+data=$2
+trainedmodeldir=$3
+superpops=$4
+metrics=$5
+epoch=$6
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
@@ -47,6 +68,7 @@ if [ ! -f $superpops ]; then
 fi
 
 echo "datadir: $datadir"
+echo "data: $data"
 echo "trainedmodeldir: $trainedmodeldir"
 echo "superpops: $superpops"
 echo "metrics: $metrics"
@@ -63,7 +85,7 @@ python3 GenoCAE/run_gcae.py \
   evaluate \
   --datadir $datadir \
   --metrics $metrics \
-  --data sim_data_1 \
+  --data $data \
   --model_id M1 \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \

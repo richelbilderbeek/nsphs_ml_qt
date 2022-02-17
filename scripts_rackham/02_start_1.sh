@@ -28,6 +28,7 @@ echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
 base_input_filename=nsphs_ml_qt/inst/extdata/sim_data_2
+data=sim_data_2
 superpops=nsphs_ml_qt/inst/extdata/sim_data_2_labels.csv
 n_individuals=500
 n_traits=40
@@ -38,6 +39,7 @@ trainedmodeldir=~/sim_data_1_ae/ # Really need that slash
 epochs=100
 epoch=$epochs
 save_interval=$epochs
+metrics="hull_error,f1_score_3"
 
 echo "base_input_filename: $base_input_filename"
 echo "superpops: $superpops"
@@ -49,13 +51,14 @@ echo "trainedmodeldir: $trainedmodeldir"
 echo "epochs: $epochs"
 echo "epoch: $epoch"
 echo "save_interval: $save_interval"
+echo "metrics: $metrics"
 
 jobid_10=$(sbatch                                ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh $base_input_filename $n_individuals $n_traits $n_snps_per_trait | cut -d ' ' -f 4)
-jobid_11=$(sbatch --dependency=afterok:$jobid_10 ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh $datadir $trainedmodeldir $epochs $save_interval              | cut -d ' ' -f 4)
-jobid_12=$(sbatch --dependency=afterok:$jobid_11 ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset_1.sh $datadir $trainedmodeldir $superpops $epoch                 | cut -d ' ' -f 4)
-jobid_13=$(sbatch --dependency=afterok:$jobid_12 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset_1.sh     | cut -d ' ' -f 4)
-jobid_14=$(sbatch --dependency=afterok:$jobid_13 ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset_1.sh  | cut -d ' ' -f 4)
-jobid_15=$(sbatch --dependency=afterok:$jobid_14 ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset_1.sh | cut -d ' ' -f 4)
+jobid_11=$(sbatch --dependency=afterok:$jobid_10 ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh $datadir $data $trainedmodeldir $epochs $save_interval        | cut -d ' ' -f 4)
+jobid_12=$(sbatch --dependency=afterok:$jobid_11 ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset_1.sh $datadir $data $trainedmodeldir $superpops $epoch           | cut -d ' ' -f 4)
+jobid_13=$(sbatch --dependency=afterok:$jobid_12 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset_1.sh $datadir $data $trainedmodeldir $superpops $epoch              | cut -d ' ' -f 4)
+jobid_14=$(sbatch --dependency=afterok:$jobid_13 ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset_1.sh                                                             | cut -d ' ' -f 4)
+jobid_15=$(sbatch --dependency=afterok:$jobid_14 ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset_1.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch | cut -d ' ' -f 4)
 
 echo "End time: $(date --iso-8601=seconds)"
 

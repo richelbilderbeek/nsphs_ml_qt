@@ -27,13 +27,14 @@
 echo "Parameters: $@"
 echo "Number of parameters: $#"
 
-if [[ "$#" -ne 4 ]] ; then
-  echo "Invalid number of arguments: must have 4 parameters: "
+if [[ "$#" -ne 5 ]] ; then
+  echo "Invalid number of arguments: must have 5 parameters: "
   echo " "
   echo "  1. datadir"
-  echo "  2. trainedmodeldir"
-  echo "  3. superpops"
-  echo "  4. epoch"
+  echo "  2. data"
+  echo "  3. trainedmodeldir"
+  echo "  4. superpops"
+  echo "  5. epoch"
   echo " "
   echo "Actual number of parameters: $#"
   echo " "
@@ -46,10 +47,11 @@ echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
 echo "Correct number of arguments: $#"
-datadir=~/nsphs_ml_qt/inst/extdata/ # Really need that slash
-trainedmodeldir=~/sim_data_1_ae/ # Really need that slash
-superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
-epoch=100
+datadir=$1
+data=$2
+trainedmodeldir=$3
+superpops=$4
+epoch=$5
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
@@ -59,6 +61,7 @@ if [[ $HOSTNAME == "N141CU" ]]; then
 fi
 
 echo "datadir: $datadir"
+echo "data: $data"
 echo "trainedmodeldir: $trainedmodeldir"
 echo "superpops: $superpops"
 echo "epoch: $epoch"
@@ -79,7 +82,7 @@ fi
 python3 GenoCAE/run_gcae.py \
   project \
   --datadir $datadir \
-  --data sim_data_1 \
+  --data $data \
   --model_id M1 \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
