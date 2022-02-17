@@ -82,9 +82,9 @@ echo "bash: running on Rackham, for jobstats?"
 
 # if [[ $HOSTNAME =~ "^r[0-9]{1,3}$" ]] ; then
 if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
-  echo "bash: showing jobstats"
-  jobstats -A snic2021-22-624 -p $SLURM_JOBID
+  echo "bash: showing jobstats, would I know how"
+  # jobstats -A snic2021-22-624 -p $SLURM_JOBID
   # Thanks Jerker Nyberg von Below
-  jobstats -p $SLURM_JOBID
+  # jobstats -p $SLURM_JOBID
 fi
 
