@@ -27,22 +27,24 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-base_input_filename=nsphs_ml_qt/inst/extdata/sim_data_2
-data=sim_data_2
-superpops=~/nsphs_ml_qt/inst/extdata/sim_data_2_labels.csv
+datadir=~/nsphs_ml_qt/inst/extdata/ # Really need that slash
+data=sim_data_1
+base_input_filename="${datadir}${data}"
+superpops="${base_input_filename}_labels.csv"
 n_individuals=500
 n_traits=40
 n_snps_per_trait=30
 
-datadir=~/nsphs_ml_qt/inst/extdata/ # Really need that slash
 trainedmodeldir=~/sim_data_1_ae/ # Really need that slash
-epochs=100
+epochs=1000
 epoch=$epochs
-save_interval=$epochs
+save_interval=10
 metrics="hull_error,f1_score_3"
 
-echo "base_input_filename: $base_input_filename"
-echo "superpops: $superpops"
+echo "datadir: ${datadir}"
+echo "data: ${data}"
+echo "base_input_filename: ${base_input_filename}"
+echo "superpops: ${superpops}"
 echo "n_individuals: $n_individuals"
 echo "n_traits: $n_traits"
 echo "n_snps_per_trait: $n_snps_per_trait"
