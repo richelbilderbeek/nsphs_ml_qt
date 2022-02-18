@@ -79,7 +79,7 @@ fi
 mkdir $datadir
 
 echo "Create phenotype file ${pheno} from dataset 1, column ${column_index}"
-Rscript 10_create_dataset_1_phenotypes.R $pheno $column_index
+Rscript nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
 echo "Done creating phenotype file ${pheno} from dataset 1, column ${column_index}"
 
 if [ ! -f $pheno ]; then
