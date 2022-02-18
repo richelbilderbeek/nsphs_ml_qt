@@ -29,7 +29,7 @@ full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
 datadir=~/data_1/ # Really need that slash
 data=data_1
 # Style from https://google.github.io/styleguide/shellguide.html#s5.6-variable-expansion
-pheno="${datadir}${data}_all.phe" # datadir ends with a slash
+pheno="${datadir}${data}.phe" # datadir ends with a slash
 plink_exe=~/plink_1_9_unix/plink
 thin_count=10 # Number of SNPs that remain
 maf=0.01 # Minimal frequency of alleles
@@ -93,14 +93,15 @@ fi
 # * [x] Take a random set of SNPs, that must be small enough for GCAE to load the .bed file
 # NOT NOW:  --maf $maf \
 # NOT NOW: --indep-pairwise $ld_window_size $ld_variant_count_shift $ld_r_squared_threshold \
+# USELESS: --pheno $pheno \
 echo "Calling PLINK"
 
+# datadir ends with slash
 $plink_exe \
   --bfile $full_data_basename \
-  --pheno $pheno \
   --thin-count $thin_count \
   --make-bed \
-  --out $datadir/data_1
+  --out "${datadir}${data}"
 
 echo "Done call to PLINK"
 
