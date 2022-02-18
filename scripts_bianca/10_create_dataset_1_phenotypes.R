@@ -27,9 +27,9 @@ pheno <- args[1]
 column_index <- as.numeric(args[2])
 message("pheno: ", pheno)
 message("column_index: ", column_index)
-testthat::expect_equal(length(pheno), 1)
-testthat::expect_equal(length(column_index), 1)
-testthat::expect_true(column_index >= 1)
+if (length(pheno) != 1) stop("'pheno' must be 1 element")
+if (length(column_index) != 1) stop("'column_index' must be 1 element")
+if (column_index < 1) stop("'column_index' must be at least 1")
 
 message("Parameters are valid")
 
