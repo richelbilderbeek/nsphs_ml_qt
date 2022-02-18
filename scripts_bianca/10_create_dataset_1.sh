@@ -115,3 +115,6 @@ echo "End time: $(date --iso-8601=seconds)"
 # Thanks Jerker Nyberg von Below
 # jobstats -p $SLURM_JOBID
 # jobstats -p $SLURM_JOBID -A sens2021565
+# Thanks Douglas Scofield
+jobstats -r -p $SLURM_JOBID
+
