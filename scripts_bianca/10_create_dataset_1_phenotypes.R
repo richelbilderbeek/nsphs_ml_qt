@@ -8,6 +8,7 @@
 # and saves it to a file named 'pheno'
 #
 args <- commandArgs(trailingOnly = TRUE)
+
 if (length(args) != 2) {
   stop(
     "Invalid number of arguments: must have 2 parameters: \n",
