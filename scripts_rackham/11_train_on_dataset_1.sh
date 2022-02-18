@@ -15,7 +15,7 @@
 #
 # n_individuals| n_traits | n_snps_per_trait | epochs | Time (mins)
 # 500          | 40       | 30               | 100    | <60
-# 500          | 40       | 30               | 1000   | >60
+# 500          | 40       | 30               | 1000   | 110
 #
 #SBATCH --time=10:00:00
 #SBATCH --partition core
