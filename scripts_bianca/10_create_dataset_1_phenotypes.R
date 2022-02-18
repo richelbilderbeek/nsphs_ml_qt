@@ -1,6 +1,6 @@
 # Create subset 1 from the data
 #
-# Extracts the 'column_index'-th phenotype, (e.g. Adrenomedullin for '1'), 
+# Extracts the 'column_index'-th phenotype, (e.g. Adrenomedullin for '1'),
 # from
 #
 # /proj/sens2021565/nobackup/NSPHS_data/pea_1_2.rntransformed.AJ.RData
@@ -39,9 +39,18 @@ message("getwd(): ", getwd())
 
 load("pea_1_2.rntransformed.AJ.RData")
 
-message("Creating phe_table")
+message("Creating unsorted phe_table")
 
-phe_table <- data.frame(FID = rownames(pea_1), IID = rownames(pea_1), P1 = as.numeric(pea_1[, column_index]))
+unsorted_phe_table <- data.frame(
+  FID = 0,
+  IID = rownames(pea_1),
+  P1 = as.numeric(pea_1[, column_index]),
+  stringsAsFactors = FALSE
+)
+
+message("Creating sorted phe_table")
+
+phe_table <- unsorted_phe_table[order(unsorted_phe_table$IID), ]
 
 message("Saving phe_table")
 
