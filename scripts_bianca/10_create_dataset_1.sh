@@ -29,7 +29,7 @@ full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
 datadir=~/data_1/ # Really need that slash
 data=data_1
 # Style from https://google.github.io/styleguide/shellguide.html#s5.6-variable-expansion
-pheno="${datadir}/${data}.phe"
+pheno="${datadir}${data}_all.phe" # datadir ends with a slash
 plink_exe=~/plink_1_9_unix/plink
 thin_count=10 # Number of SNPs that remain
 maf=0.01 # Minimal frequency of alleles
@@ -76,7 +76,8 @@ if [ ! -f $full_data_bed_filename ]; then
 fi
 
 
-mkdir $datadir
+# -p denotes no warning if folder already exists
+mkdir -p $datadir
 
 echo "Create phenotype file ${pheno} from dataset 1, column ${column_index}"
 Rscript nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
@@ -90,13 +91,13 @@ fi
 # * [x] Do LD prune in PLINK, use R2 < 0.2
 # * [x] Remove rare alleles, e.g. MAF <1%
 # * [x] Take a random set of SNPs, that must be small enough for GCAE to load the .bed file
+# NOT NOW:  --maf $maf \
+# NOT NOW: --indep-pairwise $ld_window_size $ld_variant_count_shift $ld_r_squared_threshold \
 echo "Calling PLINK"
 
 $plink_exe \
   --bfile $full_data_basename \
   --pheno $pheno \
-  --maf $maf \
-  --indep-pairwise $ld_window_size $ld_variant_count_shift $ld_r_squared_threshold \
   --thin-count $thin_count \
   --make-bed \
   --out $datadir/data_1
