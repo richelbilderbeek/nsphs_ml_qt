@@ -7,6 +7,14 @@
 #
 #   ./scripts_bianca/00_create_starter_zip.sh
 #
+#
+#
+
+zip_filename=nsphs_ml_qt_rackham_starter_zip.zip
+
+echo "Running on computer with HOSTNAME: $HOSTNAME"
+echo "Running at location $(pwd)"
+echo "zip_filename: $zip_filename"
 
 if [[ $HOSTNAME != "N141CU" ]]; then
   echo "Error: this script must run locally"
@@ -46,11 +54,12 @@ zip -r --must-match $zip_filename \
   nsphs_ml_qt/ \
   GenoCAE/ \
   gcae/gcae.sif \
-  plink_1_9_unix/ \
-  plink_2_0_unix/ \
+  plinkr/plinkr.sif \
+  ~/.local/share/plinkr/plink_1_9_unix \
+  ~/.local/share/plinkr/plink_2_0_unix \
   01_unzip_starter_zip.sh README.md 98_clean_bianca.sh
 
-# Copy folders for zip's root
+# Remove folders from zip's root
 rm -rf plink_1_9_unix
 rm -rf plink_2_0_unix
 

@@ -70,9 +70,15 @@ if [ ! -f $plink_exe ]; then
   exit 42
 fi
 
+if [ ! -f plinkr/plinkr.sif ]; then
+  echo "'plinkr/plinkr.sif' file not found"
+  exit 43
+fi
+
+
 if [ ! -f $full_data_bed_filename ]; then
   echo "'full_data_bed_filename' file not found at path $full_data_bed_filename"
-  exit 43
+  exit 44
 fi
 
 
@@ -80,7 +86,8 @@ fi
 mkdir -p $datadir
 
 echo "Create phenotype file ${pheno} from dataset 1, column ${column_index}"
-Rscript nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
+singularity run plinkr/plinkr.sif nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
+# Rscript nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
 echo "Done creating phenotype file ${pheno} from dataset 1, column ${column_index}"
 
 if [ ! -f $pheno ]; then

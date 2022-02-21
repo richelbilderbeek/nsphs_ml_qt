@@ -42,9 +42,9 @@ if [[ $HOSTNAME == "N141CU" ]]; then
   save_interval=1
 fi
 
-echo "datadir: $datadir"
+echo "datadir: $datadir (note: really need that slash)"
 echo "data: $data"
-echo "trainedmodeldir: $trainedmodeldir"
+echo "trainedmodeldir: $trainedmodeldir (note: really need that slash)"
 echo "epochs: $epochs"
 echo "save_interval: $save_interval"
 

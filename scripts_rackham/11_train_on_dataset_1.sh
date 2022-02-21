@@ -76,10 +76,10 @@ echo "save_interval: $save_interval"
 #if [[ $HOSTNAME =~ "^r[0-9]{1,3}$" ]] ; then
 if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
   echo "Running on Rackham runner node $HOSTNAME"
-  module load python/3.8.7
+  # module load python/3.8.7
 fi
 
-python3 GenoCAE/run_gcae.py \
+singularity run gcae/gcae.sif \
   train \
   --datadir $datadir \
   --data $data \
