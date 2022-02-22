@@ -54,7 +54,6 @@ zip -r --must-match $zip_filename \
   nsphs_ml_qt/ \
   GenoCAE/ \
   gcae/gcae.sif \
-  plinkr/plinkr.sif \
   ~/.local/share/plinkr/plink_1_9_unix \
   ~/.local/share/plinkr/plink_2_0_unix \
   01_unzip_starter_zip.sh README.md 98_clean_bianca.sh

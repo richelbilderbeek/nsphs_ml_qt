@@ -31,6 +31,7 @@ data=data_1
 # Style from https://google.github.io/styleguide/shellguide.html#s5.6-variable-expansion
 pheno="${datadir}${data}.phe" # datadir ends with a slash
 plink_exe=~/plink_1_9_unix/plink
+singularity_filename=gcaer/gcaer.sif
 thin_count=10 # Number of SNPs that remain
 maf=0.01 # Minimal frequency of alleles
 ld_window_size=1000
@@ -55,6 +56,7 @@ echo "full_data_basename: $full_data_basename"
 echo "datadir: $datadir"
 echo "pheno: $pheno"
 echo "plink_exe: $plink_exe"
+echo "singularity_filename: $singularity_filename"
 echo "full_data_bed_filename: $full_data_bed_filename"
 echo "full_data_bim_filename: $full_data_bim_filename"
 echo "full_data_fam_filename: $full_data_fam_filename"
@@ -65,19 +67,20 @@ echo "ld_window_size: $ld_window_size"
 echo "ld_variant_count_shift: $ld_variant_count_shift"
 echo "ld_r_squared_threshold: $ld_r_squared_threshold"
 
+
 if [ ! -f $plink_exe ]; then
   echo "'plink_exe' file not found at path $plink_exe"
   exit 42
 fi
 
-if [ ! -f plinkr/plinkr.sif ]; then
-  echo "'plinkr/plinkr.sif' file not found"
+if [ ! -f $singularity_filename ]; then
+  echo "'singularity_filename' file not found at ${singularity_filename}"
   exit 43
 fi
 
 
 if [ ! -f $full_data_bed_filename ]; then
-  echo "'full_data_bed_filename' file not found at path $full_data_bed_filename"
+  echo "'full_data_bed_filename' file not found at path ${full_data_bed_filename}"
   exit 44
 fi
 
@@ -86,7 +89,7 @@ fi
 mkdir -p $datadir
 
 echo "Create phenotype file ${pheno} from dataset 1, column ${column_index}"
-singularity run gcaer/gcaer.sif nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
+singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
 # Rscript nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
 echo "Done creating phenotype file ${pheno} from dataset 1, column ${column_index}"
 
