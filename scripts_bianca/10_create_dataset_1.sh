@@ -86,7 +86,7 @@ fi
 mkdir -p $datadir
 
 echo "Create phenotype file ${pheno} from dataset 1, column ${column_index}"
-singularity run plinkr/plinkr.sif nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
+singularity run gcaer/gcaer.sif nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
 # Rscript nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
 echo "Done creating phenotype file ${pheno} from dataset 1, column ${column_index}"
 
@@ -94,6 +94,11 @@ if [ ! -f $pheno ]; then
   echo "File 'pheno' not found at path ${pheno}"
   exit 43
 fi
+
+# Keep the sample IDs that are in the phenotype file
+
+# Create sample_ids.txt
+
 
 # * [x] Do LD prune in PLINK, use R2 < 0.2
 # * [x] Remove rare alleles, e.g. MAF <1%

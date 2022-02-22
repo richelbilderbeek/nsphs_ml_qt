@@ -55,6 +55,7 @@ phe_table <- unsorted_phe_table[order(unsorted_phe_table$IID), ]
 message("Saving phe_table")
 
 write.table(x = phe_table, file = pheno, quote = FALSE, sep = "\t", row.names = FALSE)
+plinkr::save_phe_table(phe_table = phe_table, phe_filename = paste0(pheno, "2"))
 
 message("Done saving phe_table")
 
