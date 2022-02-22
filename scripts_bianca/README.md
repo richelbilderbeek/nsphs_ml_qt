@@ -2,8 +2,23 @@
 
 Scripts to be run on Bianca.
 
+## Summary
 
-# Workflow
+Create a zip:
+
+```
+./scripts_bianca/00_create_starter_zip.sh
+```
+
+On Bianca:
+
+```
+./scripts_bianca/02_run.sh
+```
+
+No need to use `sbatch` here, the script will `sbatch` all jobs.
+
+## Detailed workflow
 
 ## 0. Zip
 

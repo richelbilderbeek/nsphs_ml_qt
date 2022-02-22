@@ -8,7 +8,7 @@
 #   sbatch ./nsphs_ml_qt/scripts_bianca/10_create_dataset_1.sh
 #
 #
-#SBATCH -A sens2021565
+## No 'SBATCH -A sens2021565', as this is a general script (although it is quite specific :-) )
 #SBATCH --time=1:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1

@@ -8,7 +8,7 @@
 #   sbatch ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh
 #
 #
-#SBATCH -A snic2021-22-624
+## No 'SBATCH -A snic2021-22-624', as this is a general script
 #SBATCH --time=1:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1

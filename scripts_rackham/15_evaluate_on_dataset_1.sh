@@ -11,7 +11,7 @@
 #
 # run_gcae.py evaluate --datadir=<name> --metrics=<name>  [  --data=<name>  --model_id=<name> --train_opts_id=<name> --data_opts_id=<name>  --superpops=<name> --epoch=<num> --trainedmodeldir=<name>  --pdata=<name> --trainedmodelname=<name>] [--pheno_model_id=<name>]
 #
-#SBATCH -A snic2021-22-624
+## No 'SBATCH -A snic2021-22-624', as this is a general script
 #SBATCH --time=1:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
