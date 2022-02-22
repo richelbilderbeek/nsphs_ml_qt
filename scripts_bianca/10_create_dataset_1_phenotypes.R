@@ -44,7 +44,7 @@ message("Creating unsorted phe_table")
 unsorted_phe_table <- tibble::tibble(
   FID = 0,
   IID = rownames(pea_1),
-  P1 = as.numeric(pea_1[, column_index]) 
+  P1 = as.numeric(pea_1[, column_index])
 )
 
 message("Creating sorted phe_table")
@@ -54,7 +54,10 @@ phe_table <- unsorted_phe_table[order(unsorted_phe_table$IID), ]
 message("Saving phe_table")
 
 write.table(x = phe_table, file = pheno, quote = FALSE, sep = "\t", row.names = FALSE)
-plinkr::save_phe_table(phe_table = phe_table, phe_filename = paste0(pheno, "2"))
+plinkr::save_phe_table(
+  phe_table = phe_table,
+  phe_filename = "~/there_as_well.phe"
+)
 
 message("Done saving phe_table")
 
