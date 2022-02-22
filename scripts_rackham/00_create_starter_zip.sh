@@ -32,6 +32,8 @@ if [[ $(pwd) != "/home/richel/GitHubs/nsphs_ml_qt" ]]; then
   exit 42
 fi
 
+zip_filename=nsphs_ml_qt_rackham_starter_zip.zip
+
 # Go to GitHubs folder, will go back later
 cd ..
 
@@ -52,6 +54,7 @@ zip -r --must-match $zip_filename \
   nsphs_ml_qt/ \
   GenoCAE/ \
   gcae/gcae.sif \
+  gcaer/gcaer.sif \
   ~/.local/share/plinkr/plink_1_9_unix \
   ~/.local/share/plinkr/plink_2_0_unix \
   01_unzip_starter_zip.sh README.md 98_clean_rackham.sh
