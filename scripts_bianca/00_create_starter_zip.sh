@@ -10,7 +10,7 @@
 #
 #
 
-zip_filename=nsphs_ml_qt_rackham_starter_zip.zip
+zip_filename=nsphs_ml_qt_bianca_starter_zip.zip
 
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
@@ -32,7 +32,8 @@ if [[ $(pwd) != "/home/richel/GitHubs/nsphs_ml_qt" ]]; then
   exit 42
 fi
 
-zip_filename=nsphs_ml_qt_bianca_starter_zip.zip
+# Delete the zip if it exists, else it will zip recursively
+rm -f $zip_filename
 
 # Go to GitHubs folder, will go back later
 cd ..

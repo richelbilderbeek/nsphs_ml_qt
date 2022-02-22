@@ -4,6 +4,20 @@
 #
 args <- commandArgs(trailingOnly = TRUE)
 
+if (1 == 2) {
+  pheno <- "/home/richel/data_1/data_1.phe"
+  sample_ids_filename <- "/home/richel/data_1/sample_ids.txt"
+  args <- c(pheno, sample_ids_filename)
+
+  phe_table <- tibble::tibble(
+    FID = c(0, 0, 0),
+    IID = c("K1", "K2", "K3"),
+    P1 = c(0.1, 0.2, 0.3)
+  )
+  plinkr::save_phe_table(phe_table = phe_table, phe_filename = pheno)
+  plinkr::read_plink_phe_file(phe_filename = pheno)
+}
+
 if (length(args) != 2) {
   stop(
     "Invalid number of arguments: must have 2 parameters: \n",
@@ -29,7 +43,7 @@ if (length(sample_ids_filename) != 1) stop("'sample_ids_filename' must be 1 elem
 message("Parameters are valid")
 
 sample_ids <- plinkr::get_sample_ids_from_phe_file(phe_filename = pheno)
-save_sample_ids(
+plinkr::save_sample_ids(
   sample_ids = sample_ids,
   sample_ids_filename = sample_ids_filename
 )
