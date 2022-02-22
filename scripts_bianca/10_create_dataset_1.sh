@@ -28,8 +28,10 @@ echo "Running at location $(pwd)"
 full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
 datadir=~/data_1/ # Really need that slash
 data=data_1
+out="${datadir}${data}" # datadir ends with a slash
 # Style from https://google.github.io/styleguide/shellguide.html#s5.6-variable-expansion
-pheno="${datadir}${data}.phe" # datadir ends with a slash
+pheno="${out}.phe" # datadir ends with a slash
+sample_ids_filename="${datadir}sample_ids.txt" # datadir ends with a slash
 plink_exe=~/plink_1_9_unix/plink
 singularity_filename=gcaer/gcaer.sif
 thin_count=10 # Number of SNPs that remain
@@ -52,10 +54,12 @@ full_data_fam_filename="${full_data_basename}.fam"
 full_data_phe_filename="${full_data_basename}.phe"
 column_index=1
 
-echo "full_data_basename: $full_data_basename"
-echo "datadir: $datadir"
-echo "pheno: $pheno"
-echo "plink_exe: $plink_exe"
+echo "full_data_basename: ${full_data_basename}"
+echo "datadir: ${datadir}"
+echo "out: ${out}"
+echo "pheno: ${pheno}"
+echo "sample_ids_filename: ${sample_ids_filename}"
+echo "plink_exe: ${plink_exe}"
 echo "singularity_filename: $singularity_filename"
 echo "full_data_bed_filename: $full_data_bed_filename"
 echo "full_data_bim_filename: $full_data_bim_filename"
@@ -95,13 +99,25 @@ echo "Done creating phenotype file ${pheno} from dataset 1, column ${column_inde
 
 if [ ! -f $pheno ]; then
   echo "File 'pheno' not found at path ${pheno}"
-  exit 43
+  exit 45
 fi
 
-# Keep the sample IDs that are in the phenotype file
+# Get the sample IDs that are in the phenotype file
+echo "Create sample IDs file at ${sample_ids_filename}"
+singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotype_sample_ids.R $pheno $sample_ids_filename
+echo "Done creating sample IDs file at ${sample_ids_filename}"
 
-# Create sample_ids.txt
+if [ ! -f $sample_ids_filename ]; then
+  echo "File 'sample_ids_filename' not found at path ${sample_ids_filename}"
+  exit 46
+fi
 
+echo "Keep the samples with IDs in the 'sample_ids_filename'"
+$plink_exe \
+  --bfile $full_data_basename \
+  --keep $sample_ids_filename \
+  --make-bed \
+  --out $out
 
 # * [x] Do LD prune in PLINK, use R2 < 0.2
 # * [x] Remove rare alleles, e.g. MAF <1%
@@ -111,12 +127,11 @@ fi
 # USELESS: --pheno $pheno \
 echo "Calling PLINK"
 
-# datadir ends with slash
 $plink_exe \
-  --bfile $full_data_basename \
+  --bfile $out \
   --thin-count $thin_count \
   --make-bed \
-  --out "${datadir}${data}"
+  --out $out
 
 echo "Done call to PLINK"
 
