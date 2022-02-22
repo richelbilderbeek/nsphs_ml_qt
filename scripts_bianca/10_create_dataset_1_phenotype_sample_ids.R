@@ -4,9 +4,9 @@
 #
 args <- commandArgs(trailingOnly = TRUE)
 
-if (length(args) != 1) {
+if (length(args) != 2) {
   stop(
-    "Invalid number of arguments: must have 1 parameters: \n",
+    "Invalid number of arguments: must have 2 parameters: \n",
     " \n",
     "  1. pheno (path to the phenotype file) \n",
     "  2. sample_ids_filename \n",
