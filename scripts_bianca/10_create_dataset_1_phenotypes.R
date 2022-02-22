@@ -41,11 +41,10 @@ load("pea_1_2.rntransformed.AJ.RData")
 
 message("Creating unsorted phe_table")
 
-unsorted_phe_table <- data.frame(
+unsorted_phe_table <- tibble::tibble(
   FID = 0,
   IID = rownames(pea_1),
-  P1 = as.numeric(pea_1[, column_index]),
-  stringsAsFactors = FALSE
+  P1 = as.numeric(pea_1[, column_index]) 
 )
 
 message("Creating sorted phe_table")
