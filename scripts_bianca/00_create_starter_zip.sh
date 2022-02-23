@@ -56,8 +56,8 @@ zip -r --must-match $zip_filename \
   GenoCAE/ \
   gcae/gcae.sif \
   gcaer/gcaer.sif \
-  ~/.local/share/plinkr/plink_1_9_unix \
-  ~/.local/share/plinkr/plink_2_0_unix \
+  plink_1_9_unix \
+  plink_2_0_unix \
   01_unzip_starter_zip.sh README.md 98_clean_bianca.sh
 
 # Remove folders from zip's root
