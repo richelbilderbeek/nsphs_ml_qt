@@ -8,6 +8,11 @@
 #   sbatch ./nsphs_ml_qt/scripts_bianca/10_create_dataset_1.sh
 #
 #
+#
+#
+# Bash coding style from 
+# https://google.github.io/styleguide/shellguide.html
+#
 ## No 'SBATCH -A sens2021565', as this is a general script (although it is quite specific :-) )
 #SBATCH --time=1:00:00
 #SBATCH --partition core
@@ -25,11 +30,36 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
+echo "Parameters: $@"
+echo "Number of parameters: $#"
+
+if [[ "$#" -ne 4 ]] ; then
+  echo "Invalid number of arguments: must have 4 parameters: "
+  echo " "
+  echo "  1. datadir"
+  echo "  2. data"
+  echo "  3. base_input_filename"
+  echo "  4. superpops"
+  echo " "
+  echo "Actual number of parameters: $#"
+  echo " "
+  echo "Exiting :-("
+  exit 42
+fi
+
+echo "Correct number of arguments: $#"
+datadir=$1
+data=$2
+base_input_filename=$3
+superpops=$4
+
+echo "datadir: ${datadir}"
+echo "data: ${data}"
+echo "base_input_filename: ${base_input_filename}"
+echo "superpops: ${superpops}"
+
 full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
-datadir=~/data_1/ # Really need that slash
-data=data_1
-out="${datadir}${data}" # datadir ends with a slash
-# Style from https://google.github.io/styleguide/shellguide.html#s5.6-variable-expansion
+out=$base_input_filename
 pheno="${out}.phe" # datadir ends with a slash
 sample_ids_filename="${datadir}sample_ids.txt" # datadir ends with a slash
 plink_exe=~/plink_1_9_unix/plink
@@ -55,7 +85,6 @@ full_data_phe_filename="${full_data_basename}.phe"
 column_index=1
 
 echo "full_data_basename: ${full_data_basename}"
-echo "datadir: ${datadir}"
 echo "out: ${out}"
 echo "pheno: ${pheno}"
 echo "sample_ids_filename: ${sample_ids_filename}"
@@ -70,7 +99,6 @@ echo "thin_count: $thin_count (i.e. number of SNPs that remain)"
 echo "ld_window_size: $ld_window_size"
 echo "ld_variant_count_shift: $ld_variant_count_shift"
 echo "ld_r_squared_threshold: $ld_r_squared_threshold"
-
 
 if [ ! -f $plink_exe ]; then
   echo "'plink_exe' file not found at path $plink_exe"
@@ -134,9 +162,9 @@ $plink_exe \
 
 echo "Done call to PLINK"
 
-echo "Creating 'labels_filename' ${labels_filename}"
-singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_labels.R $pheno $labels_filename
-echo "Done creating 'labels_filename' at ${labels_filename}"
+echo "Creating 'labels_filename' ${superpops}"
+singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_labels.R $pheno $superpops
+echo "Done creating 'labels_filename' at ${superpops}"
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Lowest MAF: "

@@ -28,7 +28,6 @@ echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
 
-
 datadir=~/data_1/ # Really need that slash
 data=data_1
 base_input_filename="${datadir}${data}"
