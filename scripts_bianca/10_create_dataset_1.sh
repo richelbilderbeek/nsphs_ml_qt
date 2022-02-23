@@ -102,8 +102,7 @@ if [ ! -f $pheno ]; then
   exit 45
 fi
 
-# Get the sample IDs that are in the phenotype file
-echo "Create sample IDs file at ${sample_ids_filename}"
+echo "Creating sample IDs file at ${sample_ids_filename}"
 singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotype_sample_ids.R $pheno $sample_ids_filename
 echo "Done creating sample IDs file at ${sample_ids_filename}"
 
@@ -134,6 +133,10 @@ $plink_exe \
   --out $out
 
 echo "Done call to PLINK"
+
+echo "Creating 'labels_filename' ${labels_filename}"
+singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_labels.R $pheno $labels_filename
+echo "Done creating 'labels_filename' at ${labels_filename}"
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Lowest MAF: "
