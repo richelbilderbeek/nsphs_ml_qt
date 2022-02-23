@@ -27,7 +27,7 @@ pheno <- args[1]
 column_index <- as.numeric(args[2])
 message("pheno: ", pheno)
 message("column_index: ", column_index)
-if (length(pheno) != 1) stop("'pheno' must be 1 element")
+plinkr::check_phe_filename(phe_filename = pheno)
 if (length(column_index) != 1) stop("'column_index' must be 1 element")
 if (column_index < 1) stop("'column_index' must be at least 1")
 
@@ -39,7 +39,7 @@ message("getwd(): ", getwd())
 
 load("pea_1_2.rntransformed.AJ.RData")
 
-message("Creating unsorted phe_table")
+message("Creating unsorted 'phe_table'")
 
 unsorted_phe_table <- tibble::tibble(
   FID = 0,
@@ -47,17 +47,15 @@ unsorted_phe_table <- tibble::tibble(
   P1 = as.numeric(pea_1[, column_index])
 )
 
-message("Creating sorted phe_table")
+message("Creating sorted 'phe_table'")
 
 phe_table <- unsorted_phe_table[order(unsorted_phe_table$IID), ]
 
-message("Saving phe_table")
+message("Saving 'phe_table' to ", pheno)
 
-write.table(x = phe_table, file = pheno, quote = FALSE, sep = "\t", row.names = FALSE)
 plinkr::save_phe_table(
   phe_table = phe_table,
-  phe_filename = "~/there_as_well.phe"
+  phe_filename = pheno
 )
 
-message("Done saving phe_table")
-
+message("Done saving 'phe_table' to ", pheno)
