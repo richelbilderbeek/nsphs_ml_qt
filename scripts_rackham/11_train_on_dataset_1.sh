@@ -93,3 +93,6 @@ singularity run gcae/gcae.sif \
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
+
+echo "Show the jobstats,  with header, thanks Douglas and Jerker"
+jobstats -r -d -p $SLURM_JOBID
