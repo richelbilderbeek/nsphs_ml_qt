@@ -52,7 +52,7 @@ labels_table <- tibble::tibble(
   super_population = stringr::str_sub(phe_table$IID, end = 4)
 )
 gcaer::check_labels_table(labels_table = labels_table)
-gcaer::save_labels_file(
+gcaer::save_labels_table(
   labels_table = labels_table,
   labels_filename = labels_filename
 )

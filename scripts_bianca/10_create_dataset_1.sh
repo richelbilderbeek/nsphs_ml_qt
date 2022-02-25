@@ -67,9 +67,18 @@ echo "data: ${data}"
 echo "base_input_filename: ${base_input_filename}"
 echo "superpops: ${superpops}"
 
+# That is, the full and real data: don't touch!
 full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
 out=$base_input_filename
-pheno="${out}.phe" # datadir ends with a slash
+
+out_data_bed_filename="${out}.bed" # These are generated, use freely :-)
+out_data_bim_filename="${out}.bim" # These are generated, use freely :-)
+out_data_fam_filename="${out}.fam" # These are generated, use freely :-)
+out_data_phe_filename="${out}.phe" # These are generated, use freely :-)
+out_data_phe_filename="${out}.phe" # These are generated, use freely :-)
+out_data_labels_filename="${out}_labels.csv" # These are generated, use freely :-)
+pheno="${out}.phe" # These are generated, use freely :-)
+
 sample_ids_filename="${datadir}sample_ids.txt" # datadir ends with a slash
 plink_exe=~/plink_1_9_unix/plink
 singularity_filename=gcaer/gcaer.sif
@@ -87,22 +96,22 @@ if [[ $HOSTNAME == "N141CU" ]]; then
   thin_count=10 # Number of SNPs that remain
 fi
 
-full_data_bed_filename="${full_data_basename}.bed"
-full_data_bim_filename="${full_data_basename}.bim"
-full_data_fam_filename="${full_data_basename}.fam"
-full_data_phe_filename="${full_data_basename}.phe"
+full_data_bed_filename="${full_data_basename}.bed" # That is, the full and real data: don't touch!
+full_data_bim_filename="${full_data_basename}.bim" # That is, the full and real data: don't touch!
+full_data_fam_filename="${full_data_basename}.fam" # That is, the full and real data: don't touch!
+full_data_phe_filename="${full_data_basename}.phe" # That is, the full and real data: don't touch!
 column_index=1
 
-echo "full_data_basename: ${full_data_basename}"
+echo "full_data_basename: ${full_data_basename} (i.e. the full and real data: don't touch!)"
 echo "out: ${out}"
 echo "pheno: ${pheno}"
 echo "sample_ids_filename: ${sample_ids_filename}"
 echo "plink_exe: ${plink_exe}"
 echo "singularity_filename: ${singularity_filename}"
-echo "full_data_bed_filename: ${full_data_bed_filename}"
-echo "full_data_bim_filename: ${full_data_bim_filename}"
-echo "full_data_fam_filename: ${full_data_fam_filename}"
-echo "full_data_phe_filename: ${full_data_phe_filename}"
+echo "full_data_bed_filename: ${full_data_bed_filename} (i.e. the full and real data: don't touch!)"
+echo "full_data_bim_filename: ${full_data_bim_filename} (i.e. the full and real data: don't touch!)"
+echo "full_data_fam_filename: ${full_data_fam_filename} (i.e. the full and real data: don't touch!)"
+echo "full_data_phe_filename: ${full_data_phe_filename} (i.e. the full and real data: don't touch!)"
 echo "column_index: ${column_index}"
 echo "thin_count: ${thin_count} (i.e. number of SNPs that remain)"
 echo "ld_window_size: ${ld_window_size}"
@@ -190,10 +199,10 @@ echo "[START] 5. gcaer: resize all data"
 
 singularity run $singularity_filename \
   nsphs_ml_qt/scripts_bianca/10_resize_data.R \
-  $full_data_bed_filename \
-  $full_data_bim_filename \
-  $full_data_fam_filename \
-  $full_data_phe_filename \
+  $out_data_bed_filename \
+  $out_data_bim_filename \
+  $out_data_fam_filename \
+  $out_data_phe_filename \
   $superpops
 
 gcaer::check_gcae_input_filenames(gcae_input_filenames)
@@ -201,30 +210,7 @@ gcaer::summarise_gcae_input_files(gcae_input_filenames)
 
 echo "[END] 5. gcaer: resize all data"
 
-
-
-# echo "Creating sample IDs file at ${sample_ids_filename}"
-# singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotype_sample_ids.R $pheno $sample_ids_filename
-# echo "Done creating sample IDs file at ${sample_ids_filename}"
-#
-# if [ ! -f $sample_ids_filename ]; then
-#   echo "File 'sample_ids_filename' not found at path ${sample_ids_filename}"
-#   exit 46
-# fi
-#
-# echo "Keep the samples with IDs in the 'sample_ids_filename'"
-# $plink_exe \
-#   --bfile $out \
-#   --bfile $full_data_basename \
-#   --keep $sample_ids_filename \
-#   --make-bed \
-#   --out $out
-#
-
 echo "End time: $(date --iso-8601=seconds)"
 
 # Thanks Jerker Nyberg von Below and Douglas Scofield
-# Really need the -r
-jobstats -r -p $SLURM_JOBID
-
-
+jobstats -r -d -p $SLURM_JOBID
