@@ -2,15 +2,20 @@
 #
 # Create subsetted dataset 1
 #
-# Usage: 
+# Usage:
 #
 #   ./nsphs_ml_qt/scripts_bianca/10_create_dataset_1.sh
 #   sbatch ./nsphs_ml_qt/scripts_bianca/10_create_dataset_1.sh
 #
+# Workflow:
 #
+#  1. check and process input
+#  2. gcaer: extract a phenotype
+#  3. PLINK: get a subset of the PLINK data
+#  4. gcaer: create labels
+#  5. gcaer: resize all data
 #
-#
-# Bash coding style from 
+# Bash coding style from
 # https://google.github.io/styleguide/shellguide.html
 #
 ## No 'SBATCH -A sens2021565', as this is a general script (although it is quite specific :-) )
@@ -25,6 +30,10 @@
 #SBATCH --mem=16G
 #SBATCH --job-name=10_create_dataset_1
 #SBATCH --output=10_create_dataset_1.log
+
+###############################################################################
+#  1. check and process input
+###############################################################################
 
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
@@ -89,16 +98,16 @@ echo "out: ${out}"
 echo "pheno: ${pheno}"
 echo "sample_ids_filename: ${sample_ids_filename}"
 echo "plink_exe: ${plink_exe}"
-echo "singularity_filename: $singularity_filename"
-echo "full_data_bed_filename: $full_data_bed_filename"
-echo "full_data_bim_filename: $full_data_bim_filename"
-echo "full_data_fam_filename: $full_data_fam_filename"
-echo "full_data_phe_filename: $full_data_phe_filename"
-echo "column_index: $column_index"
-echo "thin_count: $thin_count (i.e. number of SNPs that remain)"
-echo "ld_window_size: $ld_window_size"
-echo "ld_variant_count_shift: $ld_variant_count_shift"
-echo "ld_r_squared_threshold: $ld_r_squared_threshold"
+echo "singularity_filename: ${singularity_filename}"
+echo "full_data_bed_filename: ${full_data_bed_filename}"
+echo "full_data_bim_filename: ${full_data_bim_filename}"
+echo "full_data_fam_filename: ${full_data_fam_filename}"
+echo "full_data_phe_filename: ${full_data_phe_filename}"
+echo "column_index: ${column_index}"
+echo "thin_count: ${thin_count} (i.e. number of SNPs that remain)"
+echo "ld_window_size: ${ld_window_size}"
+echo "ld_variant_count_shift: ${ld_variant_count_shift}"
+echo "ld_r_squared_threshold: ${ld_r_squared_threshold}"
 
 if [ ! -f $plink_exe ]; then
   echo "'plink_exe' file not found at path $plink_exe"
@@ -110,19 +119,23 @@ if [ ! -f $singularity_filename ]; then
   exit 43
 fi
 
-
 if [ ! -f $full_data_bed_filename ]; then
   echo "'full_data_bed_filename' file not found at path ${full_data_bed_filename}"
   exit 44
 fi
 
-
 # -p denotes no warning if folder already exists
 mkdir -p $datadir
 
+
+###############################################################################
+#  2. gcaer: extract a phenotype
+###############################################################################
+
+echo "[START] 2. gcaer: extract a phenotype"
+
 echo "Create phenotype file ${pheno} from dataset 1, column ${column_index}"
 singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
-# Rscript nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotypes.R $pheno $column_index
 echo "Done creating phenotype file ${pheno} from dataset 1, column ${column_index}"
 
 if [ ! -f $pheno ]; then
@@ -130,21 +143,11 @@ if [ ! -f $pheno ]; then
   exit 45
 fi
 
-echo "Creating sample IDs file at ${sample_ids_filename}"
-singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotype_sample_ids.R $pheno $sample_ids_filename
-echo "Done creating sample IDs file at ${sample_ids_filename}"
+echo "[END] 2. gcaer: extract a phenotype"
 
-if [ ! -f $sample_ids_filename ]; then
-  echo "File 'sample_ids_filename' not found at path ${sample_ids_filename}"
-  exit 46
-fi
-
-echo "Keep the samples with IDs in the 'sample_ids_filename'"
-$plink_exe \
-  --bfile $full_data_basename \
-  --keep $sample_ids_filename \
-  --make-bed \
-  --out $out
+###############################################################################
+#  3. PLINK: get a subset of the PLINK data
+###############################################################################
 
 # * [x] Do LD prune in PLINK, use R2 < 0.2
 # * [x] Remove rare alleles, e.g. MAF <1%
@@ -152,24 +155,71 @@ $plink_exe \
 # NOT NOW:  --maf $maf \
 # NOT NOW: --indep-pairwise $ld_window_size $ld_variant_count_shift $ld_r_squared_threshold \
 # USELESS: --pheno $pheno \
-echo "Calling PLINK"
+echo "[START] 3. PLINK: get a subset of the PLINK data"
 
 $plink_exe \
-  --bfile $out \
+  --bfile $full_data_basename \
   --thin-count $thin_count \
   --make-bed \
   --out $out
-
-echo "Done call to PLINK"
-
-echo "Creating 'labels_filename' ${superpops}"
-singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_labels.R $pheno $superpops
-echo "Done creating 'labels_filename' at ${superpops}"
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Lowest MAF: "
   Rscript -e "min(plinkr::get_minor_alelle_frequencies(plinkr::read_plink_bin_data(\"${datadir}/${data}\")$data))"
 fi
+
+echo "[END] 3. PLINK: get a subset of the PLINK data"
+
+###############################################################################
+#  4. gcaer: create labels
+###############################################################################
+
+echo "[START] 4. gcaer: create labels"
+
+echo "Creating 'labels_filename' ${superpops}"
+singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_labels.R $pheno $superpops
+echo "Done creating 'labels_filename' at ${superpops}"
+
+echo "[END] 4. gcaer: create labels"
+
+###############################################################################
+#  5. gcaer: resize all data
+###############################################################################
+
+echo "[START] 5. gcaer: resize all data"
+
+singularity run $singularity_filename \
+  nsphs_ml_qt/scripts_bianca/10_resize_data.R \
+  $full_data_bed_filename \
+  $full_data_bim_filename \
+  $full_data_fam_filename \
+  $full_data_phe_filename \
+  $superpops
+
+gcaer::check_gcae_input_filenames(gcae_input_filenames)
+gcaer::summarise_gcae_input_files(gcae_input_filenames)
+
+echo "[END] 5. gcaer: resize all data"
+
+
+
+# echo "Creating sample IDs file at ${sample_ids_filename}"
+# singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_phenotype_sample_ids.R $pheno $sample_ids_filename
+# echo "Done creating sample IDs file at ${sample_ids_filename}"
+#
+# if [ ! -f $sample_ids_filename ]; then
+#   echo "File 'sample_ids_filename' not found at path ${sample_ids_filename}"
+#   exit 46
+# fi
+#
+# echo "Keep the samples with IDs in the 'sample_ids_filename'"
+# $plink_exe \
+#   --bfile $out \
+#   --bfile $full_data_basename \
+#   --keep $sample_ids_filename \
+#   --make-bed \
+#   --out $out
+#
 
 echo "End time: $(date --iso-8601=seconds)"
 
