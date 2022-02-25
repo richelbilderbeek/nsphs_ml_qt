@@ -51,6 +51,10 @@ message("Creating sorted 'phe_table'")
 
 phe_table <- unsorted_phe_table[order(unsorted_phe_table$IID), ]
 
+message("Set the FID to the first characters of the IID")
+
+phe_table$FID <- stringr::str_sub(phe_table$IID, end = 4)
+
 message("Saving 'phe_table' to ", pheno)
 
 plinkr::save_phe_table(
