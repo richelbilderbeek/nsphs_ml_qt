@@ -1,11 +1,5 @@
-# Create subset 1 from the data
+# Fix the FAM table
 #
-# Extracts the 'column_index'-th phenotype, (e.g. Adrenomedullin for '1'),
-# from
-#
-# /proj/sens2021565/nobackup/NSPHS_data/pea_1_2.rntransformed.AJ.RData
-#
-# and saves it to a file named 'pheno'
 #
 args <- commandArgs(trailingOnly = TRUE)
 
@@ -40,8 +34,8 @@ message("Set the FID to the first characters of the IID")
 
 fam_table$fam <- stringr::str_sub(fam_table$id, end = 4)
 
-message("Saving 'fam_table' to ", pheno)
+message("Saving 'fam_table' to ", fam_filename)
 
 plinkr::save_fam_table(fam_table = fam_table, fam_filename = fam_filename)
 
-message("Done saving 'fam_table' to ", pheno)
+message("Done saving 'fam_table' to ", fam_filename)
