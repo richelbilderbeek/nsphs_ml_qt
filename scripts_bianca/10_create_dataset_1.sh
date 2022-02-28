@@ -180,6 +180,18 @@ fi
 echo "[END] 3. PLINK: get a subset of the PLINK data"
 
 ###############################################################################
+#  3.5. plinkr: fix fam file's FIDs
+###############################################################################
+
+echo "[START] 3.5. plinkr: fix fam file's FIDs"
+
+echo "Fixing fam table at  ${$out_data_fam_filename}"
+singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_fam_table.R $out_data_fam_filename
+echo "Done fixing fam table at  ${$out_data_fam_filename}"
+
+echo "[END] 3.5. plinkr: fix fam file's FIDs"
+
+###############################################################################
 #  4. gcaer: create labels
 ###############################################################################
 

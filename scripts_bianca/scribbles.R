@@ -1,3 +1,10 @@
+
+fam_filename <- plinkr::get_plinkr_filename("toy_data.fam")
+fam_filename <- "data_1/data_1.fam"
+fam_table <- plinkr::read_plink_fam_file(fam_filename)
+fam_table$fam <- stringr::str_sub(fam_table$id, end = 4)
+plinkr::save_fam_table(fam_table = fam_table, fam_filename = fam_filename)
+
 gcae_input_filenames <- list(
   bed_filename = "data_1/data_1.bed",
   bim_filename = "data_1/data_1.bim",
