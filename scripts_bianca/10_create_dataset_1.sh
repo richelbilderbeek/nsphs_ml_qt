@@ -217,9 +217,6 @@ singularity run $singularity_filename \
   $out_data_phe_filename \
   $superpops
 
-gcaer::check_gcae_input_filenames(gcae_input_filenames)
-gcaer::summarise_gcae_input_files(gcae_input_filenames)
-
 echo "[END] 5. gcaer: resize all data"
 
 echo "End time: $(date --iso-8601=seconds)"
