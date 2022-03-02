@@ -6,7 +6,15 @@ name: run_scripts
 
 jobs:
   run_scripts:
+
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        singularity_version:
+          - '3.7.4'
+    container:
+      image: quay.io/singularity/singularity:v${{ matrix.singularity_version }}
+      options: --privileged
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -30,9 +38,21 @@ jobs:
           remotes::install_github("richelbilderbeek/gcaer")
         shell: Rscript {0}
 
-      - name: Install plink
-        run: plinkr::install_plinks()
-        shell: Rscript {0}
+      - name: Install gcae
+        run: |
+          mkdir gcae
+          singularity pull --arch amd64 library://richelbilderbeek/default/gcae:0.1 
+          mv *.sif gcae/gcae.sif
+
+      - name: Install gcaer
+        run: |
+          mkdir gcaer
+          singularity pull --arch amd64 library://richelbilderbeek/default/gcaer:0.6.3
+          mv *.sif gcaer/gcaer.sif
+
+      #- name: Install plink
+      #  run: plinkr::install_plinks()
+      #  shell: Rscript {0}
 
       - name: Clone GenoCAE
         run: git clone https://github.com/richelbilderbeek/GenoCAE ../GenoCAE
