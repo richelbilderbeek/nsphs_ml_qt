@@ -46,7 +46,7 @@ message("Parameters are valid")
 phe_table <- plinkr::read_plink_phe_file(phe_filename = pheno)
 
 labels_table <- tibble::tibble(
-  population = stringr::str_sub(phe_table$IID, end = 4),
+  population = unique(stringr::str_sub(phe_table$IID, end = 4)),
   super_population = "Sweden"
 )
 gcaer::check_labels_table(labels_table = labels_table)
