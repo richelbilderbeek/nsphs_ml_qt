@@ -55,6 +55,22 @@ echo "epoch: $epoch"
 echo "save_interval: $save_interval"
 echo "metrics: $metrics"
 
+if [ ! -f gcae/gcae.sif ]; then
+  echo "'gcae/gcae.sif' file not found"
+  echo "Showing pwd:"
+  ls
+  echo "Showing content of the 'gcae' folder:"
+  cd gcae ; ls ; cd -
+  exit 42
+fi
+if [ ! -f gcaer/gcaer.sif ]; then
+  echo "'gcaer/gcaer.sif' file not found"
+  echo "Showing pwd:"
+  ls
+  echo "Showing content of the 'gcaer' folder:"
+  cd gcaer ; ls ; cd -
+  exit 42
+fi
 
 if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
   echo "bash: running on Rackham runner node"
