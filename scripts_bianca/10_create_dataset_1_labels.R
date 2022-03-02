@@ -45,11 +45,9 @@ message("Parameters are valid")
 
 phe_table <- plinkr::read_plink_phe_file(phe_filename = pheno)
 
-# Population is the IID
-# Superpopulation id the KA06 or KA09
 labels_table <- tibble::tibble(
-  population = phe_table$IID,
-  super_population = stringr::str_sub(phe_table$IID, end = 4)
+  population = stringr::str_sub(phe_table$IID, end = 4),
+  super_population = "Sweden"
 )
 gcaer::check_labels_table(labels_table = labels_table)
 gcaer::save_labels_table(
