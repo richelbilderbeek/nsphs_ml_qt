@@ -37,15 +37,19 @@ jobs:
 
       - name: Install gcae
         run: |
+          cd ..
           mkdir gcae
           singularity pull --arch amd64 library://richelbilderbeek/default/gcae:0.1 
           mv *.sif gcae/gcae.sif
+          cd -
 
       - name: Install gcaer
         run: |
+          cd ..
           mkdir gcaer
           singularity pull --arch amd64 library://richelbilderbeek/default/gcaer:0.6.3
           mv *.sif gcaer/gcaer.sif
+          cd -
 
       #- name: Install plink
       #  run: plinkr::install_plinks()
