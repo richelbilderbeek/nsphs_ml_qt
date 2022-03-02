@@ -33,9 +33,9 @@ data=data_1
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
 trainedmodeldir=~/data_1_ae/ # Really need that slash
-epochs=10
+epochs=100
 epoch=$epochs
-save_interval=1
+save_interval=10
 metrics="hull_error,f1_score_3"
 
 echo "datadir: ${datadir}"
