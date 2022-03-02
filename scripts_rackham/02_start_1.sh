@@ -27,7 +27,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-datadir=~/nsphs_ml_qt/inst/extdata/ # Really need that slash
+datadir=~/sim_data_1/ # Really need that slash
 data=sim_data_1
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
