@@ -14,7 +14,9 @@
 # n_individuals| n_traits | n_snps_per_trait | epochs | Time (mins)
 # 500          | 40       | 30               | 100    | <60
 # 500          | 40       | 30               | 1000   | 110
-#
+# 500          | 40       | 30               | 1000   | 110
+# 1000         | 1        | 10               | 10     | <5
+# 1000         | 1        | 1000             | 100    | 25
 #
 #
 ## No 'SBATCH -A snic2021-22-624', as this is a general script
