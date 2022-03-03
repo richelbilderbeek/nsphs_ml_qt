@@ -31,12 +31,12 @@ datadir=~/sim_data_1/ # Really need that slash
 data=sim_data_1
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
-n_individuals=500
-n_traits=40
-n_snps_per_trait=30
+n_individuals=1000
+n_traits=1
+n_snps_per_trait=1000
 
 trainedmodeldir=~/sim_data_1_ae/ # Really need that slash
-epochs=1000
+epochs=200
 epoch=$epochs
 save_interval=10
 metrics="hull_error,f1_score_3"
