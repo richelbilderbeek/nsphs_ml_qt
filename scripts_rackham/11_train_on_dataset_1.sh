@@ -11,12 +11,15 @@
 #
 #   run_gcae.py train --datadir=<name> --data=<name> --model_id=<name> --train_opts_id=<name> --data_opts_id=<name> --save_interval=<num> --epochs=<num> [--resume_from=<num> --trainedmodeldir=<name> ] [--pheno_model_id=<name>]
 #
-# n_individuals| n_traits | n_snps_per_trait | epochs | Time (mins)
-# 500          | 40       | 30               | 100    | <60
-# 500          | 40       | 30               | 1000   | 110
-# 500          | 40       | 30               | 1000   | 110
-# 1000         | 1        | 10               | 10     | <5
-# 1000         | 1        | 1000             | 100    | 25
+# n_individuals| n_traits | n_snps_per_trait | epochs | Time (mins)    | Memory used (GB)
+# 500          | 40       | 30               | 100    | <60            | .
+# 500          | 40       | 30               | 1000   | 110            | .
+# 500          | 40       | 30               | 1000   | 110            | .
+# 1000         | 1        | 10               | 10     | <5             | .
+# 1000         | 1        | 1k               | 100    | 25             | .
+# 1000         | 1        | 10k              | 200    | 400            | 3.7
+# 1000         | 1        | 1000             | 1k     | estimated: 250 | .
+#
 #
 #
 ## No 'SBATCH -A snic2021-22-624', as this is a general script

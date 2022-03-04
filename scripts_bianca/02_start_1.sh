@@ -54,6 +54,8 @@ jobid_12=$(sbatch -A sens2021565 --dependency=afterok:$jobid_11 ./nsphs_ml_qt/sc
 jobid_13=$(sbatch -A sens2021565 --dependency=afterok:$jobid_12 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset_1.sh $datadir $data $trainedmodeldir $superpops $epoch              | cut -d ' ' -f 4)
 jobid_14=$(sbatch -A sens2021565 --dependency=afterok:$jobid_13 ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset_1.sh                                                             | cut -d ' ' -f 4)
 jobid_15=$(sbatch -A sens2021565 --dependency=afterok:$jobid_14 ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset_1.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch | cut -d ' ' -f 4)
+jobid_16=$(sbatch -A sens2021565 --dependency=afterok:$jobid_15 ./nsphs_ml_qt/scripts_bianca/16_create_tidy_results.sh                                                               | cut -d ' ' -f 4)
+jobid_17=$(sbatch -A sens2021565 --dependency=afterok:$jobid_16 ./nsphs_ml_qt/scripts_bianca/17_zip_depersonalized_data.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch | cut -d ' ' -f 4)
 
 echo "End time: $(date --iso-8601=seconds)"
 
