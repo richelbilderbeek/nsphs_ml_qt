@@ -11,17 +11,16 @@
 #
 #   run_gcae.py train --datadir=<name> --data=<name> --model_id=<name> --train_opts_id=<name> --data_opts_id=<name> --save_interval=<num> --epochs=<num> [--resume_from=<num> --trainedmodeldir=<name> ] [--pheno_model_id=<name>]
 #
-# n           | n      | n_snps    | n      | Time   | Memory    | Comments
-# individuals | traits | per_trait | epochs | (mins) | used (GB) | Comments
-# ------------|--------|-----------|--------|--------|-----------|------------------------------------------------------
-# 500         | 40     | 30        | 100    | <60    | .         |
-# 500         | 40     | 30        | 1000   | 110    | .         |
-# 500         | 40     | 30        | 1000   | 110    | .         |
-# 1000        | 1      | 10        | 10     | <5     | .         |
-# 1000        | 1      | 1k        | 100    | 25     | .         |
-# 1000        | 1      | 10k       | 200    | 400    | 3.7       |
-# 1000        | 1      | 1         | 1k     | 26     | .         | https://github.com/AJResearchGroup/richel/issues/126
-#
+# n_individuals| n_traits | n_snps | n_epochs | run_time (mins) | memory_used (GB) | Comments
+# -------------|----------|--------|----------|-----------------|------------------|------------------------------------------------------
+# 500          | 40       | 1200   | 100      | <60             | .                |
+# 500          | 40       | 1200   | 1000     | 110             | .                |
+# 500          | 40       | 1200   | 1000     | 110             | .                |
+# 1000         | 1        | 10     | 10       | <5              | .                |
+# 1000         | 1        | 1k     | 100      | 25              | .                |
+# 1000         | 1        | 10k    | 200      | 400             | 3.7              |
+# 1000         | 1        | 1      | 1k       | 26              | .                | https://github.com/AJResearchGroup/richel/issues/126
+# 1000         | 1        | 100k   | 200      | ?4000           | .                | https://github.com/AJResearchGroup/richel/issues/130
 #
 #
 ## No 'SBATCH -A snic2021-22-624', as this is a general script
