@@ -15,7 +15,7 @@
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
 #SBATCH --job-name=10_create_dataset_1
-#SBATCH --output=10_create_dataset_1.log
+#SBATCH --output=10_create_dataset_1-%j.log
 
 echo "Parameters: $@"
 echo "Number of parameters: $#"
@@ -71,13 +71,4 @@ Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_richel_issue_127.R $base_i
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
-
-echo "bash: running on Rackham, for jobstats?"
-
-if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
-  echo "bash: showing jobstats, would I know how"
-  # jobstats -A snic2021-22-624 -p $SLURM_JOBID
-  # Thanks Jerker Nyberg von Below
-  # jobstats -p $SLURM_JOBID
-fi
 

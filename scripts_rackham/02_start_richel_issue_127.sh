@@ -21,7 +21,7 @@
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
 #SBATCH --job-name=02_start_1
-#SBATCH --output=02_start_1.log
+#SBATCH --output=02_start_1-%j.log
 
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"

@@ -34,7 +34,7 @@
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
 #SBATCH --job-name=11_train_on_dataset_1
-#SBATCH --output=11_train_on_dataset_1.log
+#SBATCH --output=11_train_on_dataset_1-%j.log
 
 echo "Parameters: $@"
 echo "Number of parameters: $#"

@@ -4,17 +4,20 @@
 #
 args <- commandArgs(trailingOnly = TRUE)
 if (1 == 2) {
-  args <- c("1", "2", "3", "4")
+  args <- c(
+    file.path(gcaer::get_gcaer_tempfilename(), "issue_127"),
+    "1000",
+    "999"
+  )
 }
 
-if (length(args) != 4) {
+if (length(args) != 3) {
   stop(
     "Invalid number of arguments: must have 4 parameters: \n",
     " \n",
     "  1. base_input_filename \n",
     "  2. n_individuals \n",
-    "  3. n_traits \n",
-    "  4. n_snps_per_trait \n",
+    "  3. n_random_snps \n",
     " \n",
     "Actual number of parameters: ", length(args), " \n",
     "Parameters: {", paste0(args, collapse = ", "), "}"
@@ -23,56 +26,16 @@ if (length(args) != 4) {
 
 base_input_filename <- args[1]
 n_individuals <- as.numeric(args[2])
-n_traits <- as.numeric(args[3])
-n_snps_per_trait <- as.numeric(args[4])
-
+n_random_snps <- as.numeric(args[3])
 
 message("base_input_filename: ", base_input_filename)
 message("n_individuals: ", n_individuals)
-message("n_traits: ", n_traits)
-message("n_snps_per_trait: ", n_snps_per_trait)
+message("n_random_snps: ", n_random_snps)
 
-is_on_gha <- function() {
-  Sys.getenv("GITHUB_ACTIONS") != ""
-}
-
-is_on_rackham <- function() {
-  stringr::str_count(
-    string = Sys.getenv("HOSTNAME"),
-    pattern = "^r[:digit:]{1,3}$"
-  ) == 1
-}
-
-if (is_on_gha()) {
-  message("This R script runs on GitHub Actions")
-  if (plinkr::is_plink_installed()) {
-    message("PLINKs are already installed")
-  } else {
-    message("Installing PLINKs")
-    plinkr::install_plinks()
-    message("PLINKs installed")
-  }
-}
-if (is_on_rackham()) {
-  message("R: running on Rackham")
-  if (plinkr::is_plink_installed()) {
-    message("PLINK are already installed")
-  } else {
-    message("Installing PLINKs")
-    plinkr::install_plink()
-    message("PLINKs installed")
-  }
-}
-
-n_individuals <- 1000
-n_snps_per_trait <- 1000
-base_input_filename <- tempfile()
-
-gcae_input_filesnames <- gcaer::create_gcae_input_files_1(
+gcae_input_filesnames <- gcaer::create_gcae_input_files_2(
   base_input_filename = base_input_filename,
   n_individuals = n_individuals,
-  n_traits = 1,
-  n_snps_per_trait = n_snps_per_trait
+  n_random_snps = n_random_snps
 )
 bed_table <- plinkr::read_plink_bed_file_from_files(
   bed_filename = gcae_input_filesnames$bed_filename,
