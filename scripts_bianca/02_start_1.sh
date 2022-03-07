@@ -48,13 +48,13 @@ echo "epoch: $epoch"
 echo "save_interval: $save_interval"
 echo "metrics: $metrics"
 
-jobid_10=$(sbatch -A sens2021565                                ./nsphs_ml_qt/scripts_bianca/10_create_dataset_1.sh $datadir $data $base_input_filename $superpops | cut -d ' ' -f 4)
-jobid_11=$(sbatch -A sens2021565 --dependency=afterok:$jobid_10 ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh $datadir $data $trainedmodeldir $epochs $save_interval        | cut -d ' ' -f 4)
-jobid_12=$(sbatch -A sens2021565 --dependency=afterok:$jobid_11 ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset_1.sh $datadir $data $trainedmodeldir $superpops $epoch           | cut -d ' ' -f 4)
-jobid_13=$(sbatch -A sens2021565 --dependency=afterok:$jobid_12 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset_1.sh $datadir $data $trainedmodeldir $superpops $epoch              | cut -d ' ' -f 4)
-jobid_14=$(sbatch -A sens2021565 --dependency=afterok:$jobid_13 ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset_1.sh                                                             | cut -d ' ' -f 4)
-jobid_15=$(sbatch -A sens2021565 --dependency=afterok:$jobid_14 ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset_1.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch | cut -d ' ' -f 4)
-jobid_16=$(sbatch -A sens2021565 --dependency=afterok:$jobid_15 ./nsphs_ml_qt/scripts_bianca/16_create_tidy_results.sh                                                               | cut -d ' ' -f 4)
+jobid_10=$(sbatch -A sens2021565                                ./nsphs_ml_qt/scripts_bianca/10_create_dataset_1.sh $datadir $data $base_input_filename $superpops                    | cut -d ' ' -f 4)
+jobid_11=$(sbatch -A sens2021565 --dependency=afterok:$jobid_10 ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh $datadir $data $trainedmodeldir $epochs $save_interval           | cut -d ' ' -f 4)
+jobid_12=$(sbatch -A sens2021565 --dependency=afterok:$jobid_11 ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch              | cut -d ' ' -f 4)
+jobid_13=$(sbatch -A sens2021565 --dependency=afterok:$jobid_12 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch                 | cut -d ' ' -f 4)
+jobid_14=$(sbatch -A sens2021565 --dependency=afterok:$jobid_13 ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset.sh                                                                | cut -d ' ' -f 4)
+jobid_15=$(sbatch -A sens2021565 --dependency=afterok:$jobid_14 ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch    | cut -d ' ' -f 4)
+jobid_16=$(sbatch -A sens2021565 --dependency=afterok:$jobid_15 ./nsphs_ml_qt/scripts_bianca/16_create_tidy_results.sh                                                                | cut -d ' ' -f 4)
 jobid_17=$(sbatch -A sens2021565 --dependency=afterok:$jobid_16 ./nsphs_ml_qt/scripts_bianca/17_zip_depersonalized_data.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch | cut -d ' ' -f 4)
 
 echo "End time: $(date --iso-8601=seconds)"

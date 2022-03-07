@@ -4,8 +4,8 @@
 #
 # Usage: 
 #
-#   ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh
-#   sbatch ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh
+#   ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh
+#   sbatch ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh
 #
 # From the GCAE help:
 #
@@ -33,8 +33,8 @@
 # Could do, for 256GB: -C mem256GB
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
-#SBATCH --job-name=11_train_on_dataset_1
-#SBATCH --output=11_train_on_dataset_1-%j.log
+#SBATCH --job-name=11_train_on_dataset
+#SBATCH --output=11_train_on_dataset-%j.log
 
 echo "Parameters: $@"
 echo "Number of parameters: $#"

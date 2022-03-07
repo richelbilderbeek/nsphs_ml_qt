@@ -1,15 +1,15 @@
 #!/bin/bash
 #
-# Do a projection on dataset 1
+# Do the plotting of dataset 1
 #
 # Usage: 
 #
-#   ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset_1.sh
-#   sbatch ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset_1.sh
+#   ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh
+#   sbatch ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh
 #
 # From the GCAE help:
 #
-# run_gcae.py project --datadir=<name>   [ --data=<name> --model_id=<name>  --train_opts_id=<name> --data_opts_id=<name> --superpops=<name> --epoch=<num> --trainedmodeldir=<name>   --pdata=<name> --trainedmodelname=<name>] [--pheno_model_id=<name>]
+# run_gcae.py plot --datadir=<name> [  --data=<name>  --model_id=<name> --train_opts_id=<name> --data_opts_id=<name>  --superpops=<name> --epoch=<num> --trainedmodeldir=<name>  --pdata=<name> --trainedmodelname=<name>] [--pheno_model_id=<name>]
 #
 ## No 'SBATCH -A snic2021-22-624', as this is a general script
 #SBATCH --time=1:00:00
@@ -21,8 +21,8 @@
 # Could do, for 256GB: -C mem256GB
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
-#SBATCH --job-name=12_project_on_dataset_1
-#SBATCH --output=12_project_on_dataset_1-%j.log
+#SBATCH --job-name=13_plot_on_dataset
+#SBATCH --output=13_plot_on_dataset-%j.log
 
 echo "Parameters: $@"
 echo "Number of parameters: $#"
@@ -42,6 +42,7 @@ if [[ "$#" -ne 5 ]] ; then
   exit 42
 fi
 
+
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
@@ -55,7 +56,7 @@ epoch=$5
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
-  datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/
+  datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/ # Really need that slash at the end
   superpops=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
   epoch=3
 fi
@@ -68,8 +69,6 @@ echo "epoch: $epoch"
 
 if [ ! -f $superpops ]; then
   echo "'superpops' file not found at path $superpops"
-  echo "Showing content of datadir ($datadir):"
-  cd $datadir ; ls ; cd -
   exit 42
 fi
 
@@ -79,7 +78,7 @@ if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
 fi
 
 singularity run gcae/gcae.sif \
-  project \
+  plot \
   --datadir $datadir \
   --data $data \
   --model_id M1 \

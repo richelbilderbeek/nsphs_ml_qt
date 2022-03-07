@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Create simulated dataset 1 for
+# Create simulated dataset 2 for
 # https://github.com/AJResearchGroup/richel/issues/127
 #
 #
@@ -14,8 +14,8 @@
 # Could do, for 256GB: -C mem256GB
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
-#SBATCH --job-name=10_create_dataset_richel_issue_127
-#SBATCH --output=10_create_dataset_richel_issue_127-%j.log
+#SBATCH --job-name=10_create_dataset_2
+#SBATCH --output=10_create_dataset_2-%j.log
 
 echo "Parameters: $@"
 echo "Number of parameters: $#"
