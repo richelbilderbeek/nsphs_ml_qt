@@ -47,7 +47,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_richel_issue_127.R $base_input_filename $n_individuals $n_random_snps
+Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_2.R $base_input_filename $n_individuals $n_random_snps
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"

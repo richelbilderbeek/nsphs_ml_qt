@@ -20,8 +20,8 @@
 # Could do, for 256GB: -C mem256GB
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
-#SBATCH --job-name=02_start_richel_issue_127
-#SBATCH --output=02_start_richel_issue_127-%j.log
+#SBATCH --job-name=02_start_2_richel_issue_127
+#SBATCH --output=02_start_2_richel_issue_127-%j.log
 
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
@@ -44,9 +44,8 @@ echo "datadir: ${datadir}"
 echo "data: ${data}"
 echo "base_input_filename: ${base_input_filename}"
 echo "superpops: ${superpops}"
-echo "n_individuals: $n_individuals"
-echo "n_traits: $n_traits"
-echo "n_snps_per_trait: $n_snps_per_trait"
+echo "n_individuals: ${n_individuals}"
+echo "n_random_snps: ${n_random_snps}"
 echo "datadir: $datadir"
 echo "trainedmodeldir: $trainedmodeldir"
 echo "epochs: $epochs"
@@ -71,7 +70,7 @@ if [ ! -f gcaer/gcaer.sif ]; then
   exit 42
 fi
 
-jobid_10=$(sbatch -A snic2021-22-624                                ./nsphs_ml_qt/scripts_rackham/10_create_dataset_richel_issue_127.sh $base_input_filename $n_individuals $n_random_snps | cut -d ' ' -f 4)
+jobid_10=$(sbatch -A snic2021-22-624                                ./nsphs_ml_qt/scripts_rackham/10_create_dataset_2.sh $base_input_filename $n_individuals $n_random_snps                | cut -d ' ' -f 4)
 jobid_11=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_10 ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset_1.sh $datadir $data $trainedmodeldir $epochs $save_interval          | cut -d ' ' -f 4)
 jobid_12=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_11 ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset_1.sh $datadir $data $trainedmodeldir $superpops $epoch             | cut -d ' ' -f 4)
 jobid_13=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_12 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset_1.sh $datadir $data $trainedmodeldir $superpops $epoch                | cut -d ' ' -f 4)
