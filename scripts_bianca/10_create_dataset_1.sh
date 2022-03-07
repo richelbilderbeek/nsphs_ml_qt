@@ -29,7 +29,7 @@
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
 #SBATCH --job-name=10_create_dataset_1
-#SBATCH --output=10_create_dataset_1.log
+#SBATCH --output=10_create_dataset_1-%j.log
 
 ###############################################################################
 #  1. check and process input
