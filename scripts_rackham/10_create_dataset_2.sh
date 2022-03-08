@@ -37,17 +37,20 @@ echo "Correct number of arguments: $#"
 base_input_filename=$1
 n_individuals=$2
 n_random_snps=$3
+singularity_filename=gcaer/gcaer.sif
 
 echo "base_input_filename: $base_input_filename"
-echo "n_individuals: $n_individuals"
-echo "n_random_snps: $n_random_snps"
+echo "n_individuals: ${n_individuals}"
+echo "n_random_snps: ${n_random_snps}"
+echo "singularity_filename: ${singularity_filename}"
 
 SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_2.R $base_input_filename $n_individuals $n_random_snps
+singularity run $singularity_filename nsphs_ml_qt/scripts_rackham/10_create_dataset_2.R $base_input_filename $n_individuals $n_random_snps
+# Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_2.R $base_input_filename $n_individuals $n_random_snps
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"

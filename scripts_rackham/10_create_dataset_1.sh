@@ -43,45 +43,31 @@ base_input_filename=$1
 n_individuals=$2
 n_traits=$3
 n_snps_per_trait=$4
+singularity_filename=gcaer/gcaer.sif
 
-echo "base_input_filename: $base_input_filename"
-echo "n_individuals: $n_individuals"
-echo "n_traits: $n_traits"
-echo "n_snps_per_trait: $n_snps_per_trait"
+echo "base_input_filename: ${base_input_filename}"
+echo "n_individuals: ${n_individuals}"
+echo "n_traits: ${n_traits}"
+echo "n_snps_per_trait: ${n_snps_per_trait}"
+echo "singularity_filename: ${singularity_filename}"
 
 SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-echo "Running on Rackham, for loading module?"
-
-
 if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
   echo "bash: running on Rackham runner node"
-  # No need to load modules here
-  # module load python/3.8.7
 fi
-
-echo "Running on GHA?"
 
 if [ ! -z $GITHUB_ACTIONS ]; then 
   echo "Running on GitHub Actions"
-  # No need to load modules here
-  # module load python/3.8.7
 fi
 
-Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R $base_input_filename $n_individuals $n_traits $n_snps_per_trait
+
+singularity run $singularity_filename nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R $base_input_filename $n_individuals $n_traits $n_snps_per_trait
+# Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R $base_input_filename $n_individuals $n_traits $n_snps_per_trait
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
-
-echo "bash: running on Rackham, for jobstats?"
-
-if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
-  echo "bash: showing jobstats, would I know how"
-  # jobstats -A snic2021-22-624 -p $SLURM_JOBID
-  # Thanks Jerker Nyberg von Below
-  # jobstats -p $SLURM_JOBID
-fi
 
