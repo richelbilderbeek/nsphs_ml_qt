@@ -27,8 +27,8 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-datadir=~/sim_data_1/ # Really need that slash
-data=sim_data_1
+datadir=~/sim_data_2_richel_issue_127/ # Really need that slash
+data=sim_data_2_richel_issue_127
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
 n_individuals=1000
