@@ -42,13 +42,14 @@ echo "Running at location $(pwd)"
 echo "Parameters: $@"
 echo "Number of parameters: $#"
 
-if [[ "$#" -ne 4 ]] ; then
-  echo "Invalid number of arguments: must have 4 parameters: "
+if [[ "$#" -ne 5 ]] ; then
+  echo "Invalid number of arguments: must have 5 parameters: "
   echo " "
   echo "  1. datadir"
   echo "  2. data"
   echo "  3. base_input_filename"
   echo "  4. superpops"
+  echo "  5. thin_count"
   echo " "
   echo "Actual number of parameters: $#"
   echo " "
@@ -61,11 +62,13 @@ datadir=$1
 data=$2
 base_input_filename=$3
 superpops=$4
+thin_count=$5
 
 echo "datadir: ${datadir}"
 echo "data: ${data}"
 echo "base_input_filename: ${base_input_filename}"
 echo "superpops: ${superpops}"
+echo "thin_count: ${thin_count}"
 
 # That is, the full and real data: don't touch!
 full_data_basename=/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1
@@ -78,11 +81,9 @@ out_data_phe_filename="${out}.phe" # These are generated, use freely :-)
 out_data_phe_filename="${out}.phe" # These are generated, use freely :-)
 out_data_labels_filename="${out}_labels.csv" # These are generated, use freely :-)
 pheno="${out}.phe" # These are generated, use freely :-)
-
 sample_ids_filename="${datadir}sample_ids.txt" # datadir ends with a slash
 plink_exe=~/plink_1_9_unix/plink
 singularity_filename=gcaer/gcaer.sif
-thin_count=10000 # Number of SNPs that remain
 maf=0.01 # Minimal frequency of alleles
 ld_window_size=1000
 ld_variant_count_shift=1

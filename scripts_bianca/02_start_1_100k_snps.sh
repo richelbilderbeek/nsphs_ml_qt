@@ -33,6 +33,7 @@ data=data_1
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
 trainedmodeldir=~/data_1_ae/ # Really need that slash
+thin_count=100000 # Number of SNPs that remain
 epochs=200
 epoch=$epochs
 save_interval=10
@@ -42,13 +43,14 @@ echo "datadir: ${datadir}"
 echo "data: ${data}"
 echo "base_input_filename: ${base_input_filename}"
 echo "superpops: ${superpops}"
-echo "trainedmodeldir: $trainedmodeldir"
-echo "epochs: $epochs"
-echo "epoch: $epoch"
-echo "save_interval: $save_interval"
-echo "metrics: $metrics"
+echo "trainedmodeldir: ${trainedmodeldir}"
+echo "thin_count: ${thin_count}"
+echo "epochs: ${epochs}"
+echo "epoch: ${epoch}"
+echo "save_interval: ${save_interval}"
+echo "metrics: ${metrics}"
 
-jobid_10=$(sbatch -A sens2021565                                ./nsphs_ml_qt/scripts_bianca/10_create_dataset_1.sh $datadir $data $base_input_filename $superpops                    | cut -d ' ' -f 4)
+jobid_10=$(sbatch -A sens2021565                                ./nsphs_ml_qt/scripts_bianca/10_create_dataset_1.sh $datadir $data $base_input_filename $superpops $thin_count        | cut -d ' ' -f 4)
 jobid_11=$(sbatch -A sens2021565 --dependency=afterok:$jobid_10 ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh $datadir $data $trainedmodeldir $epochs $save_interval           | cut -d ' ' -f 4)
 jobid_12=$(sbatch -A sens2021565 --dependency=afterok:$jobid_11 ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch              | cut -d ' ' -f 4)
 jobid_13=$(sbatch -A sens2021565 --dependency=afterok:$jobid_12 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch                 | cut -d ' ' -f 4)
