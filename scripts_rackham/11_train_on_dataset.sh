@@ -18,6 +18,7 @@
 # 500          | 40       | 1200   | 1000     | 110             | .                |
 # 1000         | 1        | 10     | 10       | <5              | .                |
 # 1000         | 1        | 1k     | 100      | 25              | .                |
+# 1000         | 1        | 1k     | 1k       | 241             | 2.4              | https://github.com/AJResearchGroup/richel/issues/129
 # 1000         | 1        | 10k    | 200      | 400             | 3.7              |
 # 1000         | 1        | 1      | 1k       | 26              | .                | https://github.com/AJResearchGroup/richel/issues/126
 # 1000         | 1        | 100k   | 200      | ?4000           | .                | https://github.com/AJResearchGroup/richel/issues/130
