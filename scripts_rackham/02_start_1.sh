@@ -27,15 +27,16 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-datadir=~/sim_data_1/ # Really need that slash
-data=sim_data_1
+unique_id=richel_issue_106
+datadir="~/sim_data_1_${unique_id}/" # Really need that slash
+data="sim_data_1_${unique_id}"
+trainedmodeldir="~/sim_data_1_${unique_id}_ae/" # Really need that slash
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
 n_individuals=1000
 n_traits=1
 n_snps_per_trait=1000
 
-trainedmodeldir=~/sim_data_1_ae/ # Really need that slash
 epochs=200
 epoch=$epochs
 save_interval=10
@@ -72,12 +73,12 @@ if [ ! -f gcaer/gcaer.sif ]; then
   exit 42
 fi
 
-jobid_10=$(sbatch -A snic2021-22-624                                --output=10_create_richel_issue_106.log   ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh $base_input_filename $n_individuals $n_traits $n_snps_per_trait | cut -d ' ' -f 4)
-jobid_11=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_10 --output=11_train_richel_issue_106.log    ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh $datadir $data $trainedmodeldir $epochs $save_interval          | cut -d ' ' -f 4)
-jobid_12=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_11 --output=12_project_richel_issue_106.log  ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch             | cut -d ' ' -f 4)
-jobid_13=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_12 --output=13_plot_richel_issue_106.log     ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch                | cut -d ' ' -f 4)
-jobid_14=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_13 --output=14_animate_richel_issue_106.log  ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset.sh                                                               | cut -d ' ' -f 4)
-jobid_15=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_14 --output=15_evaluate_richel_issue_106.log ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch   | cut -d ' ' -f 4)
+jobid_10=$(sbatch -A snic2021-22-624                                --output=10_create_${unique_id}.log   ./nsphs_ml_qt/scripts_rackham/10_create_dataset_1.sh $base_input_filename $n_individuals $n_traits $n_snps_per_trait | cut -d ' ' -f 4)
+jobid_11=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_10 --output=11_train_${unique_id}.log    ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh $datadir $data $trainedmodeldir $epochs $save_interval          | cut -d ' ' -f 4)
+jobid_12=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_11 --output=12_project_${unique_id}.log  ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch             | cut -d ' ' -f 4)
+jobid_13=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_12 --output=13_plot_${unique_id}.log     ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch                | cut -d ' ' -f 4)
+jobid_14=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_13 --output=14_animate_${unique_id}.log  ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset.sh                                                               | cut -d ' ' -f 4)
+jobid_15=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_14 --output=15_evaluate_${unique_id}.log ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch   | cut -d ' ' -f 4)
 
 echo "End time: $(date --iso-8601=seconds)"
 

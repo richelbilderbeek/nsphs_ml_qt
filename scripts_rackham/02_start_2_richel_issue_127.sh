@@ -27,9 +27,10 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-datadir=~/sim_data_2_richel_issue_127/ # Really need that slash
-data=sim_data_2_richel_issue_127
-trainedmodeldir=~/sim_data_2_richel_issue_127_ae/ # Really need that slash
+unique_id=richel_issue_127
+datadir="~/sim_data_2_${unique_id}/" # Really need that slash
+data="sim_data_2_${unique_id}"
+trainedmodeldir="~/sim_data_2_${unique_id}_ae/" # Really need that slash
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
 n_individuals=1000
@@ -43,11 +44,11 @@ metrics="hull_error,f1_score_3"
 echo "datadir: ${datadir}"
 echo "data: ${data}"
 echo "base_input_filename: ${base_input_filename}"
+echo "trainedmodeldir: $trainedmodeldir"
 echo "superpops: ${superpops}"
 echo "n_individuals: ${n_individuals}"
 echo "n_random_snps: ${n_random_snps}"
 echo "datadir: $datadir"
-echo "trainedmodeldir: $trainedmodeldir"
 echo "epochs: $epochs"
 echo "epoch: $epoch"
 echo "save_interval: $save_interval"
@@ -70,12 +71,12 @@ if [ ! -f gcaer/gcaer.sif ]; then
   exit 42
 fi
 
-jobid_10=$(sbatch -A snic2021-22-624                                --output=10_create_richel_issue_127.log   ./nsphs_ml_qt/scripts_rackham/10_create_dataset_2.sh $base_input_filename $n_individuals $n_random_snps            | cut -d ' ' -f 4)
-jobid_11=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_10 --output=11_train_richel_issue_127.log    ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh $datadir $data $trainedmodeldir $epochs $save_interval        | cut -d ' ' -f 4)
-jobid_12=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_11 --output=12_project_richel_issue_127.log  ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch           | cut -d ' ' -f 4)
-jobid_13=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_12 --output=13_plot_richel_issue_127.log     ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch              | cut -d ' ' -f 4)
-jobid_14=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_13 --output=14_animate_richel_issue_127.log  ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset.sh                                                             | cut -d ' ' -f 4)
-jobid_15=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_14 --output=15_evaluate_richel_issue_127.log ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch | cut -d ' ' -f 4)
+jobid_10=$(sbatch -A snic2021-22-624                                --output=10_create_${unique_id}.log   ./nsphs_ml_qt/scripts_rackham/10_create_dataset_2.sh $base_input_filename $n_individuals $n_random_snps            | cut -d ' ' -f 4)
+jobid_11=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_10 --output=11_train_${unique_id}.log    ./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh $datadir $data $trainedmodeldir $epochs $save_interval        | cut -d ' ' -f 4)
+jobid_12=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_11 --output=12_project_${unique_id}.log  ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch           | cut -d ' ' -f 4)
+jobid_13=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_12 --output=13_plot_${unique_id}.log     ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch              | cut -d ' ' -f 4)
+jobid_14=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_13 --output=14_animate_${unique_id}.log  ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset.sh                                                             | cut -d ' ' -f 4)
+jobid_15=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_14 --output=15_evaluate_${unique_id}.log ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch | cut -d ' ' -f 4)
 
 echo "End time: $(date --iso-8601=seconds)"
 
