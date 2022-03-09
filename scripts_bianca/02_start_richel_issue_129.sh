@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-# Do the full flow for experiment one
+# Do the full flow for experiment that GitHub Issue
 #
 # Usage: 
 #
-#   ./nsphs_ml_qt/scripts_bianca/02_start_1.sh
-#   sbatch ./nsphs_ml_qt/scripts_bianca/02_start_1.sh
+#   ./nsphs_ml_qt/scripts_bianca/[this file's name]
+#   sbatch ./nsphs_ml_qt/scripts_bianca/[this file's name]
 #
 # You can without moral concerns run this script without 'sbatch',
 # as all it does is 'sbatch'-ing other scripts
@@ -15,25 +15,21 @@
 #SBATCH --partition core
 #SBATCH --ntasks 1
 #SBATCH -C usage_mail
-# From https://www.uppmax.uu.se/support/user-guides/slurm-user-guide
-# Be light first
-# Could do, for 256GB: -C mem256GB
-# Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
-#SBATCH --job-name=02_start_1
-#SBATCH --output=02_start_1_100k_snps.log
+#SBATCH --job-name=02_start_richel_issue_129
+#SBATCH --output=02_start_richel_issue_129.log
 
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-unique_id=1_100k_snps
+unique_id=richel_issue_129
 datadir="~/data_${unique_id}/" # Really need that slash
 data="data_${unique_id}"
 trainedmodeldir="~/data_${unique_id}_ae/" # Really need that slash
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
-thin_count=100000 # Number of SNPs that remain
+thin_count=1000 # Number of SNPs that remain
 epochs=200
 epoch=$epochs
 save_interval=10
