@@ -22,7 +22,7 @@
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
 #SBATCH --job-name=14_animate_on_dataset
-#SBATCH --output=14_animate_on_dataset-%j.log
+#Log filename: 14_animate_on_dataset.log
 
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"

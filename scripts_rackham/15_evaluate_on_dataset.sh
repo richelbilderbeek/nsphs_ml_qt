@@ -22,7 +22,7 @@
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
 #SBATCH --job-name=15_evaluate_on_dataset
-#SBATCH --output=15_evaluate_on_dataset-%j.log
+# Log filename: 15_evaluate_on_dataset.log
 
 echo "Parameters: $@"
 echo "Number of parameters: $#"
