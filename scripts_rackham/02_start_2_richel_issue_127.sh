@@ -77,6 +77,8 @@ jobid_12=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_11 --output=12_
 jobid_13=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_12 --output=13_plot_${unique_id}.log     ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh $datadir $data $trainedmodeldir $superpops $epoch              | cut -d ' ' -f 4)
 jobid_14=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_13 --output=14_animate_${unique_id}.log  ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset.sh                                                             | cut -d ' ' -f 4)
 jobid_15=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_14 --output=15_evaluate_${unique_id}.log ./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch | cut -d ' ' -f 4)
+jobid_16=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_15 --output=16_analyse_${unique_id}.log  ./nsphs_ml_qt/scripts_rackham/16_create_tidy_results.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch | cut -d ' ' -f 4)
+jobid_17=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_16 --output=17_zip_${unique_id}.log      ./nsphs_ml_qt/scripts_rackham/17_zip_results.sh         $datadir $trainedmodeldir $unique_id                       | cut -d ' ' -f 4)
 
 echo "End time: $(date --iso-8601=seconds)"
 
