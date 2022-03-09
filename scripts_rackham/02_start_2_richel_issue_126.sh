@@ -29,12 +29,12 @@ echo "Running at location $(pwd)"
 
 datadir=~/sim_data_2_richel_issue_126/ # Really need that slash
 data=sim_data_2_richel_issue_126
+trainedmodeldir=~/sim_data_2_richel_issue_126_ae/ # Really need that slash
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
 n_individuals=1000
 n_random_snps=0
 
-trainedmodeldir=~/sim_data_1_ae/ # Really need that slash
 epochs=1000
 epoch=$epochs
 save_interval=100
