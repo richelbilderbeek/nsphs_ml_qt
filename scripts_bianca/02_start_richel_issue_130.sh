@@ -24,9 +24,9 @@ echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
 unique_id=richel_issue_130
-datadir="~/data_${unique_id}/" # Really need that slash
+datadir=~/data_${unique_id}/ # Really need that slash
 data="data_${unique_id}"
-trainedmodeldir="~/data_${unique_id}_ae/" # Really need that slash
+trainedmodeldir=~/data_${unique_id}_ae/ # Really need that slash
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
 thin_count=100000 # Number of SNPs that remain
