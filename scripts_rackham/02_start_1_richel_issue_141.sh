@@ -33,7 +33,7 @@ data="sim_data_1_${unique_id}"
 trainedmodeldir=~/sim_data_1_${unique_id}_ae/ # Really need that slash
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
-n_individuals=5
+n_individuals=10
 n_traits=1
 n_snps_per_trait=3
 
