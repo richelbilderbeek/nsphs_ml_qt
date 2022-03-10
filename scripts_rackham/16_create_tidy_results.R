@@ -1,20 +1,12 @@
-#
-# Create two files:
-#
-# Filename                             |Copy on Bianca?|Copy on Rackham?
-# -------------------------------------|---------------|----------------
-# tidy_data/full/results.csv           |No             |Yes
-# tidy_data/depersonalized/results.csv |Yes            |Yes
-#
-
 args <- commandArgs(trailingOnly = TRUE)
 
-if (length(args) != 2) {
+if (length(args) != 3) {
   stop(
-    "Invalid number of arguments: must have 2 parameters: \n",
+    "Invalid number of arguments: must have 3 parameters: \n",
     " \n",
-    "  1. pheno \n",
-    "  2. column_index \n",
+    "  1. datadir \n",
+    "  2. trainedmodeldir \n",
+    "  3. unique_id \n",
     " \n",
     "Actual number of parameters: ", length(args), " \n",
     "Parameters: {", paste0(args, collapse = ", "), "}"
