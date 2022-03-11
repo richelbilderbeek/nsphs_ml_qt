@@ -1,9 +1,23 @@
+library(ggpmisc)
+
 t <- tibble::tibble(
   x = runif(n = 100),
   y = runif(n = 100)
 )
+trendline_formula <- y ~ x
 ggplot2::ggplot(t, ggplot2::aes(x = x, y = y)) +
-  ggplot2::geom_point() + ggplot2::geom_smooth(method = "lm")
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(
+    method = "lm",
+    formula = trendline_formula
+  ) +
+  ggpmisc::stat_poly_eq(
+    formula = trendline_formula,
+    geom = "label",
+    ggplot2::aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
+    parse = TRUE,
+    position = ggplot2::position_nudge(x = 0.1, y = 0.1)
+  )
 ggplot2::ggsave("~/richel_issue_146.png", width = 7, height = 7)
 
 
