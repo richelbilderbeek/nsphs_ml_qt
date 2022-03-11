@@ -29,11 +29,15 @@ if (length(unique_id) != 1) stop("'unique_id' must be 1 element")
 
 message("Parameters are valid")
 
+png_filename <- file.path(trainedmodeldir, paste0(unique_id, ".png"))
+message("png_filename: ", png_filename)
+
 message("Start analysis")
+
 analysis_filenames <- gcaer::analyse_qt_prediction(
   datadir = datadir,
   trainedmodeldir = trainedmodeldir,
-  unique_id = unique_id
+  png_filename = png_filename
 )
 message("Created files: ", paste0(analysis_filenames, collapse = ", "))
 
