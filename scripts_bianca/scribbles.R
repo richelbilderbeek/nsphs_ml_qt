@@ -1,3 +1,11 @@
+t <- tibble::tibble(
+  x = runif(n = 100),
+  y = runif(n = 100)
+)
+ggplot2::ggplot(t, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_point() + ggplot2::geom_smooth(method = "lm")
+ggplot2::ggsave("~/richel_issue_146.png", width = 7, height = 7)
+
 
 fam_filename <- plinkr::get_plinkr_filename("toy_data.fam")
 fam_filename <- "data_1/data_1.fam"
