@@ -51,10 +51,6 @@ echo "11_train_filename: ${11_train_filename}"
 echo "11_train_filename_backup: ${11_train_filename_backup}"
 echo "log_filenames: ${log_filenames}"
 
-#echo "Removing the weights"
-#rm -rf ~/sim_data_1_ae/ae.M1.ex3.b_0_4.sim_data_1.p1/weights
-#rm -rf ~/sim_data_1_ae/ae.M1.ex3.b_0_4.sim_data_1.p1/pheno_weights
-
 echo "'11_train_[unique_id].log' is big, only use the start and end of it"
 cp $11_train_filename $11_train_filename_backup
 head $11_train_filename_backup -n 70 > $11_train_filename
