@@ -57,5 +57,5 @@ head $11_train_filename_backup -n 70 > $11_train_filename
 tail $11_train_filename_backup -n 10 >> $11_train_filename
 rm $11_train_filename_backup
 
-zip -r $zip_filename $log_filenames $datadir $trainedmodeldir
+zip -r $zip_filename $log_filenames $(basename $datadir) $(basename $trainedmodeldir)
 
