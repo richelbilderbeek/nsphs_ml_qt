@@ -105,3 +105,4 @@ jobid_17=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_16 --output=17_
 
 echo "End time: $(date --iso-8601=seconds)"
 
+

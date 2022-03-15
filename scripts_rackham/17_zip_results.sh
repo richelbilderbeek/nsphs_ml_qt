@@ -59,3 +59,4 @@ rm $11_train_filename_backup
 
 zip -r $zip_filename $log_filenames $(basename $datadir) $(basename $trainedmodeldir)
 
+

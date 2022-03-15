@@ -71,3 +71,4 @@ singularity run $singularity_filename nsphs_ml_qt/scripts_rackham/10_create_data
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
 
+

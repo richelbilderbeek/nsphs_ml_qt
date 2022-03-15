@@ -27,15 +27,20 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-n_random_snpses=$(seq 0 10)
-pheno_model_idses="p0 p1 p2"
+# n_random_snpses=$(seq 0 10)
+n_random_snpses=$(seq 0 2)
+pheno_model_ids="p0 p1 p2"
+echo "n_random_snpses: {n_random_snpses}"
+echo "pheno_model_ids: {pheno_model_ids}"
 
 for n_random_snps in $n_random_snpses; do
   for pheno_model_id in $pheno_model_ids; do 
     unique_id="richel_issue_44_${pheno_model_id}_${n_random_snps}"
+    echo "Running with: ${unique_id} ${pheno_model_id} ${n_random_snps}"
     sbatch 03_start_richel_issue_144_run.sh $unique_id $pheno_model_id $n_random_snps
   done
 done
 
 echo "End time: $(date --iso-8601=seconds)"
+
 
