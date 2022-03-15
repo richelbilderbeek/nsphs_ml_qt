@@ -23,8 +23,8 @@ message("Parameters are valid")
 
 if (1 == 2) {
   fam_filename <- plinkr::get_plinkr_filename("toy_data.fam")
+  fam_filename <- "data_1/data_1.fam"
 }
-fam_filename <- "data_1/data_1.fam"
 
 message("Reading 'fam_table'")
 
