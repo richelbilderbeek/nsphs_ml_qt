@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Do the full flow for experiment one
+# Do one run for Issue 144
 #
 # Usage: 
 #
@@ -20,25 +20,48 @@
 # Could do, for 256GB: -C mem256GB
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
-#SBATCH --job-name=02_start_2_richel_issue_127
-#SBATCH --output=02_start_2_richel_issue_127.log
+#SBATCH --job-name=02_start_richel_issue_144
+#SBATCH --output=02_start_richel_issue_144.log
 
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-unique_id=richel_issue_127
-datadir=~/sim_data_2_${unique_id}/ # Really need that slash
-data="sim_data_2_${unique_id}"
-trainedmodeldir=~/sim_data_2_${unique_id}_ae/ # Really need that slash
+echo "Parameters: $@"
+echo "Number of parameters: $#"
+
+if [[ "$#" -ne 3 ]] ; then
+  echo "Invalid number of arguments: must have 3 parameters: "
+  echo " "
+  echo "  1. unique_id"
+  echo "  2. pheno_model_id"
+  echo "  3. n_random_snps"
+  echo " "
+  echo "Actual number of parameters: $#"
+  echo " "
+  echo "Exiting :-("
+  exit 42
+fi
+
+
+echo "Correct number of arguments: $#"
+unique_id=$1
+pheno_model_id=$2
+n_random_snps=$3
+echo "unique_id: ${unique_id}"
+echo "pheno_model_id: ${pheno_model_id}"
+echo "n_random_snps: ${n_random_snps}"
+
+datadir=~/sim_data_${unique_id}/ # Really need that slash
+data="sim_data_${unique_id}"
+trainedmodeldir=~/sim_data_${unique_id}_ae/ # Really need that slash
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
 n_individuals=1000
-n_random_snps=1000
+
 epochs=1000
 epoch=$epochs
 save_interval=100
-pheno_model_id="p1"
 metrics="hull_error,f1_score_3"
 
 echo "datadir: ${datadir}"
@@ -51,9 +74,8 @@ echo "n_random_snps: ${n_random_snps}"
 echo "datadir: $datadir"
 echo "epochs: $epochs"
 echo "epoch: $epoch"
-echo "save_interval: ${save_interval}"
-echo "pheno_model_id: ${pheno_model_id}"
-echo "metrics: ${metrics}"
+echo "save_interval: $save_interval"
+echo "metrics: $metrics"
 
 if [ ! -f gcae/gcae.sif ]; then
   echo "'gcae/gcae.sif' file not found"

@@ -40,14 +40,15 @@
 echo "Parameters: $@"
 echo "Number of parameters: $#"
 
-if [[ "$#" -ne 5 ]] ; then
-  echo "Invalid number of arguments: must have 5 parameters: "
+if [[ "$#" -ne 6 ]] ; then
+  echo "Invalid number of arguments: must have 6 parameters: "
   echo " "
   echo "  1. datadir"
   echo "  2. data"
   echo "  3. trainedmodeldir"
   echo "  4. epochs"
   echo "  5. save_interval"
+  echo "  6. pheno_model_id"
   echo " "
   echo "Actual number of parameters: $#"
   echo " "
@@ -67,6 +68,7 @@ data=$2
 trainedmodeldir=$3
 epochs=$4
 save_interval=$5
+pheno_model_id=$6
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
@@ -80,6 +82,7 @@ echo "data: $data"
 echo "trainedmodeldir: $trainedmodeldir (note: really need that slash)"
 echo "epochs: $epochs"
 echo "save_interval: $save_interval"
+echo "pheno_model_id: ${pheno_model_id}"
 
 if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
   echo "Running on Rackham runner node $HOSTNAME"
@@ -96,7 +99,7 @@ singularity run gcae/gcae.sif \
   --data_opts_id b_0_4 \
   --epochs $epochs \
   --save_interval $save_interval \
-  --pheno_model_id=p1
+  --pheno_model_id $pheno_model_id
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
