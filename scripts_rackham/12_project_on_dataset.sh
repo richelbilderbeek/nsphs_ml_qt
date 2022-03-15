@@ -27,14 +27,15 @@
 echo "Parameters: $@"
 echo "Number of parameters: $#"
 
-if [[ "$#" -ne 5 ]] ; then
-  echo "Invalid number of arguments: must have 5 parameters: "
+if [[ "$#" -ne 6 ]] ; then
+  echo "Invalid number of arguments: must have 6 parameters: "
   echo " "
   echo "  1. datadir"
   echo "  2. data"
   echo "  3. trainedmodeldir"
   echo "  4. superpops"
   echo "  5. epoch"
+  echo "  6. pheno_model_id"
   echo " "
   echo "Actual number of parameters: $#"
   echo " "
@@ -52,6 +53,7 @@ data=$2
 trainedmodeldir=$3
 superpops=$4
 epoch=$5
+pheno_model_id=$6
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
@@ -60,11 +62,12 @@ if [[ $HOSTNAME == "N141CU" ]]; then
   epoch=3
 fi
 
-echo "datadir: $datadir"
-echo "data: $data"
-echo "trainedmodeldir: $trainedmodeldir"
-echo "superpops: $superpops"
-echo "epoch: $epoch"
+echo "datadir: ${datadir}"
+echo "data: ${data}"
+echo "trainedmodeldir: ${trainedmodeldir}"
+echo "superpops: ${superpops}"
+echo "epoch: ${epoch}"
+echo "pheno_model_id: ${pheno_model_id}"
 
 if [ ! -f $superpops ]; then
   echo "'superpops' file not found at path $superpops"
@@ -75,7 +78,6 @@ fi
 
 if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
   echo "Running on Rackham runner node $HOSTNAME"
-  # module load python/3.8.7
 fi
 
 singularity run gcae/gcae.sif \
@@ -88,7 +90,7 @@ singularity run gcae/gcae.sif \
   --superpops $superpops \
   --epoch $epoch \
   --trainedmodeldir $trainedmodeldir \
-  --pheno_model_id=p1
+  --pheno_model_id $pheno_model_id
 
 echo "End time: $(date --iso-8601=seconds)"
 

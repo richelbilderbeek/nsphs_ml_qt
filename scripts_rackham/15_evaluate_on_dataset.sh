@@ -27,8 +27,8 @@
 echo "Parameters: $@"
 echo "Number of parameters: $#"
 
-if [[ "$#" -ne 6 ]] ; then
-  echo "Invalid number of arguments: must have 6 parameters: "
+if [[ "$#" -ne 7 ]] ; then
+  echo "Invalid number of arguments: must have 7 parameters: "
   echo " "
   echo "  1. datadir"
   echo "  2. data"
@@ -36,6 +36,7 @@ if [[ "$#" -ne 6 ]] ; then
   echo "  4. superpops"
   echo "  5. metrics"
   echo "  6. epoch"
+  echo "  7. pheno_model_id"
   echo " "
   echo "Actual number of parameters: $#"
   echo " "
@@ -54,6 +55,7 @@ trainedmodeldir=$3
 superpops=$4
 metrics=$5
 epoch=$6
+pheno_model_id=$7
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Running on local computer"
@@ -67,12 +69,13 @@ if [ ! -f $superpops ]; then
   exit 42
 fi
 
-echo "datadir: $datadir"
-echo "data: $data"
-echo "trainedmodeldir: $trainedmodeldir"
-echo "superpops: $superpops"
-echo "metrics: $metrics"
-echo "epoch: $epoch"
+echo "datadir: ${datadir}"
+echo "data: ${data}"
+echo "trainedmodeldir: ${trainedmodeldir}"
+echo "superpops: ${superpops}"
+echo "metrics: ${metrics}"
+echo "epoch: ${epoch}"
+echo "pheno_model_id: ${pheno_model_id}"
 
 if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
   echo "Running on Rackham runner node $HOSTNAME"
@@ -90,7 +93,7 @@ singularity run gcae/gcae.sif \
   --superpops $superpops \
   --epoch $epoch \
   --trainedmodeldir $trainedmodeldir \
-  --pheno_model_id=p1
+  --pheno_model_id $pheno_model_id
 
 echo "End time: $(date --iso-8601=seconds)"
 
