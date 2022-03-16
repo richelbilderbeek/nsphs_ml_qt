@@ -36,23 +36,23 @@ trainedmodeldir=$1
 unique_id=$2
 
 zip_filename="${unique_id}.zip"
-11_train_filename="11_train_${unique_id}.log"
-11_train_filename_backup="11_train_${unique_id}.bak"
+train_filename="11_train_${unique_id}.log"
+train_filename_backup="11_train_${unique_id}.bak"
 log_filenames=$(ls *.log | egrep "${unique_id}")
 
 echo "trainedmodeldir: ${trainedmodeldir}"
 echo "unique_id: ${unique_id}"
 echo "zip_filename: ${zip_filename}"
 
-echo "11_train_filename: ${11_train_filename}"
-echo "11_train_filename_backup: ${11_train_filename_backup}"
+echo "train_filename: ${train_filename}"
+echo "train_filename_backup: ${train_filename_backup}"
 echo "log_filenames: ${log_filenames}"
 
 echo "'11_train_[unique_id].log' is big, only use the start and end of it"
-cp $11_train_filename $11_train_filename_backup
-head $11_train_filename_backup -n 70 > $11_train_filename
-tail $11_train_filename_backup -n 10 >> $11_train_filename
-rm $11_train_filename_backup
+cp $train_filename $train_filename_backup
+head $train_filename_backup -n 70 > $train_filename
+tail $train_filename_backup -n 10 >> $train_filename
+rm $train_filename_backup
 
 zip -r $zip_filename $log_filenames $(basename $trainedmodeldir) --exclude *.phe
 
