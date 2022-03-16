@@ -10,6 +10,7 @@
 #
 #   ./nsphs_ml_qt/scripts_rackham/17_zip_results.sh [arguments]
 #
+#SBATCH --time=0:05:00
 
 echo "Parameters: $@"
 echo "Number of parameters: $#"
