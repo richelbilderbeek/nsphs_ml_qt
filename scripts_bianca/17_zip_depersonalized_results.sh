@@ -54,5 +54,7 @@ head $train_filename_backup -n 70 > $train_filename
 tail $train_filename_backup -n 10 >> $train_filename
 rm $train_filename_backup
 
-zip -r $zip_filename $log_filenames $(basename $trainedmodeldir) --exclude *.phe weights pheno_weights
+zip -r $zip_filename $log_filenames $(basename $trainedmodeldir) --exclude *.phe $(find . | egrep "weights/")
+
+
 
