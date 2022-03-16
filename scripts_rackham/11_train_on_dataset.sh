@@ -34,7 +34,7 @@
 # 140   | R |        |                 |
 #
 ## No 'SBATCH -A snic2021-22-624', as this is a general script
-#SBATCH --time=10:00:00
+#SBATCH --time=100:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
 #SBATCH -C usage_mail
