@@ -35,7 +35,7 @@ echo "pheno_model_ids: {pheno_model_ids}"
 
 for n_random_snps in $n_random_snpses; do
   for pheno_model_id in $pheno_model_ids; do 
-    unique_id="richel_issue_44_${pheno_model_id}_${n_random_snps}"
+    unique_id="richel_issue_144_${pheno_model_id}_${n_random_snps}"
     echo "Running with: ${unique_id} ${pheno_model_id} ${n_random_snps}"
     sbatch nsphs_ml_qt/scripts_rackham/03_start_richel_issue_144_run.sh $unique_id $pheno_model_id $n_random_snps
   done
