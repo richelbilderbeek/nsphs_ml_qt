@@ -27,8 +27,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-# n_random_snpses=$(seq 0 10)
-n_random_snpses=$(seq 0 2)
+n_random_snpses=$(seq 0 10)
 pheno_model_ids="p0 p1 p2"
 echo "n_random_snpses: {n_random_snpses}"
 echo "pheno_model_ids: {pheno_model_ids}"
