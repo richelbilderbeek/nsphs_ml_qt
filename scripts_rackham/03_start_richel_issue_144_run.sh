@@ -103,6 +103,15 @@ jobid_15=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_14 --output=15_
 jobid_16=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_15 --output=16_analyse_${unique_id}.log  ./nsphs_ml_qt/scripts_rackham/16_create_tidy_results.sh $datadir $trainedmodeldir $unique_id                                       | cut -d ' ' -f 4)
 jobid_17=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_16 --output=17_zip_${unique_id}.log      ./nsphs_ml_qt/scripts_rackham/17_zip_results.sh         $datadir $trainedmodeldir $unique_id                                       | cut -d ' ' -f 4)
 
+echo "jobid_10: ${jobid_10}"
+echo "jobid_11: ${jobid_11}"
+echo "jobid_12: ${jobid_12}"
+echo "jobid_13: ${jobid_13}"
+echo "jobid_14: ${jobid_14}"
+echo "jobid_15: ${jobid_15}"
+echo "jobid_16: ${jobid_16}"
+echo "jobid_17: ${jobid_17}"
+
 echo "End time: $(date --iso-8601=seconds)"
 
 
