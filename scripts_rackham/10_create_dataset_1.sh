@@ -21,6 +21,11 @@
 #SBATCH --job-name=10_create_dataset_1
 #Log flename: 10_create_dataset_1.log
 
+# job | memory_used (GH)
+# ----+--------------------
+# 615 | 1.91
+
+
 echo "Parameters: $@"
 echo "Number of parameters: $#"
 

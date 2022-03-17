@@ -33,6 +33,12 @@
 # 136   | B |        |                 |
 # 140   | R |        |                 |
 #
+#
+# job | memory_used (GH)
+# ----+--------------------
+# 573 | 12.47
+# 549 | 12.06
+#
 ## No 'SBATCH -A snic2021-22-624', as this is a general script
 #SBATCH --time=100:00:00
 #SBATCH --partition core
