@@ -30,14 +30,24 @@ if (length(unique_id) != 1) stop("'unique_id' must be 1 element")
 message("Parameters are valid")
 
 png_filename <- file.path(trainedmodeldir, paste0(unique_id, ".png"))
+csv_filename_for_mse <- file.path(trainedmodeldir, paste0(unique_id, "_mse.png"))
+csv_filename_for_fits <- file.path(trainedmodeldir, paste0(unique_id, "_fits.png"))
+csv_filename_for_r_squareds <- file.path(trainedmodeldir, paste0(unique_id, "_r_squareds.png"))
+
 message("png_filename: ", png_filename)
+message("csv_filename_for_mse: ", csv_filename_for_mse)
+message("csv_filename_for_fits: ", csv_filename_for_fits)
+message("csv_filename_for_r_squareds: ", csv_filename_for_r_squareds)
 
 message("Start analysis")
 
 analysis_filenames <- gcaer::analyse_qt_prediction(
   datadir = datadir,
   trainedmodeldir = trainedmodeldir,
-  png_filename = png_filename
+  png_filename = png_filename,
+  csv_filename_for_mse = csv_filename_for_mse,
+  csv_filename_for_fits = csv_filename_for_fits,
+  csv_filename_for_r_squareds = csv_filename_for_r_squareds
 )
 message("Created files: ", paste0(analysis_filenames, collapse = ", "))
 
