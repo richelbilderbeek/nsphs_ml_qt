@@ -12,10 +12,10 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-unique_id=richel_issue_126
-datadir=~/sim_data_2_${unique_id}/ # Really need that slash
-data="sim_data_2_${unique_id}"
-trainedmodeldir=~/sim_data_2_${unique_id}_ae/ # Really need that slash
+unique_id=issue_6
+datadir=~/sim_data_${unique_id}/ # Really need that slash
+data="sim_data_${unique_id}"
+trainedmodeldir=~/sim_data_${unique_id}_ae/ # Really need that slash
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
 

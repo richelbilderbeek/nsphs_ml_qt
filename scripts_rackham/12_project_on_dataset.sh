@@ -55,13 +55,6 @@ superpops=$4
 epoch=$5
 pheno_model_id=$6
 
-if [[ $HOSTNAME == "N141CU" ]]; then
-  echo "Running on local computer"
-  datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/
-  superpops=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
-  epoch=3
-fi
-
 echo "datadir: ${datadir}"
 echo "data: ${data}"
 echo "trainedmodeldir: ${trainedmodeldir}"

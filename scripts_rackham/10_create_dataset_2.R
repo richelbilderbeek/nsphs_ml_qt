@@ -3,14 +3,6 @@
 #
 #
 args <- commandArgs(trailingOnly = TRUE)
-if (1 == 2) {
-  args <- c(
-    file.path(gcaer::get_gcaer_tempfilename(), "issue_127"),
-    "1000", # individuals
-    "1000"  # random SNPs
-  )
-}
-
 if (length(args) != 3) {
   stop(
     "Invalid number of arguments: must have 3 parameters: \n",

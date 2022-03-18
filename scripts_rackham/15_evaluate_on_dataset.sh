@@ -57,13 +57,6 @@ metrics=$5
 epoch=$6
 pheno_model_id=$7
 
-if [[ $HOSTNAME == "N141CU" ]]; then
-  echo "Running on local computer"
-  datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/ # Really need that slash at the end
-  superpops=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
-  epoch=3
-fi
-
 if [ ! -f $superpops ]; then
   echo "'superpops' file not found at path $superpops"
   exit 42

@@ -37,13 +37,6 @@ trainedmodeldir=~/sim_data_1_ae/ # Really need that slash at the end
 superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
 epoch=100
 
-if [[ $HOSTNAME == "N141CU" ]]; then
-  echo "Running on local computer"
-  datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/ # Really need that slash at the end
-  superpops=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
-  epoch=3
-fi
-
 if [ ! -f $superpops ]; then
   echo "'superpops' file not found at path $superpops"
   exit 42

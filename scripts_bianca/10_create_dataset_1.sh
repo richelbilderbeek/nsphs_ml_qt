@@ -89,14 +89,6 @@ ld_window_size=1000
 ld_variant_count_shift=1
 ld_r_squared_threshold=0.2
 
-if [[ $HOSTNAME == "N141CU" ]]; then
-  echo "This script is run locally"
-  plink_exe=~/.local/share/plinkr/plink_1_9_unix/plink
-  full_data_basename=~/GitHubs/nsphs_ml_qt/inst/extdata/nsphs_ml_qt_issue_4_bin
-  full_data_basename=~/nsphs_ml_qt_issue_4_bin
-  thin_count=10 # Number of SNPs that remain
-fi
-
 full_data_bed_filename="${full_data_basename}.bed" # That is, the full and real data: don't touch!
 full_data_bim_filename="${full_data_basename}.bim" # That is, the full and real data: don't touch!
 full_data_fam_filename="${full_data_basename}.fam" # That is, the full and real data: don't touch!

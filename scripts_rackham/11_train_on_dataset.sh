@@ -85,13 +85,6 @@ epochs=$4
 save_interval=$5
 pheno_model_id=$6
 
-if [[ $HOSTNAME == "N141CU" ]]; then
-  echo "Running on local computer"
-  datadir=/home/richel/GitHubs/nsphs_ml_qt/inst/extdata/ # Really need that slash
-  epochs=3
-  save_interval=1
-fi
-
 echo "datadir: $datadir (note: really need that slash)"
 echo "data: $data"
 echo "trainedmodeldir: $trainedmodeldir (note: really need that slash)"
