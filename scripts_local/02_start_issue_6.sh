@@ -64,7 +64,7 @@ fi
 ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset.sh  $datadir $data $trainedmodeldir $superpops $epoch $pheno_model_id         
 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh     $datadir $data $trainedmodeldir $superpops $epoch $pheno_model_id         
 ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset.sh                                                                            
-./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset.sh $datadir $data $trainedmodeldir $superpops $metrics $epoch $pheno_model_id
+./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset.sh $datadir $data $trainedmodeldir $superpops $metrics $save_interval $epochs $pheno_model_id
 ./nsphs_ml_qt/scripts_rackham/16_create_tidy_results.sh $datadir $trainedmodeldir $unique_id                                      
 ./nsphs_ml_qt/scripts_rackham/17_zip_results.sh         $datadir $trainedmodeldir $unique_id                                      
 
