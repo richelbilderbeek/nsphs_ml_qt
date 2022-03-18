@@ -3,7 +3,6 @@
 # Zip the results for further analysis:
 #
 #  * The '.log' files
-#    * Shorten '11_train_[unique_id].log' 
 #  * the 'datadir' folder
 #  * the 'trainedmodeldir' folder
 #
@@ -39,22 +38,12 @@ trainedmodeldir=$2
 unique_id=$3
 
 zip_filename="${unique_id}.zip"
-11_train_filename="11_train_${unique_id}.log"
-11_train_filename_backup="11_train_${unique_id}.bak"
 log_filenames=$(ls *.log | egrep "${unique_id}")
 
 echo "datadir: ${datadir}"
 echo "trainedmodeldir: ${trainedmodeldir}"
 echo "unique_id: ${unique_id}"
 echo "zip_filename: ${zip_filename}"
-echo "11_train_filename: ${11_train_filename}"
-echo "11_train_filename_backup: ${11_train_filename_backup}"
 echo "log_filenames: ${log_filenames}"
-
-echo "'11_train_[unique_id].log' is big, only use the start and end of it"
-cp $11_train_filename $11_train_filename_backup
-head $11_train_filename_backup -n 70 > $11_train_filename
-tail $11_train_filename_backup -n 10 >> $11_train_filename
-rm $11_train_filename_backup
 
 zip -r $zip_filename $log_filenames $(basename $datadir) $(basename $trainedmodeldir) --exclude $(find . | egrep "weights/")
