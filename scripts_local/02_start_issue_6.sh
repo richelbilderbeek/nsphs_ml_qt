@@ -19,12 +19,12 @@ trainedmodeldir=~/sim_data_${unique_id}_ae/ # Really need that slash
 base_input_filename="${datadir}${data}"
 superpops="${base_input_filename}_labels.csv"
 
-n_individuals=1000
+n_individuals=100
 n_random_snps=0
 
-epochs=1000
+epochs=100
 epoch=$epochs
-save_interval=100
+save_interval=10
 pheno_model_id="p1"
 metrics="hull_error,f1_score_3"
 
