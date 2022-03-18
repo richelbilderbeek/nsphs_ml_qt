@@ -27,16 +27,17 @@
 echo "Parameters: $@"
 echo "Number of parameters: $#"
 
-if [[ "$#" -ne 7 ]] ; then
-  echo "Invalid number of arguments: must have 7 parameters: "
+if [[ "$#" -ne 8 ]] ; then
+  echo "Invalid number of arguments: must have 8 parameters: "
   echo " "
   echo "  1. datadir"
   echo "  2. data"
   echo "  3. trainedmodeldir"
   echo "  4. superpops"
   echo "  5. metrics"
-  echo "  6. epoch"
-  echo "  7. pheno_model_id"
+  echo "  6. save_interval"
+  echo "  7. epochs"
+  echo "  8. pheno_model_id"
   echo " "
   echo "Actual number of parameters: $#"
   echo " "
@@ -54,8 +55,9 @@ data=$2
 trainedmodeldir=$3
 superpops=$4
 metrics=$5
-epoch=$6
-pheno_model_id=$7
+save_interval=$6
+epochs=$7
+pheno_model_id=$8
 
 if [ ! -f $superpops ]; then
   echo "'superpops' file not found at path $superpops"
@@ -67,7 +69,8 @@ echo "data: ${data}"
 echo "trainedmodeldir: ${trainedmodeldir}"
 echo "superpops: ${superpops}"
 echo "metrics: ${metrics}"
-echo "epoch: ${epoch}"
+echo "save_interval: ${save_interval}"
+echo "epochs: ${epochs}"
 echo "pheno_model_id: ${pheno_model_id}"
 
 if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
@@ -75,18 +78,21 @@ if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
   # module load python/3.8.7
 fi
 
-singularity run gcae/gcae.sif \
-  evaluate \
-  --datadir $datadir \
-  --metrics $metrics \
-  --data $data \
-  --model_id M1 \
-  --train_opts_id ex3 \
-  --data_opts_id b_0_4 \
-  --superpops $superpops \
-  --epoch $epoch \
-  --trainedmodeldir $trainedmodeldir \
-  --pheno_model_id $pheno_model_id
+for epoch in $(seq 0 ${save_interval} ${epochs}); do
+	singularity run gcae/gcae.sif \
+		evaluate \
+		--datadir $datadir \
+		--metrics $metrics \
+		--data $data \
+		--model_id M1 \
+		--train_opts_id ex3 \
+		--data_opts_id b_0_4 \
+		--superpops $superpops \
+		--epoch $epoch \
+		--trainedmodeldir $trainedmodeldir \
+		--pheno_model_id $pheno_model_id
+done
+
 
 echo "End time: $(date --iso-8601=seconds)"
 
