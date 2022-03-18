@@ -41,7 +41,7 @@ message("csv_filename_for_r_squareds: ", csv_filename_for_r_squareds)
 
 message("Start analysis")
 
-analysis_filenames <- gcaer::analyse_qt_prediction(
+gcaer::analyse_qt_prediction(
   datadir = datadir,
   trainedmodeldir = trainedmodeldir,
   png_filename = png_filename,
@@ -49,6 +49,5 @@ analysis_filenames <- gcaer::analyse_qt_prediction(
   csv_filename_for_fits = csv_filename_for_fits,
   csv_filename_for_r_squareds = csv_filename_for_r_squareds
 )
-message("Created files: ", paste0(analysis_filenames, collapse = ", "))
 
 message("End of analysis")
