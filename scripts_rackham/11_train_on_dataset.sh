@@ -23,13 +23,13 @@
 # 1000         | 1        | 1      | 1k       | 26              | .                | https://github.com/AJResearchGroup/richel/issues/126
 # 1000         | 1        | 100k   | 200      | ?4000           | .                | https://github.com/AJResearchGroup/richel/issues/130
 #
-# Issue | C | n_snps | run_time (mins) | memory_used (GH)
+# Issue | C | n_snps | run_time (mins) | memory_used (GB)
 # ------+---+--------+-----------------+-----------------
 # 106   | R |        |                 |
 # 126   | R |        | 26              |
 # 127   | R |        |                 |
 # 129   | B | 1k     | 241             | 2.4
-# 130   | B | 100k   | >600/?4000      |
+# 130   | B | 100k   | 5k mins, 83h    | 16
 # 136   | B |        |                 |
 # 140   | R |        |                 |
 #
