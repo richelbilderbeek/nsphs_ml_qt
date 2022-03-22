@@ -47,3 +47,7 @@ echo "zip_filename: ${zip_filename}"
 echo "log_filenames: ${log_filenames}"
 
 zip -r $zip_filename $log_filenames $(basename $datadir) $(basename $trainedmodeldir) --exclude $(find . | egrep "weights/")
+
+echo "Duration: $SECONDS seconds"
+
+

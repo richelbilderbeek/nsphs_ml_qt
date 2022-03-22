@@ -11,8 +11,12 @@
 # '00_create_starter_zip.sh'
 #
 
+SECONDS=0
+
 zip_filename=nsphs_ml_qt_rackham_starter_zip.zip
 echo "zip_filename: $zip_filename"
 
 unzip -y $zip_filename
+
+echo "Duration: $SECONDS seconds"
 

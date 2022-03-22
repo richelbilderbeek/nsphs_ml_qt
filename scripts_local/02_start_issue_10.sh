@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# Do a full flow for Issue 6.
+# Do a full flow for Issue 10
 #
 # Usage: 
 #
-#   ./nsphs_ml_qt/scripts_rackham/02_start_1.sh
+#   ./nsphs_ml_qt/scripts_local/02_start_issue_10.sh
 #
 # No sbatch: this script is intended to run locally
 #
@@ -13,7 +13,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-unique_id=issue_6
+unique_id=issue_10
 datadir=~/sim_data_${unique_id}/ # Really need that slash
 data="sim_data_${unique_id}"
 trainedmodeldir=~/sim_data_${unique_id}_ae/ # Really need that slash
@@ -60,8 +60,10 @@ if [ ! -f gcaer/gcaer.sif ]; then
   exit 42
 fi
 
+
+# ./nsphs_ml_qt/scripts_rackham/09_create_pheno_model_id.sh $pheno_model_id                        
 ./nsphs_ml_qt/scripts_rackham/10_create_dataset_2.sh    $base_input_filename $n_individuals $n_random_snps                        
-./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh    $datadir $data $trainedmodeldir $epochs $save_interval $pheno_model_id    
+./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh    $datadir $data $trainedmodeldir $epochs $save_interval $pheno_model_id 
 ./nsphs_ml_qt/scripts_rackham/12_project_on_dataset.sh  $datadir $data $trainedmodeldir $superpops $epoch $pheno_model_id         
 ./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh     $datadir $data $trainedmodeldir $superpops $epoch $pheno_model_id         
 ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset.sh                                                                            

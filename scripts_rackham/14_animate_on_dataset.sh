@@ -24,6 +24,7 @@
 #SBATCH --job-name=14_animate_on_dataset
 #Log filename: 14_animate_on_dataset.log
 
+SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
@@ -64,5 +65,6 @@ singularity run gcae/gcae.sif \
   --trainedmodeldir $trainedmodeldir
 
 echo "End time: $(date --iso-8601=seconds)"
+echo "Duration: $SECONDS seconds"
 
 

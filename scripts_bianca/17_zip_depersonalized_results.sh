@@ -57,5 +57,5 @@ rm $train_filename_backup
 
 zip -r $zip_filename $log_filenames $(basename $trainedmodeldir) --exclude *.phe $(find . | egrep "weights/")
 
-
+echo "Duration: $SECONDS seconds"
 

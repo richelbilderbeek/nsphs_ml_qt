@@ -19,6 +19,7 @@
 #SBATCH --job-name=02_start_richel_issue_130
 #SBATCH --output=02_start_richel_issue_130.log
 
+SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
@@ -67,4 +68,5 @@ echo "jobid_16: ${jobid_16}"
 echo "jobid_17: ${jobid_17}"
 
 echo "End time: $(date --iso-8601=seconds)"
+echo "Duration: $SECONDS seconds"
 

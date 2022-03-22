@@ -23,6 +23,7 @@
 #SBATCH --job-name=02_start_richel_issue_144
 #SBATCH --output=02_start_richel_issue_144.log
 
+SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
@@ -41,5 +42,6 @@ for n_random_snps in $n_random_snpses; do
 done
 
 echo "End time: $(date --iso-8601=seconds)"
+echo "Duration: $SECONDS seconds"
 
 

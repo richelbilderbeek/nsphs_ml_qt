@@ -35,6 +35,7 @@
 #  1. check and process input
 ###############################################################################
 
+SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
@@ -213,6 +214,7 @@ singularity run $singularity_filename \
 echo "[END] 5. gcaer: resize all data"
 
 echo "End time: $(date --iso-8601=seconds)"
+echo "Duration: $SECONDS seconds"
 
 # Thanks Jerker Nyberg von Below and Douglas Scofield
 jobstats -r -d -p $SLURM_JOBID

@@ -12,6 +12,7 @@
 
 zip_filename=nsphs_ml_qt_rackham_starter_zip.zip
 
+SECONDS=0
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 echo "zip_filename: $zip_filename"
@@ -75,4 +76,6 @@ cd nsphs_ml_qt
 if [[ $HOSTNAME == "N141CU" ]]; then
   notify-send "Done creating starter zip" "with filename $zip_filename"
 fi
+
+echo "Duration: $SECONDS seconds"
 

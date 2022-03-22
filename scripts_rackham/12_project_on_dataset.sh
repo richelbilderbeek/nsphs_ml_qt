@@ -43,6 +43,7 @@ if [[ "$#" -ne 6 ]] ; then
   exit 42
 fi
 
+SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
@@ -86,4 +87,5 @@ singularity run gcae/gcae.sif \
   --pheno_model_id $pheno_model_id
 
 echo "End time: $(date --iso-8601=seconds)"
+echo "Duration: $SECONDS seconds"
 
