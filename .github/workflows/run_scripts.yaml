@@ -39,7 +39,7 @@ jobs:
         run: |
           cd ..
           mkdir gcae
-          singularity pull --arch amd64 library://richelbilderbeek/default/gcae:0.1 
+          singularity pull --arch amd64 library://richelbilderbeek/default/gcae:0.3 
           mv *.sif gcae/gcae.sif
           cd -
 
@@ -51,13 +51,9 @@ jobs:
           mv *.sif gcaer/gcaer.sif
           cd -
 
-      #- name: Install plink
-      #  run: plinkr::install_plinks()
-      #  shell: Rscript {0}
-
       - name: Clone GenoCAE
         run: git clone https://github.com/richelbilderbeek/GenoCAE ../GenoCAE
 
       - name: Create sim dataset 1
-        run: cd .. ; ./nsphs_ml_qt/scripts_rackham/02_start_1.sh ; cd ..
+        run: cd .. ; ./nsphs_ml_qt/scripts_local/02_start_issue_6.sh ; cd ..
 
