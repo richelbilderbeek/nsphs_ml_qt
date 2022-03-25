@@ -30,14 +30,10 @@ if (length(unique_id) != 1) stop("'unique_id' must be 1 element")
 message("Parameters are valid")
 
 png_filename <- file.path(trainedmodeldir, paste0(unique_id, ".png"))
-csv_filename_for_mse <- file.path(trainedmodeldir, paste0(unique_id, "_mse.csv"))
-csv_filename_for_fits <- file.path(trainedmodeldir, paste0(unique_id, "_fits.csv"))
-csv_filename_for_r_squareds <- file.path(trainedmodeldir, paste0(unique_id, "_r_squareds.csv"))
+csv_filename_for_nmse <- file.path(trainedmodeldir, paste0(unique_id, "_nmse.csv"))
 
 message("png_filename: ", png_filename)
-message("csv_filename_for_mse: ", csv_filename_for_mse)
-message("csv_filename_for_fits: ", csv_filename_for_fits)
-message("csv_filename_for_r_squareds: ", csv_filename_for_r_squareds)
+message("csv_filename_for_nmse: ", csv_filename_for_nmse)
 
 message("Start analysis")
 
@@ -45,9 +41,7 @@ gcaer::analyse_qt_prediction(
   datadir = datadir,
   trainedmodeldir = trainedmodeldir,
   png_filename = png_filename,
-  csv_filename_for_mse = csv_filename_for_mse,
-  csv_filename_for_fits = csv_filename_for_fits,
-  csv_filename_for_r_squareds = csv_filename_for_r_squareds
+  csv_filename_for_nmse = csv_filename_for_nmse
 )
 
 message("End of analysis")
