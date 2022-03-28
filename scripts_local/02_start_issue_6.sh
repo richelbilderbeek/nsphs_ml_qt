@@ -27,7 +27,7 @@ epochs=100
 epoch=$epochs
 save_interval=10
 pheno_model_id="p1"
-metrics="hull_error,f1_score_3"
+metrics="hull_error,f1_score_3,f1_score_5,f1_score_7,f1_score_9,f1_score_11,f1_score_13,f1_score_15,f1_score_17,f1_score_19"
 
 echo "datadir: ${datadir}"
 echo "data: ${data}"
