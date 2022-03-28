@@ -80,18 +80,19 @@ if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
 fi
 
 for epoch in $(seq ${save_interval} ${save_interval} ${epochs}); do
-	singularity run gcae/gcae.sif \
-		evaluate \
-		--datadir $datadir \
-		--metrics $metrics \
-		--data $data \
-		--model_id M1 \
-		--train_opts_id ex3 \
-		--data_opts_id b_0_4 \
-		--superpops $superpops \
-		--epoch $epoch \
-		--trainedmodeldir $trainedmodeldir \
-		--pheno_model_id $pheno_model_id
+  singularity run gcae/gcae.sif \
+    evaluate \
+    --datadir $datadir \
+    --metrics $metrics \
+    --data $data \
+    --model_id M1 \
+    --train_opts_id ex3 \
+    --data_opts_id b_0_4 \
+    --superpops $superpops \
+    --epoch $epoch \
+    --trainedmodeldir $trainedmodeldir \
+    --pheno_model_id $pheno_model_id
+  rename "s/.csv/_${epoch}.csv/s" $(find . | egrep "f1_score_[[:digit:]]+.*csv")
 done
 
 
