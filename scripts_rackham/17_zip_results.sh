@@ -38,7 +38,8 @@ trainedmodeldir=$2
 unique_id=$3
 
 zip_filename="${unique_id}.zip"
-log_filenames=$(ls *.log | egrep "${unique_id}")
+
+log_filenames=$(compgen -G "*.log" | egrep "${unique_id}")
 
 echo "datadir: ${datadir}"
 echo "trainedmodeldir: ${trainedmodeldir}"
