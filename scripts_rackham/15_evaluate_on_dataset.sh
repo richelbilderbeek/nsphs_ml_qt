@@ -79,7 +79,7 @@ if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
   # module load python/3.8.7
 fi
 
-for epoch in $(seq 0 ${save_interval} ${epochs}); do
+for epoch in $(seq ${save_interval} ${save_interval} ${epochs}); do
 	singularity run gcae/gcae.sif \
 		evaluate \
 		--datadir $datadir \
