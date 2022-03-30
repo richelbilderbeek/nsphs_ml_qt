@@ -47,7 +47,7 @@ jobs:
         run: |
           cd ..
           mkdir gcaer
-          singularity pull --arch amd64 library://richelbilderbeek/default/gcaer:0.6.4
+          singularity pull --arch amd64 library://richelbilderbeek/default/gcaer:0.6.5
           mv *.sif gcaer/gcaer.sif
           cd -
 
