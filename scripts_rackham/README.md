@@ -14,20 +14,37 @@ This is local, in the `nsphs_ml_qt` folder:
 
 Creates a file called `nsphs_ml_qt_starter_zip.zip`
 
-## 1. Unzip
+## 20 start
 
-First time:
+These are run scripts that can be run with/out `sbatch`, as
+these `sbatch` all that needs to be `sbatch`ed
 
-```
-unzip nsphs_ml_qt_starter_zip.zip
-```
+## 21 create
 
-This will create a file called `01_unzip_starter_zip.sh` in the home folder,
-so after that, one can do:
+Create an experiment file and a dataset
 
-```
-./01_unzip_starter_zip.sh
-```
+## 25 run
+
+Run an experiment file
+
+## 28 analyse
+
+Analyse the results of an experiment file
+
+## 29 zip
+
+Analyse the results of an experiment file
+
+
+
+
+## Old workflow
+
+The old workflow, with numbers from 2 to and including 19
+directly calls GCAE `train`, then `project`, then `evaluate`,
+without generating intermediate results.
+
+Prefer using the new workflow.
 
 ## 2. Start simulated dataset 1
 
@@ -71,8 +88,6 @@ sbatch nsphs_ml_qt/scripts_rackham/14_animate_on_dataset_1.sh
 ```
 sbatch nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset_1.sh
 ```
-
-
 
 ## 98. Clean Rackham
 
