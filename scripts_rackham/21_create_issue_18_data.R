@@ -1,9 +1,44 @@
+args <- commandArgs(trailingOnly = TRUE)
+
+if (1 == 2) {
+  args <- "~/sim_data_issue_18/experiment_params.csv"
+}
+
+if (length(args) != 1) {
+  stop(
+    "Invalid number of arguments: must have 1 parameter: \n",
+    " \n",
+    "  1. gcae_experiment_params_filename \n",
+    " \n",
+    "Actual number of parameters: ", length(args), " \n",
+    "Parameters: {", paste0(args, collapse = ", "), "}"
+  )
+}
+
+gcae_experiment_params_filename <- args[1]
+message("gcae_experiment_params_filename: ", gcae_experiment_params_filename)
+
 # Create the parameter file and dataset for #18
-unique_id <- "issue_18"
-datadir <- paste0("~/sim_data_", unique_id, "/")
-data <- paste0("sim_data_", unique_id)
+matches <- stringr::str_match(
+  gcae_experiment_params_filename,
+  "^((.*)(issue_[:digit:]+)/)experiment_params\\.csv"
+)
+message("matches: \n", paste0(matches, collapse = "\n"))
+if (any(is.na(matches))) {
+  stop(
+    "no matches found for ",
+    "'gcae_experiment_params_filename': ", gcae_experiment_params_filename
+  )
+}
+unique_id <- matches[1, 4]
+message("unique_id: ", unique_id)
+datadir <- matches[1, 2]
+message("datadir: ", datadir)
+data <- basename(datadir)
+message("data: ", data)
 base_input_filename <- paste0(datadir, data)
-gcae_experiment_params_filename <- paste0(datadir, "experiment_params.csv")
+message("base_input_filename: ", base_input_filename)
+
 gcae_setup <- gcaer::create_test_gcae_setup(
   datadir = datadir,
   data = data,
