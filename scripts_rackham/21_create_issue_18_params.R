@@ -23,7 +23,7 @@ matches <- stringr::str_match(
   gcae_experiment_params_filename,
   "^((.*)(issue_[:digit:]+)/)experiment_params\\.csv"
 )
-message("matches: \n", paste0(matches, collapse = "\n"))
+message("matches: \n * ", paste0(matches, collapse = "\n * "))
 if (any(is.na(matches))) {
   stop(
     "no matches found for ",
@@ -62,5 +62,3 @@ gcaer::save_gcae_experiment_params(
   gcae_experiment_params_filename = gcae_experiment_params_filename
 )
 message("Saved 'gcae_experiment_params' to ", gcae_experiment_params_filename)
-
-message("Created input files at:\n", paste0(input_files, collapse = "\n"))
