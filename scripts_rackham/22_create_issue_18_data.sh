@@ -39,4 +39,3 @@ singularity run $singularity_filename Rscript nsphs_ml_qt/scripts_rackham/22_cre
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
 
-
