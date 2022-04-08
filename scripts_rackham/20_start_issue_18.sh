@@ -35,21 +35,13 @@ unique_id=$(echo $gcae_experiment_params_filename | egrep -o "issue_[[:digit:]]+
 echo "gcae_experiment_params_filename: ${gcae_experiment_params_filename}"
 echo "unique_id: ${unique_id}"
 
-sbatch -A snic2021-22-624 --output=21_create_xxx.log nsphs_ml_qt/scripts_rackham/21_create_issue_18_data.sh $gcae_experiment_params_filename
-echo "---39--"
+#jobid_21=$(sbatch -A snic2021-22-624                                --output=21_create_${unique_id}.log  ./nsphs_ml_qt/scripts_rackham/21_create_issue_18_data.sh $gcae_experiment_params_filename | cut -d ' ' -f 4)
+#jobid_25=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_21 --output=25_run_${unique_id}.log     ./nsphs_ml_qt/scripts_rackham/25_run.sh                  $gcae_experiment_params_filename | cut -d ' ' -f 4)
+#jobid_28=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_25 --output=28_analyse_${unique_id}.log ./nsphs_ml_qt/scripts_rackham/28_analyse.sh             $gcae_experiment_params_filename | cut -d ' ' -f 4)
+#jobid_29=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_28 --output=29_zip_${unique_id}.log     ./nsphs_ml_qt/scripts_rackham/29_zip.sh                 $gcae_experiment_params_filename | cut -d ' ' -f 4)
 
-sbatch -A snic2021-22-624 --output=21_create_${unique_id}.log ./nsphs_ml_qt/scripts_rackham/21_create_issue_18_data.sh $gcae_experiment_params_filename
-echo "---42--"
-
-jobid_21=$(sbatch -A snic2021-22-624                                --output=21_create_${unique_id}.log  ./nsphs_ml_qt/scripts_rackham/21_create_issue_18_data.sh $gcae_experiment_params_filename | cut -d ' ' -f 4)
-echo "---32--"
-jobid_25=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_21 --output=25_run_${unique_id}.log     ./nsphs_ml_qt/scripts_rackham/25_run.sh                  $gcae_experiment_params_filename | cut -d ' ' -f 4)
-#jobid_28=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_25 --output=28_analyse_${unique_id}.log ./nsphs_ml_qt/scripts_rackham/28_analyse.sh              $gcae_experiment_params_filename | cut -d ' ' -f 4)
-#jobid_29=$(sbatch -A snic2021-22-624 --dependency=afterok:$jobid_28 --output=29_zip_${unique_id}.log     ./nsphs_ml_qt/scripts_rackham/29_zip.sh                  $gcae_experiment_params_filename | cut -d ' ' -f 4)
-echo "---43--"
-
-echo "jobid_21: ${jobid_21}"
-echo "jobid_25: ${jobid_25}"
+#echo "jobid_21: ${jobid_21}"
+#echo "jobid_25: ${jobid_25}"
 #echo "jobid_28: ${jobid_28}"
 #echo "jobid_29: ${jobid_29}"
 
