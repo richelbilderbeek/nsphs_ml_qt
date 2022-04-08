@@ -19,7 +19,8 @@ gcae_experiment_params_filename <- args[1]
 message("gcae_experiment_params_filename: ", gcae_experiment_params_filename)
 
 message("Reading the GCAE experiment parameters")
-gcae_experiment_params <- gcaer::read_gcae_experiment_params(
+                                 
+gcae_experiment_params <- gcaer::read_gcae_experiment_params_file(
   gcae_experiment_params = gcae_experiment_params
 )
 
