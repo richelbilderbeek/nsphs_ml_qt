@@ -14,11 +14,6 @@
 #SBATCH --time=0:05:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
-#SBATCH -C usage_mail
-# From https://www.uppmax.uu.se/support/user-guides/slurm-user-guide
-# Be light first
-# Could do, for 256GB: -C mem256GB
-# Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
 #SBATCH --job-name=02_start_richel_issue_144
 #SBATCH --output=02_start_richel_issue_144.log
