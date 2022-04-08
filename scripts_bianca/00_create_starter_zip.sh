@@ -52,10 +52,10 @@ cp nsphs_ml_qt/scripts_bianca/README.md README.md
 cp nsphs_ml_qt/scripts_bianca/01_unzip_starter_zip.sh 01_unzip_starter_zip.sh
 cp nsphs_ml_qt/scripts_bianca/98_clean_bianca.sh 98_clean_bianca.sh
 
+# No need for gcae/gcae.sif anymore :-)
 zip -r --must-match $zip_filename \
   nsphs_ml_qt/ \
   GenoCAE/ \
-  gcae/gcae.sif \
   gcaer/gcaer.sif \
   plink_1_9_unix \
   plink_2_0_unix \
