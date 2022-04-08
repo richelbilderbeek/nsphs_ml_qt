@@ -35,19 +35,11 @@ jobs:
           remotes::install_github("richelbilderbeek/gcaer")
         shell: Rscript {0}
 
-      - name: Install gcae
-        run: |
-          cd ..
-          mkdir gcae
-          singularity pull --arch amd64 library://richelbilderbeek/default/gcae:0.3 
-          mv *.sif gcae/gcae.sif
-          cd -
-
       - name: Install gcaer
         run: |
           cd ..
           mkdir gcaer
-          singularity pull --arch amd64 library://richelbilderbeek/default/gcaer:0.6.5
+          singularity pull --arch amd64 library://richelbilderbeek/default/gcaer:0.6.6
           mv *.sif gcaer/gcaer.sif
           cd -
 
@@ -55,5 +47,5 @@ jobs:
         run: git clone https://github.com/richelbilderbeek/GenoCAE ../GenoCAE
 
       - name: Create sim dataset 1
-        run: cd .. ; ./nsphs_ml_qt/scripts_local/02_start_issue_6.sh ; cd ..
+        run: cd .. ; ./nsphs_ml_qt/scripts_local/20_start_issue_18.sh ; cd ..
 
