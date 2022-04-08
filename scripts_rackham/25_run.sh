@@ -10,7 +10,7 @@
 # Could do, for 256GB: -C mem256GB
 # Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
-#SBATCH --job-name is defined by caller
+#For sbatch, '--job-name' is defined by caller
 #Log filename: is defined by caller
 
 echo "Parameters: $@"
