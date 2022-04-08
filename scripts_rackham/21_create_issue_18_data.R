@@ -49,7 +49,7 @@ gcae_setup <- gcaer::create_test_gcae_setup(
   pheno_model_id = "p0",
   trainedmodeldir = paste0("~/sim_data_", unique_id ,"_ae/")
 )
-gcae_options <- gcaer::create_gcae_options(gcae_folder = "/opt/gcae")
+gcae_options <- gcaer::create_gcae_options(gcae_folder = "/opt/gcae_richel")
 
 gcae_experiment_params <- gcaer::create_gcae_experiment_params(
   gcae_setup = gcae_setup,

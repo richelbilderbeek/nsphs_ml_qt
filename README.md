@@ -9,3 +9,6 @@ All code for :lock: [article_nsphs_ml_qt](https://github.com/AJResearchGroup/art
 
  * [Workflow on Bianca](scripts_bianca/README.md)
  * [Workflow on Rackham](scripts_rackham/README.md)
+ * [Workflow on local computer](scripts_local/README.md)
+
+ * Results: [see the 'nsphs_ml_qt_results' repository](https://github.com/richelbilderbeek/nsphs_ml_qt_results)

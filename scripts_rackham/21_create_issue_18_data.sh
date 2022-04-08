@@ -39,7 +39,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-singularity run $singularity_filename nsphs_ml_qt/scripts_rackham/21_create_issue_18_data.R $gcae_experiment_params_filename
+singularity run $singularity_filename Rscript nsphs_ml_qt/scripts_rackham/21_create_issue_18_data.R $gcae_experiment_params_filename
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"

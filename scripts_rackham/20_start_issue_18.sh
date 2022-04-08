@@ -20,14 +20,6 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-if [ ! -f gcae/gcae.sif ]; then
-  echo "'gcae/gcae.sif' file not found"
-  echo "Showing pwd:"
-  ls
-  echo "Showing content of the 'gcae' folder:"
-  cd gcae ; ls ; cd -
-  exit 42
-fi
 if [ ! -f gcaer/gcaer.sif ]; then
   echo "'gcaer/gcaer.sif' file not found"
   echo "Showing pwd:"
