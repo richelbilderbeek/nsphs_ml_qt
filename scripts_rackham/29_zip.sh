@@ -43,7 +43,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-zip -r $zip_filename $trainedmodeldir
+zip -r $zip_filename . -i $trainedmodeldir
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
