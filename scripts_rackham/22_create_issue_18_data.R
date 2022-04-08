@@ -27,7 +27,7 @@ gcae_experiment_params <- gcaer::read_gcae_experiment_params_file(
 message("Read the GCAE experiment parameters")
 
 base_input_filename <- file.path(
-  gcae_experiment_params$gcae_setup$trainedmodeldir,
+  gcae_experiment_params$gcae_setup$datadir,
   gcae_experiment_params$gcae_setup$data
 )
 
