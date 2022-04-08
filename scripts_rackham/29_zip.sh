@@ -47,3 +47,4 @@ zip -r $zip_filename $trainedmodeldir
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
+
