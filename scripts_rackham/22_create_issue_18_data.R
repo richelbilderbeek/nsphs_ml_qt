@@ -24,19 +24,20 @@ gcae_experiment_params <- gcaer::read_gcae_experiment_params_file(
   gcae_experiment_params_filename = gcae_experiment_params_filename
 )
 
-message("Running the GCAE experiment")
-gcae_experiment_results <- gcaer::do_gcae_experiment(
-  gcae_experiment_params = gcae_experiment_params
+message("Read the GCAE experiment parameters")
+
+base_input_filename <- file.path(
+  gcae_experiment_params$gcae_setup$trainedmodeldir,
+  gcae_experiment_params$gcae_setup$data
 )
 
-message("Save the GCAE experiment results")
-gcaer::save_gcae_experiment_results(
-  gcae_experiment_results = gcae_experiment_results,
-  folder_name = gcae_experiment_params$gcae_setup$trainedmodeldir
+message("base_input_filename: ", base_input_filename)
+
+input_files <- gcaer::create_gcae_input_files_2(
+  base_input_filename = base_input_filename,
+  n_individuals = 1000,
+  n_random_snps = 0
 )
 
-message("Create the GCAE experiment results' plots")
-gcaer::create_plots_from_gcae_experiment_results(
-  folder_name = gcae_experiment_params$gcae_setup$trainedmodeldir
-)
+message("Created input files: \n * ", paste0(input_files, collapse = "\n * "))
 

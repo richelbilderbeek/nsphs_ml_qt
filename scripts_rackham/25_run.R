@@ -23,8 +23,19 @@ gcae_experiment_params <- gcaer::read_gcae_experiment_params_file(
   gcae_experiment_params_filename = gcae_experiment_params_filename
 )
 
+message("Running the GCAE experiment")
 gcae_experiment_results <- gcaer::do_gcae_experiment(
   gcae_experiment_params = gcae_experiment_params
 )
 
-gcae_experiment_results
+message("Save the GCAE experiment results")
+gcaer::save_gcae_experiment_results(
+  gcae_experiment_results = gcae_experiment_results,
+  folder_name = gcae_experiment_params$gcae_setup$trainedmodeldir
+)
+
+message("Create the GCAE experiment results' plots")
+gcaer::create_plots_from_gcae_experiment_results(
+  folder_name = gcae_experiment_params$gcae_setup$trainedmodeldir
+)
+

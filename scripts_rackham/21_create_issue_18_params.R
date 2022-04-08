@@ -62,9 +62,5 @@ gcaer::save_gcae_experiment_params(
   gcae_experiment_params_filename = gcae_experiment_params_filename
 )
 message("Saved 'gcae_experiment_params' to ", gcae_experiment_params_filename)
-input_files <- gcaer::create_gcae_input_files_2(
-  base_input_filename = base_input_filename,
-  n_individuals = 1000,
-  n_random_snps = 0
-)
+
 message("Created input files at:\n", paste0(input_files, collapse = "\n"))
