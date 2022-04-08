@@ -5,7 +5,7 @@
 #SBATCH --partition core
 #SBATCH --ntasks 1
 #SBATCH --mem=16G
-#SBATCH --job-name is defined by caller
+#The '--job-name' is defined by caller
 #Log filename: is defined by caller
 
 echo "Parameters: $@"
