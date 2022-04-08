@@ -35,8 +35,11 @@ unique_id=$(echo $gcae_experiment_params_filename | egrep -o "issue_[[:digit:]]+
 echo "gcae_experiment_params_filename: ${gcae_experiment_params_filename}"
 echo "unique_id: ${unique_id}"
 
-sbatch -A snic2021-22-624 --output=21_create_${unique_id}.log ./nsphs_ml_qt/scripts_rackham/21_create_issue_18_data.sh $gcae_experiment_params_filename
+sbatch -A snic2021-22-624 --output=21_create_xxx.log ./nsphs_ml_qt/scripts_rackham/21_create_issue_18_data.sh $gcae_experiment_params_filename
 echo "---39--"
+
+sbatch -A snic2021-22-624 --output=21_create_${unique_id}.log ./nsphs_ml_qt/scripts_rackham/21_create_issue_18_data.sh $gcae_experiment_params_filename
+echo "---42--"
 
 jobid_21=$(sbatch -A snic2021-22-624                                --output=21_create_${unique_id}.log  ./nsphs_ml_qt/scripts_rackham/21_create_issue_18_data.sh $gcae_experiment_params_filename | cut -d ' ' -f 4)
 echo "---32--"
