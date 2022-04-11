@@ -43,7 +43,15 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-zip -r $zip_filename . -i $trainedmodeldir
+log_filenames=$(compgen -G "*.log" | egrep "${unique_id}")
+
+echo "datadir: ${datadir}"
+echo "trainedmodeldir: ${trainedmodeldir}"
+echo "unique_id: ${unique_id}"
+echo "zip_filename: ${zip_filename}"
+echo "log_filenames: ${log_filenames}"
+
+zip -r $zip_filename $log_filenames $(basename $datadir) $(basename $trainedmodeldir) --exclude $(find . | egrep "weights/")
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
