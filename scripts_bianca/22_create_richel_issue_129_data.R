@@ -177,7 +177,7 @@ gcaer::save_labels_table(
 message("Done saving 'labels_table' to ", labels_filename)
 
 message("#####################################################################")
-message("4. Resize the data")
+message("5. Resize the data")
 message("#####################################################################")
 
 gcae_input_filenames <- gcaer::create_gcae_input_filenames(
