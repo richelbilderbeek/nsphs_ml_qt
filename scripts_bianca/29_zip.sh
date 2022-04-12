@@ -51,7 +51,7 @@ echo "unique_id: ${unique_id}"
 echo "zip_filename: ${zip_filename}"
 echo "log_filenames: ${log_filenames}"
 
-zip -r $zip_filename $log_filenames $(basename $datadir) $(basename $trainedmodeldir) --exclude $(find . | egrep "weights/")
+zip -r $zip_filename $log_filenames $(basename $datadir) $(basename $trainedmodeldir) --exclude *.phe  $(find . | egrep "weights/")
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
