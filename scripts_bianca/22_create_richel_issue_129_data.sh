@@ -1,12 +1,12 @@
 #!/bin/bash
 #
-## No 'SBATCH -A snic2021-22-624', as this is a general script
+#For sbatch, the '-A' (e.g. '-A snic2021-22-624') is defined by caller
 #SBATCH --time=1:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
 #SBATCH --mem=16G
 #For sbatch, the '--job-name' is defined by caller
-#Log filename: is defined by caller
+#For sbatch, the '--output' is defined by caller
 
 echo "Parameters: $@"
 echo "Number of parameters: $#"

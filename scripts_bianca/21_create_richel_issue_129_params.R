@@ -1,7 +1,14 @@
 args <- commandArgs(trailingOnly = TRUE)
 
 if (1 == 2) {
+  # There is will be
   args <- "~/data_richel_issue_129/experiment_params.csv"
+
+  # Create it
+  #gcaer::save_gcae_experiment_params(
+  #  gcae_experiment_params = gcaer::create_test_gcae_experiment_params(),
+  #  gcae_experiment_params_filename = args[1]
+  #)
 }
 
 if (length(args) != 1) {
@@ -62,3 +69,7 @@ gcaer::save_gcae_experiment_params(
   gcae_experiment_params_filename = gcae_experiment_params_filename
 )
 message("Saved 'gcae_experiment_params' to ", gcae_experiment_params_filename)
+
+testthat::expect_true(file.exists(gcae_experiment_params_filename))
+
+message("Really saved 'gcae_experiment_params' at ", gcae_experiment_params_filename)

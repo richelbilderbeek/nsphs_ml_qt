@@ -6,7 +6,7 @@
 #SBATCH --ntasks 1
 #SBATCH --mem=16G
 #For sbatch, the '--job-name' is defined by caller
-#Log filename: is defined by caller
+#For sbatch, the '--output' is defined by caller
 
 echo "Parameters: $@"
 echo "Number of parameters: $#"

@@ -85,6 +85,9 @@ test_that("find a SNP with a Cis association with a low p value", {
   t_sorted_on_p_value <- t[order(t$P.value), ]
   names(t_sorted_on_p_value)
 
+  best_hit <- t_sorted_on_p_value[1, ]
+  knitr::kable(t(best_hit))
+
   ggplot2::ggplot(
     t_sorted_on_p_value[1:10, ],
     ggplot2::aes(x = seq(1:10), y = P.value)
