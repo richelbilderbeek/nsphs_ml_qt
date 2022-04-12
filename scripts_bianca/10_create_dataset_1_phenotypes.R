@@ -38,6 +38,7 @@ setwd("/proj/sens2021565/nobackup/NSPHS_data/")
 message("getwd(): ", getwd())
 
 load("pea_1_2.rntransformed.AJ.RData")
+load("pea3.rntransformed.RData")
 
 message("Creating unsorted 'phe_table'")
 
