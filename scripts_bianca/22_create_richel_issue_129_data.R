@@ -76,6 +76,9 @@ phe_filename <- paste0(base_output_filename, ".phe")
 message("phe_filename: ", phe_filename)
 plinkr::check_phe_filename(phe_filename)
 
+plink_optionses <- plinkr::create_plink_optionses(plink_folder = "/opt/plinkr")
+plink_options <- plink_optionses[[2]]
+
 message("#####################################################################")
 message("1. Select the SNPs")
 message("#####################################################################")
@@ -85,7 +88,8 @@ selected_plink_bin_data <- plinkr::select_snps(
   snp_selector = plinkr::create_snp_window_selector(
     snp = snp,
     window_kb = window_kb
-  )
+  ),
+  plink_options = plink_options
 )
 testthat::expect_true(all(file.exists(unlist(plink_bin_filenames))))
 
