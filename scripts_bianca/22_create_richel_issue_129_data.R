@@ -101,7 +101,24 @@ plinkr::save_plink_bin_data(
 message("Done saving PLINK binary data to ", base_output_filename)
 
 message("#####################################################################")
-message("2. Select the phenotypes")
+message("2. Add FIDs to .fam table")
+message("#####################################################################")
+
+fam_table <- plinkr::read_plink_fam_file(plink_bin_filenames$fam_filename)
+
+message("Set the FID to the first characters of the IID")
+fam_table$fam <- stringr::str_sub(fam_table$id, end = 4)
+
+message("Saving 'fam_table' to ", plink_bin_filenames$fam_filename)
+plinkr::save_fam_table(
+  fam_table = fam_table,
+  fam_filename = plink_bin_filenames$fam_filename
+)
+
+message("Done saving 'fam_table' to ", plink_bin_filenames$fam_filename)
+
+message("#####################################################################")
+message("3. Select the phenotypes")
 message("#####################################################################")
 
 cur_wd <- getwd()
@@ -142,7 +159,7 @@ plinkr::save_phe_table(
 message("Done saving 'phe_table' to ", phe_filename)
 
 message("#####################################################################")
-message("3. Create labels")
+message("4. Create labels")
 message("#####################################################################")
 
 phe_table <- plinkr::read_plink_phe_file(phe_filename = phe_filename)
