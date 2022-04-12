@@ -78,3 +78,17 @@ test_that("count number of unique protein-gene associations", {
   hist(distances, breaks = max(distances))
   expect_equal(204, sum(distances == 0))
 })
+
+test_that("find a SNP with a Cis association with a low p value", {
+  return() # For Issue #5, https://github.com/richelbilderbeek/nsphs_ml_qt/issues/5
+  t <- get_kierczak_et_al_2022_table_s2_xlsx()
+  t_sorted_on_p_value <- t[order(t$P.value), ]
+  names(t_sorted_on_p_value)
+
+  ggplot2::ggplot(
+    t_sorted_on_p_value[1:10, ],
+    ggplot2::aes(x = seq(1:10), y = P.value)
+  ) + ggplot2::geom_point()
+
+  plot([1:100, ])
+})
