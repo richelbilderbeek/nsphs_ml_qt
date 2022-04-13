@@ -4,10 +4,7 @@
 #SBATCH --time=1:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
-#
-# 16 GB was not enough
-#
-#SBATCH --mem=100G
+#SBATCH --mem=16G
 #For sbatch, the '--job-name' is defined by caller
 #For sbatch, the '--output' is defined by caller
 
