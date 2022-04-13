@@ -92,6 +92,4 @@ test_that("find a SNP with a Cis association with a low p value", {
     t_sorted_on_p_value[1:10, ],
     ggplot2::aes(x = seq(1:10), y = P.value)
   ) + ggplot2::geom_point()
-
-  plot([1:100, ])
 })
