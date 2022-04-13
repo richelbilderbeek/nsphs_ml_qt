@@ -10,7 +10,20 @@
 args <- commandArgs(trailingOnly = TRUE)
 
 if (1 == 2) {
-  args <- "~/data_richel_issue_129/experiment_params.csv"
+  args <- file.path(gcaer::get_gcaer_tempfilename(), "experiment_params.csv")
+  gcaer::save_gcae_experiment_params(
+    gcae_experiment_params = gcaer::create_test_gcae_experiment_params(
+      gcae_setup = gcaer::create_test_gcae_setup(
+        datadir = paste0(dirname(args[1]), "/"),
+        data = "local_data",
+        trainedmodeldir = gcaer::get_gcaer_tempfilename(
+          pattern = "local_output",
+          fileext = "/"
+        )
+      )
+    ),
+    gcae_experiment_params_filename = args[1]
+  )
 }
 
 if (length(args) != 1) {
@@ -49,32 +62,27 @@ plinkr::check_window_kb(window_kb)
 protein_name <- "CVD3_142_IL-6RA"
 message("protein_name: ", protein_name)
 
-# Where the data is loaded from
-input_data_basename <- "/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1"
-if (1 == 2) {
-  input_data_basename <- tools::file_path_sans_ext(plinkr::get_plinkr_filename("select_snps.bed"))
-}
-
 # Where the files will be saved to
 gcae_experiment_params <- gcaer::read_gcae_experiment_params_file(
   gcae_experiment_params_filename
 )
-base_output_filename <- paste0(
+experiment_base_filename <- paste0(
   gcae_experiment_params$gcae_setup$datadir,
   gcae_experiment_params$gcae_setup$data
 )
-message("base_output_filename: ", base_output_filename)
-plink_bin_filenames <- plinkr::create_plink_bin_filenames(
-  bed_filename = paste0(input_data_basename, ".bed"),
-  bim_filename = paste0(input_data_basename, ".bim"),
-  fam_filename = paste0(input_data_basename, ".fam")
+message("experiment_base_filename: ", experiment_base_filename)
+experiment_plink_bin_filenames <- plinkr::create_plink_bin_filenames(
+  bed_filename = paste0(experiment_base_filename, ".bed"),
+  bim_filename = paste0(experiment_base_filename, ".bim"),
+  fam_filename = paste0(experiment_base_filename, ".fam")
 )
-labels_filename <- paste0(base_output_filename, "_labels.csv")
-message("labels_filename: ", labels_filename)
-gcaer::check_csv_filename(labels_filename)
-phe_filename <- paste0(base_output_filename, ".phe")
-message("phe_filename: ", phe_filename)
-plinkr::check_phe_filename(phe_filename)
+
+experiment_labels_filename <- paste0(experiment_base_filename, "_labels.csv")
+message("labels_filename: ", experiment_labels_filename)
+gcaer::check_csv_filename(experiment_labels_filename)
+experiment_phe_filename <- paste0(experiment_base_filename, ".phe")
+message("experiment_phe_filename: ", experiment_phe_filename)
+plinkr::check_phe_filename(experiment_phe_filename)
 
 plink_optionses <- plinkr::create_plink_optionses(plink_folder = "/opt/plinkr")
 plink_options <- plink_optionses[[2]]
@@ -82,40 +90,57 @@ plink_options <- plink_optionses[[2]]
 message("#####################################################################")
 message("1. Select the SNPs")
 message("#####################################################################")
+# Where the data is loaded from
+if (1 + 1 == 2) {
+  input_data_basename <- "/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1"
+} else {
+  input_data_basename <- tools::file_path_sans_ext(plinkr::get_plinkr_filename("select_snps.bed"))
+}
+input_plink_bin_filenames <- plinkr::create_plink_bin_filenames(
+  bed_filename = paste0(input_data_basename, ".bed"),
+  bim_filename = paste0(input_data_basename, ".bim"),
+  fam_filename = paste0(input_data_basename, ".fam")
+)
 
 selected_plink_bin_data <- plinkr::select_snps(
-  data = plink_bin_filenames,
+  data = input_plink_bin_filenames,
   snp_selector = plinkr::create_snp_window_selector(
     snp = snp,
     window_kb = window_kb
   ),
   plink_options = plink_options
 )
-testthat::expect_true(all(file.exists(unlist(plink_bin_filenames))))
+testthat::expect_true(all(file.exists(unlist(input_plink_bin_filenames))))
 
 plinkr::save_plink_bin_data(
   plink_bin_data = selected_plink_bin_data,
-  base_input_filename = base_output_filename
+  base_input_filename = experiment_base_filename
 )
 
-message("Done saving PLINK binary data to ", base_output_filename)
+message("Done saving PLINK binary data to ", experiment_base_filename)
+
+# Do not risk writing to the input files
+input_data_basename <- NULL ; rm(input_data_basename)
+input_plink_bin_filenames <- NULL ; rm(input_plink_bin_filenames)
 
 message("#####################################################################")
 message("2. Add FIDs to .fam table")
 message("#####################################################################")
 
-fam_table <- plinkr::read_plink_fam_file(plink_bin_filenames$fam_filename)
+fam_table <- plinkr::read_plink_fam_file(
+  experiment_plink_bin_filenames$fam_filename
+)
 
 message("Set the FID to the first characters of the IID")
 fam_table$fam <- stringr::str_sub(fam_table$id, end = 4)
 
-message("Saving 'fam_table' to ", plink_bin_filenames$fam_filename)
+message("Saving 'fam_table' to ", experiment_plink_bin_filenames$fam_filename)
 plinkr::save_fam_table(
   fam_table = fam_table,
-  fam_filename = plink_bin_filenames$fam_filename
+  fam_filename = experiment_plink_bin_filenames$fam_filename
 )
 
-message("Done saving 'fam_table' to ", plink_bin_filenames$fam_filename)
+message("Done saving 'fam_table' to ", experiment_plink_bin_filenames$fam_filename)
 
 message("#####################################################################")
 message("3. Select the phenotypes")
@@ -151,18 +176,20 @@ phe_table <- unsorted_phe_table[order(unsorted_phe_table$IID), ]
 message("Set the FID to the first characters of the IID")
 phe_table$FID <- stringr::str_sub(phe_table$IID, end = 4)
 
-message("Saving 'phe_table' to ", phe_filename)
+message("Saving 'phe_table' to ", experiment_phe_filename)
 plinkr::save_phe_table(
   phe_table = phe_table,
-  phe_filename = phe_filename
+  phe_filename = experiment_phe_filename
 )
-message("Done saving 'phe_table' to ", phe_filename)
+message("Done saving 'phe_table' to ", experiment_phe_filename)
 
 message("#####################################################################")
 message("4. Create labels")
 message("#####################################################################")
 
-phe_table <- plinkr::read_plink_phe_file(phe_filename = phe_filename)
+phe_table <- plinkr::read_plink_phe_file(
+  phe_filename = experiment_phe_filename
+)
 
 labels_table <- tibble::tibble(
   population = unique(stringr::str_sub(phe_table$IID, end = 4)),
@@ -171,36 +198,36 @@ labels_table <- tibble::tibble(
 gcaer::check_labels_table(labels_table = labels_table)
 gcaer::save_labels_table(
   labels_table = labels_table,
-  labels_filename = labels_filename
+  labels_filename = experiment_labels_filename
 )
 
-message("Done saving 'labels_table' to ", labels_filename)
+message("Done saving 'labels_table' to ", experiment_labels_filename)
 
 message("#####################################################################")
 message("5. Resize the data")
 message("#####################################################################")
 
-gcae_input_filenames <- gcaer::create_gcae_input_filenames(
-  bed_filename = plink_bin_filenames$bed_filename,
-  bim_filename = plink_bin_filenames$bim_filename,
-  fam_filename = plink_bin_filenames$fam_filename,
-  phe_filename = phe_filename,
-  labels_filename = labels_filename
+experiment_gcae_input_filenames <- gcaer::create_gcae_input_filenames(
+  bed_filename = experiment_plink_bin_filenames$bed_filename,
+  bim_filename = experiment_plink_bin_filenames$bim_filename,
+  fam_filename = experiment_plink_bin_filenames$fam_filename,
+  phe_filename = experiment_phe_filename,
+  labels_filename = experiment_labels_filename
 )
-gcaer::check_gcae_input_filenames(gcae_input_filenames)
+gcaer::check_gcae_input_filenames(experiment_gcae_input_filenames)
 
 message("Parameters are valid")
 
 message("Summary before resize")
-gcaer::summarise_gcae_input_files(gcae_input_filenames, verbose = TRUE)
+gcaer::summarise_gcae_input_files(experiment_gcae_input_filenames, verbose = TRUE)
 
 message("Start resizing")
 gcaer::resize_to_shared_individuals_from_files(
-  gcae_input_filenames = gcae_input_filenames,
+  gcae_input_filenames = experiment_gcae_input_filenames,
   verbose = TRUE
 )
 
 message("Summary after resize")
-gcaer::summarise_gcae_input_files(gcae_input_filenames, verbose = TRUE)
+gcaer::summarise_gcae_input_files(experiment_gcae_input_filenames, verbose = TRUE)
 
 message("Done resizing the data")
