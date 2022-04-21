@@ -10,7 +10,7 @@
 #
 #
 
-zip_filename=nsphs_ml_qt_bianca_starter_zip.zip
+zip_filename=nsphs_ml_qt_starter_zip.zip
 
 SECONDS=0
 echo "Running on computer with HOSTNAME: $HOSTNAME"
@@ -59,7 +59,7 @@ cp nsphs_ml_qt/scripts_bianca/98_clean_bianca.sh 98_clean_bianca.sh
 zip -r --must-match $zip_filename \
   nsphs_ml_qt/ \
   GenoCAE/ \
-  gcaer/gcaer.sif \
+  nsphs_ml_qt.sif \
   01_unzip_starter_zip.sh README.md 98_clean_bianca.sh
 
 # Remove folders from zip's root
