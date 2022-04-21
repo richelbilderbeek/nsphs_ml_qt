@@ -58,7 +58,7 @@ cp nsphs_ml_qt/scripts_bianca/98_clean_bianca.sh 98_clean_bianca.sh
 
 # Use nsphs_ml_qt.sif in nsphs_ml_qt
 zip -r \
-  --exlude .git/ \
+  --exclude .git/ \
   --must-match $zip_filename \
   nsphs_ml_qt/ \
   GenoCAE/ \
