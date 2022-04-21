@@ -20,7 +20,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-if [ ! -f nsphs_ml_qt.sif ]; then
+if [ ! -f nsphs_ml_qt/nsphs_ml_qt.sif ]; then
   echo "'nsphs_ml_qt.sif' file not found"
   echo "Showing pwd:"
   ls

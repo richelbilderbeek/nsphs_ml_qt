@@ -66,7 +66,7 @@ if [ ! -f gcae/gcae.sif ]; then
   cd gcae ; ls ; cd -
   exit 42
 fi
-if [ ! -f nsphs_ml_qt.sif ]; then
+if [ ! -f nsphs_ml_qt/nsphs_ml_qt.sif ]; then
   echo "'nsphs_ml_qt.sif' file not found"
   echo "Showing pwd:"
   ls
