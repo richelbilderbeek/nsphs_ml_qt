@@ -46,6 +46,9 @@ jobs:
       - name: Clone GenoCAE
         run: git clone https://github.com/richelbilderbeek/GenoCAE ../GenoCAE
 
+      - name: Get the SIF
+        run: singularity pull --arch amd64 library://richelbilderbeek/default/nsphs_ml_qt:0.4
+
       - name: Create sim dataset 1
         run: cd .. ; ./nsphs_ml_qt/scripts_local/20_start_issue_18.sh ; cd ..
 
