@@ -48,7 +48,7 @@ base_input_filename=$1
 n_individuals=$2
 n_traits=$3
 n_snps_per_trait=$4
-singularity_filename=gcaer/gcaer.sif
+singularity_filename=nsphs_ml_qt.sif
 
 echo "base_input_filename: ${base_input_filename}"
 echo "n_individuals: ${n_individuals}"

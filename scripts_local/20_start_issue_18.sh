@@ -20,8 +20,8 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-if [ ! -f gcaer/gcaer.sif ]; then
-  echo "'gcaer/gcaer.sif' file not found"
+if [ ! -f nsphs_ml_qt.sif ]; then
+  echo "'nsphs_ml_qt.sif' file not found"
   echo "Showing pwd:"
   ls
   echo "Showing content of the 'gcaer' folder:"

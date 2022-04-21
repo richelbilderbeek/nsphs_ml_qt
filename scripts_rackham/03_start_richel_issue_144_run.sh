@@ -86,8 +86,8 @@ if [ ! -f gcae/gcae.sif ]; then
   cd gcae ; ls ; cd -
   exit 42
 fi
-if [ ! -f gcaer/gcaer.sif ]; then
-  echo "'gcaer/gcaer.sif' file not found"
+if [ ! -f nsphs_ml_qt.sif ]; then
+  echo "'nsphs_ml_qt.sif' file not found"
   echo "Showing pwd:"
   ls
   echo "Showing content of the 'gcaer' folder:"

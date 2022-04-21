@@ -32,7 +32,7 @@ echo "Correct number of arguments: $#"
 datadir=$1
 trainedmodeldir=$2
 unique_id=$3
-singularity_filename=gcaer/gcaer.sif
+singularity_filename=nsphs_ml_qt.sif
 
 echo "datadir: ${datadir}"
 echo "trainedmodeldir: ${trainedmodeldir}"
