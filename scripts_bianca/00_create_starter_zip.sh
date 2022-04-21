@@ -44,8 +44,8 @@ rm -rf GenoCAE
 git clone https://github.com/richelbilderbeek/GenoCAE.git --branch Pheno --depth 1
 
 # Copy folders to the zip's root
-cp -r ~/.local/share/plinkr/plink_1_9_unix plink_1_9_unix
-cp -r ~/.local/share/plinkr/plink_2_0_unix plink_2_0_unix
+#cp -r ~/.local/share/plinkr/plink_1_9_unix plink_1_9_unix
+#cp -r ~/.local/share/plinkr/plink_2_0_unix plink_2_0_unix
 
 # Copy files for in the zip's root
 cp nsphs_ml_qt/scripts_bianca/README.md README.md
@@ -65,8 +65,8 @@ zip -r \
   01_unzip_starter_zip.sh README.md 98_clean_bianca.sh
 
 # Remove folders from zip's root
-rm -rf plink_1_9_unix
-rm -rf plink_2_0_unix
+#rm -rf plink_1_9_unix
+#rm -rf plink_2_0_unix
 
 # Remove files for in the zip's root
 rm 01_unzip_starter_zip.sh README.md 98_clean_bianca.sh

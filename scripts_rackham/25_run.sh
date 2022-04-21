@@ -29,7 +29,7 @@ fi
 
 echo "Correct number of arguments: $#"
 gcae_experiment_params_filename=$1
-singularity_filename=nsphs_ml_qt.sif
+singularity_filename=nsphs_ml_qt/nsphs_ml_qt.sif
 
 echo "gcae_experiment_params_filename: $gcae_experiment_params_filename"
 echo "singularity_filename: ${singularity_filename}"
