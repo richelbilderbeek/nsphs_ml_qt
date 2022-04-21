@@ -84,4 +84,3 @@ if [[ $HOSTNAME == "N141CU" ]]; then
 fi
 
 echo "Duration: $SECONDS seconds"
-
