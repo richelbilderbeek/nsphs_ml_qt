@@ -54,7 +54,7 @@ gcae_setup <- gcaer::create_gcae_setup(
   train_opts_id = "ex3",
   data_opts_id = "b_0_4",
   pheno_model_id = "p0",
-  trainedmodeldir = paste0("~/data_", unique_id ,"_ae/")
+  trainedmodeldir = normalizePath(paste0("~/data_", unique_id ,"_ae/"), mustWork = FALSE)
 )
 gcae_options <- gcaer::create_gcae_options(gcae_folder = "/opt/gcae_richel")
 
