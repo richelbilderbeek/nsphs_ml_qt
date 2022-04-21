@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#For sbatch, the '-A' (e.g. '-A snic2021-22-624') is defined by caller
+## No 'SBATCH -A snic2021-22-624', as this is a general script
 #SBATCH --time=1:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
@@ -34,7 +34,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-singularity run $singularity_filename Rscript nsphs_ml_qt/scripts_bianca/22_create_richel_issue_129_data.R $gcae_experiment_params_filename
+singularity run $singularity_filename Rscript nsphs_ml_qt/scripts_bianca/21_create_issue_5_params.R $gcae_experiment_params_filename
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"

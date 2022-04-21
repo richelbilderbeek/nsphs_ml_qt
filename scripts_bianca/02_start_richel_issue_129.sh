@@ -16,15 +16,15 @@
 #SBATCH --ntasks 1
 #SBATCH -C usage_mail
 #SBATCH --mem=16G
-#SBATCH --job-name=02_start_richel_issue_129
-#SBATCH --output=02_start_richel_issue_129.log
+#SBATCH --job-name=02_start_issue_5
+#SBATCH --output=02_start_issue_5.log
 
 SECONDS=0
 echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-unique_id=richel_issue_129
+unique_id=issue_5
 datadir=~/data_${unique_id}/ # Really need that slash
 data="data_${unique_id}"
 trainedmodeldir=~/data_${unique_id}_ae/ # Really need that slash
