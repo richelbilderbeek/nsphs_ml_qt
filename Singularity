@@ -52,4 +52,4 @@ for example:
 
     URL https://github.com/richelbilderbeek/nsphs_ml_qt
 
-    VERSION 0.1
+    VERSION 0.4

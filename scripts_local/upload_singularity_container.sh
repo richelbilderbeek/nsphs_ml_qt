@@ -17,7 +17,7 @@ echo "To sign the container, paste your passphrase"
 singularity sign nsphs_ml_qt.sif
 
 # Upload the latest version
-singularity push nsphs_ml_qt.sif library://richelbilderbeek/default/nsphs_ml_qt:0.1
+singularity push nsphs_ml_qt.sif library://richelbilderbeek/default/nsphs_ml_qt:0.4
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   notify-send "Done uploading 'nsphs_ml_qt.sif'" "Done uploading 'nsphs_ml_qt.sif'"

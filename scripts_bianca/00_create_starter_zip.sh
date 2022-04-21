@@ -56,10 +56,10 @@ cp nsphs_ml_qt/scripts_bianca/98_clean_bianca.sh 98_clean_bianca.sh
 #  plink_1_9_unix \
 #  plink_2_0_unix \
 
+# Use nsphs_ml_qt.sif in nsphs_ml_qt
 zip -r --must-match $zip_filename \
   nsphs_ml_qt/ \
   GenoCAE/ \
-  nsphs_ml_qt.sif \
   01_unzip_starter_zip.sh README.md 98_clean_bianca.sh
 
 # Remove folders from zip's root
