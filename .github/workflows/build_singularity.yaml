@@ -1,0 +1,48 @@
+on:
+  push:
+  pull_request:
+
+name: build_singularity
+
+jobs:
+  build_singularity:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        singularity_version:
+          - '3.7.4'
+    container:
+      image: quay.io/singularity/singularity:v${{ matrix.singularity_version }}
+      options: --privileged
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Show singularity version
+        run: singularity version
+
+      - name: Show present working directory
+        run: echo $PWD
+
+      - name: Create Singularity container
+        run: ./scripts_local/build_singularity_container.sh
+
+      - name: Test container
+        run: singularity test nsphs_ml_qt.sif
+
+      - name: Show help of container
+        run: singularity run-help nsphs_ml_qt.sif
+
+      - name: Show run script
+        run: cat scripts_local/run_container.sh
+
+      - name: Show R script
+        run: cat scripts_local/demo_container.R
+
+      - name: Run container
+        run: ./scripts_local/run_container.sh
+
