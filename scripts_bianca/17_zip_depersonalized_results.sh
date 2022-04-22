@@ -39,7 +39,7 @@ unique_id=$2
 zip_filename="${unique_id}.zip"
 train_filename="11_train_${unique_id}.log"
 train_filename_backup="11_train_${unique_id}.bak"
-log_filenames=$(ls *.log | egrep "${unique_id}")
+log_filenames=$(ls *.log | grep -E "${unique_id}")
 
 echo "trainedmodeldir: ${trainedmodeldir}"
 echo "unique_id: ${unique_id}"
@@ -55,7 +55,7 @@ head $train_filename_backup -n 70 > $train_filename
 tail $train_filename_backup -n 10 >> $train_filename
 rm $train_filename_backup
 
-zip -r $zip_filename $log_filenames $(basename $trainedmodeldir) --exclude *.phe $(find . | egrep "weights/")
+zip -r $zip_filename $log_filenames $(basename $trainedmodeldir) --exclude *.phe $(find . | grep -E "weights/")
 
 echo "Duration: $SECONDS seconds"
 

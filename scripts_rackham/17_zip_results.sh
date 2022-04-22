@@ -38,7 +38,7 @@ trainedmodeldir=$2
 unique_id=$3
 
 zip_filename="${unique_id}.zip"
-log_filenames=$(compgen -G "*.log" | egrep "${unique_id}")
+log_filenames=$(compgen -G "*.log" | grep -E "${unique_id}")
 
 echo "datadir: ${datadir}"
 echo "trainedmodeldir: ${trainedmodeldir}"
@@ -46,7 +46,7 @@ echo "unique_id: ${unique_id}"
 echo "zip_filename: ${zip_filename}"
 echo "log_filenames: ${log_filenames}"
 
-zip -r $zip_filename $log_filenames $(basename $datadir) $(basename $trainedmodeldir) --exclude $(find . | egrep "weights/")
+zip -r $zip_filename $log_filenames $(basename $datadir) $(basename $trainedmodeldir) --exclude $(find . | grep -E "weights/")
 
 echo "Duration: $SECONDS seconds"
 

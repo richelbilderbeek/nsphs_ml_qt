@@ -24,7 +24,7 @@ echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
 gcae_experiment_params_filename=~/data_issue_5/experiment_params.csv
-unique_id=$(echo $gcae_experiment_params_filename | egrep -o "issue_[[:digit:]]+")
+unique_id=$(echo $gcae_experiment_params_filename | grep -E -o "issue_[[:digit:]]+")
 echo "gcae_experiment_params_filename: ${gcae_experiment_params_filename}"
 echo "unique_id: ${unique_id}"
 

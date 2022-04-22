@@ -61,7 +61,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
+if echo "$HOSTNAME" | grep -E -q "^r[[:digit:]]{1,3}$"; then
   echo "bash: running on Rackham runner node"
 fi
 

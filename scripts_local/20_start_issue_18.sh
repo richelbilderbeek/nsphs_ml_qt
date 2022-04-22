@@ -31,7 +31,7 @@ fi
 
 gcae_experiment_params_filename=~/sim_data_issue_18/experiment_params.csv
 
-unique_id=$(echo $gcae_experiment_params_filename | egrep -o "issue_[[:digit:]]+")
+unique_id=$(echo $gcae_experiment_params_filename | grep -E -o "issue_[[:digit:]]+")
 echo "gcae_experiment_params_filename: ${gcae_experiment_params_filename}"
 echo "unique_id: ${unique_id}"
 

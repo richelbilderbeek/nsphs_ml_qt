@@ -74,7 +74,7 @@ echo "save_interval: ${save_interval}"
 echo "epochs: ${epochs}"
 echo "pheno_model_id: ${pheno_model_id}"
 
-if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
+if echo "$HOSTNAME" | grep -E -q "^r[[:digit:]]{1,3}$"; then
   echo "Running on Rackham runner node $HOSTNAME"
   # module load python/3.8.7
 fi
@@ -92,7 +92,7 @@ for epoch in $(seq ${save_interval} ${save_interval} ${epochs}); do
     --epoch $epoch \
     --trainedmodeldir $trainedmodeldir \
     --pheno_model_id $pheno_model_id
-  rename "s/.csv/_${epoch}.csv/s" $(find . | egrep "f1_score_[[:digit:]]+.*csv")
+  rename "s/.csv/_${epoch}.csv/s" $(find . | grep -E "f1_score_[[:digit:]]+.*csv")
 done
 
 

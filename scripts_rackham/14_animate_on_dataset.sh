@@ -48,7 +48,7 @@ echo "trainedmodeldir: $trainedmodeldir"
 echo "superpops: $superpops"
 echo "epoch: $epoch"
 
-if echo "$HOSTNAME" | egrep -q "^r[[:digit:]]{1,3}$"; then
+if echo "$HOSTNAME" | grep -E -q "^r[[:digit:]]{1,3}$"; then
   echo "Running on Rackham runner node $HOSTNAME"
   # module load python/3.8.7
 fi
