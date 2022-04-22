@@ -163,12 +163,15 @@ testthat::expect_true(protein_name %in% colnames(raw_table))
 column_index <- which(colnames(raw_table) == protein_name)
 testthat::expect_equal(1, length(column_index))
 
-message("Creating unsorted 'phe_table'")
-unsorted_phe_table <- tibble::tibble(
+message("Creating unsorted 'phe_table' with NAs")
+unsorted_phe_table_with_nas <- tibble::tibble(
   FID = stringr::str_sub(rownames(raw_table), end = 4),
   IID = rownames(raw_table),
   P1 = as.numeric(raw_table[, column_index])
 )
+
+message("Removing the NAs")
+unsorted_phe_table <- tidyr::drop_na(unsorted_phe_table_with_nas)
 
 message("Creating sorted 'phe_table'")
 phe_table <- unsorted_phe_table[order(unsorted_phe_table$IID), ]
