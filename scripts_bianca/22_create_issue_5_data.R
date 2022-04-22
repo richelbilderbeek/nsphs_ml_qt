@@ -222,7 +222,7 @@ gcaer::check_gcae_input_filenames(experiment_gcae_input_filenames)
 message("Parameters are valid")
 
 message("Summary before resize")
-gcaer::summarise_gcae_input_files(experiment_gcae_input_filenames, verbose = TRUE)
+gcaer::summarise_gcae_input_files(experiment_gcae_input_filenames)
 
 message("Start resizing")
 gcaer::resize_to_shared_individuals_from_files(
@@ -231,6 +231,6 @@ gcaer::resize_to_shared_individuals_from_files(
 )
 
 message("Summary after resize")
-gcaer::summarise_gcae_input_files(experiment_gcae_input_filenames, verbose = TRUE)
+gcaer::summarise_gcae_input_files(experiment_gcae_input_filenames)
 
 message("Done resizing the data")
