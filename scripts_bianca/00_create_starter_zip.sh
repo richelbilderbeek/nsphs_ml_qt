@@ -77,7 +77,7 @@ rm 01_unzip_starter_zip.sh README.md 98_clean_bianca.sh
 mv $zip_filename nsphs_ml_qt/$zip_filename
 
 # Go back to original folder
-cd nsphs_ml_qt
+cd nsphs_ml_qt || exit
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   notify-send "Done creating starter zip" "with filename $zip_filename"

@@ -25,7 +25,9 @@ if [ ! -f nsphs_ml_qt/nsphs_ml_qt.sif ]; then
   echo "Showing pwd:"
   ls
   echo "Showing content of the 'nsphs_ml_qt' folder:"
-  cd nsphs_ml_qt ; ls ; cd -
+  cd nsphs_ml_qt || exit 41
+  ls
+  cd -
   exit 42
 fi
 

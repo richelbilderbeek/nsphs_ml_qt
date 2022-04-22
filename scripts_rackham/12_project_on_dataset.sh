@@ -66,7 +66,9 @@ echo "pheno_model_id: ${pheno_model_id}"
 if [ ! -f $superpops ]; then
   echo "'superpops' file not found at path $superpops"
   echo "Showing content of datadir ($datadir):"
-  cd $datadir ; ls ; cd -
+  cd $datadir || exit 41
+  ls
+  cd -
   exit 42
 fi
 

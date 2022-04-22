@@ -48,7 +48,9 @@ if [ ! -f gcae/gcae.sif ]; then
   echo "Showing pwd:"
   ls
   echo "Showing content of the 'gcae' folder:"
-  cd gcae ; ls ; cd -
+  cd gcae || exit 41
+  ls 
+  cd -
   exit 42
 fi
 if [ ! -f nsphs_ml_qt/nsphs_ml_qt.sif ]; then
