@@ -1,14 +1,9 @@
 #!/bin/bash
 #
 ## No 'SBATCH -A snic2021-22-624', as this is a general script
-#SBATCH --time=1:00:00
+#SBATCH --time=100:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
-#SBATCH -C usage_mail
-# From https://www.uppmax.uu.se/support/user-guides/slurm-user-guide
-# Be light first
-# Could do, for 256GB: -C mem256GB
-# Could do, for 1TB: -C mem1TB
 #SBATCH --mem=16G
 #For sbatch, '--job-name' is defined by caller
 #Log filename: is defined by caller
