@@ -32,11 +32,11 @@ echo "singularity_filename: ${singularity_filename}"
 unique_id=$(echo "$gcae_experiment_params_filename" | grep -E -o "issue_[[:digit:]]+")
 echo "unique_id: ${unique_id}"
 
-datadir=$(grep -E datadir --file "$gcae_experiment_params_filename" | cut -d , -f 2)
+datadir=$(grep -E datadir "$gcae_experiment_params_filename" | cut -d , -f 2)
 echo "datadir: ${datadir}"
 
 
-trainedmodeldir=$(grep -E trainedmodeldir --file "$gcae_experiment_params_filename" | cut -d , -f 2)
+trainedmodeldir=$(grep -E trainedmodeldir "$gcae_experiment_params_filename" | cut -d , -f 2)
 echo "trainedmodeldir: ${trainedmodeldir}"
 
 zip_filename=~/${unique_id}.zip
