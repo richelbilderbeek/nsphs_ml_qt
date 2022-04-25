@@ -58,7 +58,8 @@ echo "log_filenames: ${log_filenames}"
 datadir_basename=$(basename "$datadir")
 trainedmodeldir_basename=$(basename "$trainedmodeldir")
 weights_filenames=$(find . | grep -E "weights/")
-phenotype_predictions_filename=$(find . | grep -E "phenotype_predictions.csv")
+phenotype_predictions_filename=$(find . | grep -E "${trainedmodeldir_basename}.phenotype_predictions.csv")
+echo "phenotype_predictions_filename: ${phenotype_predictions_filename}"
 
 zip -r "$zip_filename" "$log_filenames" "$datadir_basename" "$trainedmodeldir_basename" --exclude ./*.phe "$weights_filenames" "$phenotype_predictions_filename"
 
