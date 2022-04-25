@@ -1,5 +1,10 @@
 #!/bin/bash
 #
+# Create a zip file that can be copied,
+# as it contains only summary statistics.
+# Care is taken to exclude all personal info,
+# see https://github.com/richelbilderbeek/nsphs_ml_qt/issues/5
+#
 ## No 'SBATCH -A snic2021-22-624', as this is a general script
 #SBATCH --time=1:00:00
 #SBATCH --partition core
@@ -61,11 +66,7 @@ weights_filenames=$(find . | grep -E "weights/")
 phenotype_predictions_filename=$(find . | grep -E "${trainedmodeldir_basename}.phenotype_predictions.csv")
 superpop_legends_filenames=$(find . | grep -E "${trainedmodeldir_basename}.*_by_superpop_legends.pdf")
 
-echo "*****************************************************************"
-echo "superpop_legends_filenames: ${superpop_legends_filenames}"
-echo "*****************************************************************"
-
-zip -r "$zip_filename" "$log_filenames" "$datadir_basename" "$trainedmodeldir_basename" --exclude ./*.phe $weights_filenames "$phenotype_predictions_filename" $superpop_legends_filenames
+zip -r "$zip_filename" "$log_filenames" "$datadir_basename" "$trainedmodeldir_basename" --exclude ./*.bed ./*.bim ./*.fam ./*.phe ./*.phe $weights_filenames "$phenotype_predictions_filename" $superpop_legends_filenames
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
