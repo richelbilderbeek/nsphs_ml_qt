@@ -69,9 +69,9 @@ weights_filenames=$(find . | grep -E "weights/")
 phenotype_predictions_filename=$(find . | grep -E "${trainedmodeldir_basename}.phenotype_predictions.csv")
 superpop_legends_filenames=$(find . | grep -E "${trainedmodeldir_basename}.*_by_superpop_legends.pdf")
 
-zip -r "$zip_filename" "$log_filenames" "$datadir_basename" "$trainedmodeldir_basename" --exclude ./*.bed ./*.bim ./*.fam ./*.phe ./*.phe $weights_filenames "$phenotype_predictions_filename" $superpop_legends_filenames
+zip -r "$zip_filename" $log_filenames "$datadir_basename" "$trainedmodeldir_basename" --exclude ./*.bed ./*.bim ./*.fam ./*.phe ./*.phe ./*.pdf $weights_filenames $phenotype_predictions_filename $superpop_legends_filenames
 
-zip -r "$sensitive_zip_filename" "$log_filenames" "$datadir_basename" "$trainedmodeldir_basename"
+zip -r "$sensitive_zip_filename" $log_filenames "$datadir_basename" "$trainedmodeldir_basename"
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
