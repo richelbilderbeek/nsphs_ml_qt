@@ -49,10 +49,20 @@ gcaer::check_epoch(column_index)
 testthat::expect_true(column_index >= 1)
 
 snp <- "rs12126142"
+
+if (1 == 2) {
+  snp <- "snp_5"
+}
+
 message("snp: ", snp)
 plinkr::check_snp(snp)
 
 window_kb <- 1
+
+if (1 == 2) {
+  window_kb <- 0.005
+}
+
 message("window_kb: ", window_kb)
 plinkr::check_window_kb(window_kb)
 
@@ -87,6 +97,10 @@ plinkr::check_phe_filename(experiment_phe_filename)
 plink_optionses <- plinkr::create_plink_optionses(plink_folder = "/opt/plinkr")
 plink_options <- plink_optionses[[2]]
 
+if (1 == 2) {
+  plink_options <- plinkr::create_plink_v1_9_options()
+}
+
 message("#####################################################################")
 message("1. Select the SNPs")
 message("#####################################################################")
@@ -96,10 +110,17 @@ if (1 + 1 == 2) {
 } else {
   input_data_basename <- tools::file_path_sans_ext(plinkr::get_plinkr_filename("select_snps.bed"))
 }
+message("input_data_basename: ", input_data_basename)
+
 input_plink_bin_filenames <- plinkr::create_plink_bin_filenames(
   bed_filename = paste0(input_data_basename, ".bed"),
   bim_filename = paste0(input_data_basename, ".bim"),
   fam_filename = paste0(input_data_basename, ".fam")
+)
+
+message(
+  "input_plink_bin_filenames: \n * ",
+  paste0(input_plink_bin_filenames, collapse = "\n * ")
 )
 
 selected_plink_bin_data <- plinkr::select_snps(
@@ -110,7 +131,27 @@ selected_plink_bin_data <- plinkr::select_snps(
   ),
   plink_options = plink_options
 )
+
+message(
+  "Number of SNPs in .bed table: ",
+  plinkr::get_n_snps_from_bed_table(selected_plink_bin_data$bed_table)
+)
+message(
+  "Number of SNPs in .bim table: ",
+  plinkr::get_n_snps_from_bim_table(selected_plink_bin_data$bim_table)
+)
+
+message(
+  "Number of samples in .bed table: ",
+  plinkr::get_n_samples_from_bed_table(selected_plink_bin_data$bed_table)
+)
+message(
+  "Number of samples in .fam table: ",
+  plinkr::get_n_samples_from_fam_table(selected_plink_bin_data$fam_table)
+)
+
 testthat::expect_true(all(file.exists(unlist(input_plink_bin_filenames))))
+message("Save data to 'experiment_base_filename'': ", experiment_base_filename)
 
 plinkr::save_plink_bin_data(
   plink_bin_data = selected_plink_bin_data,
