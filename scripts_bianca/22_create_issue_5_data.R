@@ -118,6 +118,15 @@ input_plink_bin_filenames <- plinkr::create_plink_bin_filenames(
   fam_filename = paste0(input_data_basename, ".fam")
 )
 
+if (1 == 2) {
+  # Don't: It is big :-)
+  # plinkr::read_plink_bin_data(base_input_filename = "/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1")
+  # * /proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1.bed
+  # * /proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1.bim
+  # * /proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1.fam
+
+}
+
 message(
   "input_plink_bin_filenames: \n * ",
   paste0(input_plink_bin_filenames, collapse = "\n * ")
