@@ -2,8 +2,12 @@ Bootstrap: library
 From: richelbilderbeek/default/gcaer:0.6.6
 
 %post
-    #Rscript -e 'remotes::install_github("richelbilderbeek/plinkr")'
-    #Rscript -e 'remotes::install_github("richelbilderbeek/gcaer")'
+    # Update prerequisites
+    Rscript -e 'remotes::install_github("richelbilderbeek/plinkr")'
+    Rscript -e 'remotes::install_github("richelbilderbeek/ormr")'
+    Rscript -e 'remotes::install_github("richelbilderbeek/gcaer")'
+
+    # The package it is about
     Rscript -e 'remotes::install_github("richelbilderbeek/nsphs_ml_qt")'
 
 %runscript
