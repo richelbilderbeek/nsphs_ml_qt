@@ -276,8 +276,7 @@ gcaer::summarise_gcae_input_files(experiment_gcae_input_filenames)
 
 message("Start resizing")
 gcaer::resize_to_shared_individuals_from_files(
-  gcae_input_filenames = experiment_gcae_input_filenames,
-  verbose = TRUE
+  gcae_input_filenames = experiment_gcae_input_filenames
 )
 
 message("Summary after resize")
