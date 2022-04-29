@@ -24,7 +24,7 @@
 #SBATCH --job-name=15_evaluate_on_dataset
 # Log filename: 15_evaluate_on_dataset.log
 
-echo "Parameters: $@"
+echo "Parameters: $*"
 echo "Number of parameters: $#"
 
 if [[ "$#" -ne 8 ]] ; then

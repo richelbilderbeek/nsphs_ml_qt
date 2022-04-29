@@ -17,7 +17,7 @@
 #SBATCH --job-name=10_create_dataset_2
 #Log filename: 10_create_dataset_2.log
 
-echo "Parameters: $@"
+echo "Parameters: $*"
 echo "Number of parameters: $#"
 
 if [[ "$#" -ne 3 ]] ; then

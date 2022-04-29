@@ -28,7 +28,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-echo "Parameters: $@"
+echo "Parameters: $*"
 echo "Number of parameters: $#"
 
 if [[ "$#" -ne 3 ]] ; then

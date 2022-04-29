@@ -7,7 +7,7 @@
 #   ./nsphs_ml_qt/scripts_rackham/16_create_tidy_results.sh [arguments]
 #
 
-echo "Parameters: $@"
+echo "Parameters: $*"
 echo "Number of parameters: $#"
 
 if [[ "$#" -ne 3 ]] ; then

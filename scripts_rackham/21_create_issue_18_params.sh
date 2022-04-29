@@ -8,7 +8,7 @@
 #For sbatch, the '--job-name' is defined by caller
 #Log filename: is defined by caller
 
-echo "Parameters: $@"
+echo "Parameters: $*"
 echo "Number of parameters: $#"
 
 if [[ "$#" -ne 1 ]] ; then

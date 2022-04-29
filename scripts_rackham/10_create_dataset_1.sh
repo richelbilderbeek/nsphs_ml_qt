@@ -26,7 +26,7 @@
 # 615 | 1.91
 
 
-echo "Parameters: $@"
+echo "Parameters: $*"
 echo "Number of parameters: $#"
 
 if [[ "$#" -ne 4 ]] ; then

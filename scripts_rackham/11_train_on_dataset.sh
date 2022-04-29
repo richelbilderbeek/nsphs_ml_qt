@@ -52,7 +52,7 @@
 #SBATCH --job-name=11_train_on_dataset
 #Log filename: 11_train_on_dataset.log
 
-echo "Parameters: $@"
+echo "Parameters: $*"
 echo "Number of parameters: $#"
 
 if [[ "$#" -ne 6 ]] ; then

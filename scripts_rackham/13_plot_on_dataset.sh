@@ -24,7 +24,7 @@
 #SBATCH --job-name=13_plot_on_dataset
 #Log filename: 13_plot_on_dataset.log
 
-echo "Parameters: $@"
+echo "Parameters: $*"
 echo "Number of parameters: $#"
 
 if [[ "$#" -ne 6 ]] ; then

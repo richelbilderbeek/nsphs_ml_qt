@@ -11,7 +11,7 @@
 #   ./nsphs_ml_qt/scripts_rackham/17_zip_results.sh [arguments]
 #
 
-echo "Parameters: $@"
+echo "Parameters: $*"
 echo "Number of parameters: $#"
 
 if [[ "$#" -ne 3 ]] ; then
