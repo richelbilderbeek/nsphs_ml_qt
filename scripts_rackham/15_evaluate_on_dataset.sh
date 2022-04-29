@@ -60,7 +60,7 @@ save_interval=$6
 epochs=$7
 pheno_model_id=$8
 
-if [ ! -f $superpops ]; then
+if [ ! -f "$superpops" ]; then
   echo "'superpops' file not found at path $superpops"
   exit 42
 fi
@@ -88,8 +88,8 @@ for epoch in $(seq ${save_interval} ${save_interval} ${epochs}); do
     --model_id M1 \
     --train_opts_id ex3 \
     --data_opts_id b_0_4 \
-    --superpops $superpops \
-    --epoch $epoch \
+    --superpops "$superpops" \
+    --epoch "$epoch" \
     --trainedmodeldir $trainedmodeldir \
     --pheno_model_id $pheno_model_id
   rename "s/.csv/_${epoch}.csv/s" $(find . | grep -E "f1_score_[[:digit:]]+.*csv")

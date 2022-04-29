@@ -63,7 +63,7 @@ echo "superpops: ${superpops}"
 echo "epoch: ${epoch}"
 echo "pheno_model_id: ${pheno_model_id}"
 
-if [ ! -f $superpops ]; then
+if [ ! -f "$superpops" ]; then
   echo "'superpops' file not found at path $superpops"
   echo "Showing content of datadir ($datadir):"
   cd $datadir || exit 41
@@ -83,8 +83,8 @@ singularity run gcae/gcae.sif \
   --model_id M1 \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
-  --superpops $superpops \
-  --epoch $epoch \
+  --superpops "$superpops" \
+  --epoch "$epoch" \
   --trainedmodeldir $trainedmodeldir \
   --pheno_model_id $pheno_model_id
 

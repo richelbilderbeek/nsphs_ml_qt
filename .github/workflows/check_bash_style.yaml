@@ -19,4 +19,4 @@ jobs:
         run: sudo apt install shellcheck
 
       - name: Run shellcheck
-        run: shellcheck $(find . | grep "\\.sh$")
+        run: ./scripts_local/check_bash_style.sh

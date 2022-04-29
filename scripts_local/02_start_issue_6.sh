@@ -64,12 +64,12 @@ if [ ! -f nsphs_ml_qt/nsphs_ml_qt.sif ]; then
   exit 42
 fi
 
-./nsphs_ml_qt/scripts_rackham/10_create_dataset_2.sh    $base_input_filename $n_individuals $n_random_snps                        
-./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh    $datadir $data $trainedmodeldir $epochs $save_interval $pheno_model_id    
-./nsphs_ml_qt/scripts_rackham/12_project_on_dataset.sh  $datadir $data $trainedmodeldir $superpops $epoch $pheno_model_id         
-./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh     $datadir $data $trainedmodeldir $superpops $epoch $pheno_model_id         
+./nsphs_ml_qt/scripts_rackham/10_create_dataset_2.sh    "$base_input_filename" $n_individuals $n_random_snps                        
+./nsphs_ml_qt/scripts_rackham/11_train_on_dataset.sh    $datadir $data $trainedmodeldir $epochs $save_interval "$pheno_model_id"    
+./nsphs_ml_qt/scripts_rackham/12_project_on_dataset.sh  $datadir $data $trainedmodeldir "$superpops" "$epoch" "$pheno_model_id"         
+./nsphs_ml_qt/scripts_rackham/13_plot_on_dataset.sh     $datadir $data $trainedmodeldir "$superpops" "$epoch" "$pheno_model_id"         
 ./nsphs_ml_qt/scripts_rackham/14_animate_on_dataset.sh                                                                            
-./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset.sh $datadir $data $trainedmodeldir $superpops $metrics $save_interval $epochs $pheno_model_id
+./nsphs_ml_qt/scripts_rackham/15_evaluate_on_dataset.sh $datadir $data $trainedmodeldir "$superpops" $metrics $save_interval $epochs $pheno_model_id
 ./nsphs_ml_qt/scripts_rackham/16_create_tidy_results.sh $datadir $trainedmodeldir $unique_id                                      
 ./nsphs_ml_qt/scripts_rackham/17_zip_results.sh         $datadir $trainedmodeldir $unique_id                                      
 

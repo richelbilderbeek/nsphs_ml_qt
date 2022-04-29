@@ -38,7 +38,7 @@ trainedmodeldir=~/sim_data_1_ae/ # Really need that slash at the end
 superpops=~/nsphs_ml_qt/inst/extdata/sim_data_1_labels.csv
 epoch=100
 
-if [ ! -f $superpops ]; then
+if [ ! -f "$superpops" ]; then
   echo "'superpops' file not found at path $superpops"
   exit 42
 fi
@@ -60,8 +60,8 @@ singularity run gcae/gcae.sif \
   --model_id M1 \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
-  --superpops $superpops \
-  --epoch $epoch \
+  --superpops "$superpops" \
+  --epoch "$epoch" \
   --trainedmodeldir $trainedmodeldir
 
 echo "End time: $(date --iso-8601=seconds)"

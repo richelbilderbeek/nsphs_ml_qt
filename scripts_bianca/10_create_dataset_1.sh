@@ -161,10 +161,10 @@ echo "[END] 2. gcaer: extract a phenotype"
 echo "[START] 3. PLINK: get a subset of the PLINK data"
 
 $plink_exe \
-  --bfile $full_data_basename \
-  --thin-count $thin_count \
+  --bfile "$full_data_basename" \
+  --thin-count "$thin_count" \
   --make-bed \
-  --out $out
+  --out "$out"
 
 if [[ $HOSTNAME == "N141CU" ]]; then
   echo "Lowest MAF: "
@@ -180,7 +180,7 @@ echo "[END] 3. PLINK: get a subset of the PLINK data"
 echo "[START] 3.5. plinkr: fix fam file's FIDs"
 
 echo "Fixing fam table at  ${$out_data_fam_filename}"
-singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_fam_table.R $out_data_fam_filename
+singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_fam_table.R "$out_data_fam_filename"
 echo "Done fixing fam table at  ${$out_data_fam_filename}"
 
 echo "[END] 3.5. plinkr: fix fam file's FIDs"
@@ -192,7 +192,7 @@ echo "[END] 3.5. plinkr: fix fam file's FIDs"
 echo "[START] 4. gcaer: create labels"
 
 echo "Creating 'labels_filename' ${superpops}"
-singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_labels.R $pheno $superpops
+singularity run $singularity_filename nsphs_ml_qt/scripts_bianca/10_create_dataset_1_labels.R "$pheno" "$superpops"
 echo "Done creating 'labels_filename' at ${superpops}"
 
 echo "[END] 4. gcaer: create labels"
@@ -205,16 +205,14 @@ echo "[START] 5. gcaer: resize all data"
 
 singularity run $singularity_filename \
   nsphs_ml_qt/scripts_bianca/10_resize_data.R \
-  $out_data_bed_filename \
-  $out_data_bim_filename \
-  $out_data_fam_filename \
-  $out_data_phe_filename \
-  $superpops
+  "$out_data_bed_filename" \
+  "$out_data_bim_filename" \
+  "$out_data_fam_filename" \
+  "$out_data_phe_filename" \
+  "$superpops"
 
 echo "[END] 5. gcaer: resize all data"
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
 
-# Thanks Jerker Nyberg von Below and Douglas Scofield
-jobstats -r -d -p $SLURM_JOBID
