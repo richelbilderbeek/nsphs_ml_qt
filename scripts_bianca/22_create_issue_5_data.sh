@@ -26,7 +26,7 @@ echo "Correct number of arguments: $#"
 gcae_experiment_params_filename=$1
 singularity_filename=nsphs_ml_qt/nsphs_ml_qt.sif
 
-echo "gcae_experiment_params_filename: $gcae_experiment_params_filename"
+echo "gcae_experiment_params_filename: "$gcae_experiment_params_filename""
 echo "singularity_filename: ${singularity_filename}"
 
 SECONDS=0
@@ -34,7 +34,7 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-singularity run $singularity_filename Rscript nsphs_ml_qt/scripts_bianca/22_create_issue_5_data.R $gcae_experiment_params_filename
+singularity run $singularity_filename Rscript nsphs_ml_qt/scripts_bianca/22_create_issue_5_data.R "$gcae_experiment_params_filename"
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
