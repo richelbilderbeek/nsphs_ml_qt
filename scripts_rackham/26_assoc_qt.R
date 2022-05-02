@@ -42,7 +42,6 @@ message("data: ", data)
 base_input_filename <- paste0(datadir, data)
 message("base_input_filename: ", base_input_filename)
 
-
 bed_filename <- paste0(base_input_filename, ".bed")
 message("bed_filename: ", bed_filename)
 
@@ -57,6 +56,12 @@ message("phe_filename: ", phe_filename)
 
 base_output_filename <- base_input_filename
 message("base_output_filename: ", base_output_filename)
+
+plink_optionses <- plinkr::create_plink_optionses(plink_folder = "/opt/plinkr")
+plink_options <- plink_optionses[[2]]
+message("plink_options$plink_version: ", plink_options$plink_version)
+message("plink_options$plink_exe_path: ", plink_options$plink_exe_path)
+message("plink_options$os: ", plink_options$os)
 
 message("Do quantitative trait association")
 qassoc_filenames <- plinkr::assoc_qt(
@@ -73,7 +78,8 @@ qassoc_filenames <- plinkr::assoc_qt(
   assoc_qt_params = plinkr::create_assoc_qt_params(
     base_input_filename = base_input_filename,
     base_output_filename = base_output_filename
-  )
+  ),
+  plink_options = plink_options
 )
 message(
   "qassoc_filenames$qassoc_filenames: \n * ",
