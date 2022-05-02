@@ -66,17 +66,6 @@ if (1 == 2) {
 message("window_kb: ", window_kb)
 plinkr::check_window_kb(window_kb)
 
-# In Kierczak et al., 2022 this protein is called IL-17RA
-#> t <- nsphsmlqt::get_kierczak_et_al_2022_table_s2_xlsx()
-#> stringr::str_subset(t$Protein, "17")
-#[1] "IL-17D"  "CCL17"   "CCL17"   "CCL17"   "CCL17"   "IL-17RA" "IL-17RA"
-#[8] "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA"
-#> stringr::str_subset(t$Protein, "IL-17RA")
-#[1] "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA"
-#[8] "IL-17RA" "IL-17RA"
-#
-# t[stringr::str_which(t$Protein, "IL-17RA"), ]
-#
 # CVD3_105_IL-17RA, from stringr::str_subset(colnames(nsphsr::create_pea_3()), "17RA")
 # IL-17RA is reported in Hoeglund et al (from panel position CVD3_105), so use that one
 protein_name <- "CVD3_105_IL-17RA" # IL-17RA

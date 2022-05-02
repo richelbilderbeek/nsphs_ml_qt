@@ -72,7 +72,7 @@ message("column_index: ", column_index)
 gcaer::check_epoch(column_index)
 testthat::expect_true(column_index >= 1)
 
-snp <- "XXX"
+snp <- "rs4819959"
 
 if (1 == 2) {
   snp <- "snp_5"
@@ -82,10 +82,9 @@ message("snp: ", snp)
 plinkr::check_snp(snp)
 plinkr::check_window_kb(window_kb)
 
-# IL6RA, from stringr::str_subset(colnames(nsphsr::create_pea_1()), "IL6RA")
-# CVD3_142_IL-6RA, from stringr::str_subset(colnames(nsphsr::create_pea_3()), "IL-6RA")
-# IL-6RA is reported in Hoeglund et al (from panel position CVD3_142), so use that one
-protein_name <- "XXX"
+# CVD3_105_IL-17RA, from stringr::str_subset(colnames(nsphsr::create_pea_3()), "17RA")
+# IL-17RA is reported in Hoeglund et al (from panel position CVD3_105), so use that one
+protein_name <- "CVD3_105_IL-17RA" # IL-17RA
 message("protein_name: ", protein_name)
 
 # Where the files will be saved to
