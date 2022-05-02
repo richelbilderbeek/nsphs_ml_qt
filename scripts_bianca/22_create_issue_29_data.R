@@ -40,15 +40,39 @@ if (length(args) != 1) {
 gcae_experiment_params_filename <- args[1]
 message("gcae_experiment_params_filename: ", gcae_experiment_params_filename)
 gcaer::check_gcae_experiment_params_filename(gcae_experiment_params_filename)
-
 message("Parameters are valid")
+
+# Create the parameter file and dataset for #18
+matches <- stringr::str_match(
+  gcae_experiment_params_filename,
+  "^((.*)(issue_[:digit:]+)_([:digit:]+)/)experiment_params\\.csv"
+)
+message("matches: \n * ", paste0(matches, collapse = "\n * "))
+if (any(is.na(matches))) {
+  stop(
+    "no matches found for ",
+    "'gcae_experiment_params_filename': ", gcae_experiment_params_filename
+  )
+}
+
+unique_id <- matches[1, 4]
+message("unique_id: ", unique_id)
+datadir <- matches[1, 2]
+message("datadir: ", datadir)
+window_kb <- matches[1, 5]
+message("window_kb: ", window_kb)
+data <- basename(datadir)
+message("data: ", data)
+base_input_filename <- paste0(datadir, data)
+message("base_input_filename: ", base_input_filename)
+
 
 column_index <- 1
 message("column_index: ", column_index)
 gcaer::check_epoch(column_index)
 testthat::expect_true(column_index >= 1)
 
-snp <- "rs4819959"
+snp <- "XXX"
 
 if (1 == 2) {
   snp <- "snp_5"
@@ -56,30 +80,12 @@ if (1 == 2) {
 
 message("snp: ", snp)
 plinkr::check_snp(snp)
-
-window_kb <- 1
-
-if (1 == 2) {
-  window_kb <- 0.005
-}
-
-message("window_kb: ", window_kb)
 plinkr::check_window_kb(window_kb)
 
-# In Kierczak et al., 2022 this protein is called IL-17RA
-#> t <- nsphsmlqt::get_kierczak_et_al_2022_table_s2_xlsx()
-#> stringr::str_subset(t$Protein, "17")
-#[1] "IL-17D"  "CCL17"   "CCL17"   "CCL17"   "CCL17"   "IL-17RA" "IL-17RA"
-#[8] "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA"
-#> stringr::str_subset(t$Protein, "IL-17RA")
-#[1] "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA" "IL-17RA"
-#[8] "IL-17RA" "IL-17RA"
-#
-# t[stringr::str_which(t$Protein, "IL-17RA"), ]
-#
-# CVD3_105_IL-17RA, from stringr::str_subset(colnames(nsphsr::create_pea_3()), "17RA")
-# IL-17RA is reported in Hoeglund et al (from panel position CVD3_105), so use that one
-protein_name <- "CVD3_105_IL-17RA" # IL-17RA
+# IL6RA, from stringr::str_subset(colnames(nsphsr::create_pea_1()), "IL6RA")
+# CVD3_142_IL-6RA, from stringr::str_subset(colnames(nsphsr::create_pea_3()), "IL-6RA")
+# IL-6RA is reported in Hoeglund et al (from panel position CVD3_142), so use that one
+protein_name <- "XXX"
 message("protein_name: ", protein_name)
 
 # Where the files will be saved to
