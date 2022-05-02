@@ -41,7 +41,7 @@ unique_id <- matches[1, 4]
 message("unique_id: ", unique_id)
 datadir <- matches[1, 2]
 message("datadir: ", datadir)
-window_kb <- matches[1, 5]
+window_kb <- as.numerical(matches[1, 5])
 message("window_kb: ", window_kb)
 data <- basename(datadir)
 message("data: ", data)
