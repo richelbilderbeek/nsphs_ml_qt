@@ -1,7 +1,7 @@
 args <- commandArgs(trailingOnly = TRUE)
 
 if (1 == 2) {
-  args <- "~/sim_data_issue_18/experiment_params.csv"
+  args <- "~/sim_data_issue_18_1/experiment_params.csv"
 }
 
 if (length(args) != 1) {
@@ -39,7 +39,10 @@ window_kb <- as.numeric(matches[1, 5])
 message("window_kb: ", window_kb)
 data <- basename(datadir)
 message("data: ", data)
-base_input_filename <- paste0(datadir, data)
+base_input_filename <- file.path(
+  gcae_experiment_params$gcae_setup$trainedmodeldir,
+  "assoc_qt_temp"
+)
 message("base_input_filename: ", base_input_filename)
 
 bed_filename <- paste0(base_input_filename, ".bed")
@@ -54,7 +57,10 @@ message("fam_filename: ", fam_filename)
 phe_filename <- paste0(base_input_filename, ".phe")
 message("phe_filename: ", phe_filename)
 
-base_output_filename <- base_input_filename
+base_output_filename <- file.path(
+  gcae_experiment_params$gcae_setup$trainedmodeldir,
+  "assoc_qt"
+)
 message("base_output_filename: ", base_output_filename)
 
 plink_optionses <- plinkr::create_plink_optionses(plink_folder = "/opt/plinkr")
