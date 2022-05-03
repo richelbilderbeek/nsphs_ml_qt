@@ -84,6 +84,7 @@ qassoc_filenames <- plinkr::assoc_qt(
     )
   ),
   assoc_qt_params = plinkr::create_assoc_qt_params(
+    allow_no_sex = TRUE,
     base_input_filename = base_input_filename,
     base_output_filename = base_output_filename
   ),
