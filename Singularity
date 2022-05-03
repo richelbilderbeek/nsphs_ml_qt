@@ -19,7 +19,7 @@ exec "$@"
 
 %help
 
-This container has the R package 'nsphs_ml_qt' and GCAE installed, 
+This container has the R package 'nsphs_ml_qt' and GCAE installed,
 including the needed Python packages.
 
 To make the container run a script called, e.g. `script.R`, do:
@@ -28,14 +28,14 @@ To make the container run a script called, e.g. `script.R`, do:
 singularity run nsphs_ml_qt.sif Rscript script.R
 ```
 
-NOT: The GCAE scripts can be found at '/opt/GenoCAE', 
+NOTE: The GCAE scripts can be found at '/opt/GenoCAE',
 which is the same as the `gcae_folder` parameter.
 
-NOT: The installed Python packages can be found at '/opt/ormr_gcaer', 
+NOTE: The installed Python packages can be found at '/opt/ormr_gcaer',
 which is the same as the `ormr_folder_name` parameter.
 
-NOT: Due to this, within your scripts, 
-set `gcae_options` to `create_gcae_options(gcae_folder = "/opt/GenoCAE", ormr_folder_name = "/opt/ormr_gcaer")`, 
+NOTE: Due to this, within your scripts,
+set `gcae_options` to `create_gcae_options(gcae_folder = "/opt/GenoCAE", ormr_folder_name = "/opt/ormr_gcaer")`,
 for example:
 
 ```

@@ -41,10 +41,12 @@ unique_id <- matches[1, 4]
 message("unique_id: ", unique_id)
 datadir <- matches[1, 2]
 message("datadir: ", datadir)
-window_kb <- as.numeric(matches[1, 5])
-message("window_kb: ", window_kb)
 data <- basename(datadir)
 message("data: ", data)
+trainedmodeldir <- stringr::str_replace(datadir, "/$", "_ae/")
+message("trainedmodeldir: ", trainedmodeldir)
+window_kb <- as.numeric(matches[1, 5])
+message("window_kb: ", window_kb)
 base_input_filename <- paste0(datadir, data)
 message("base_input_filename: ", base_input_filename)
 
@@ -56,7 +58,7 @@ gcae_setup <- gcaer::create_gcae_setup(
   train_opts_id = "ex3",
   data_opts_id = "b_0_4",
   pheno_model_id = "p0",
-  trainedmodeldir = normalizePath(paste0("~/data_", unique_id ,"_ae/"), mustWork = FALSE)
+  trainedmodeldir = trainedmodeldir
 )
 gcae_options <- gcaer::create_gcae_options(gcae_folder = "/opt/gcae_richel")
 
