@@ -44,10 +44,7 @@ window_kb <- as.numeric(matches[1, 5])
 message("window_kb: ", window_kb)
 data <- basename(datadir)
 message("data: ", data)
-base_input_filename <- file.path(
-  gcae_experiment_params$gcae_setup$trainedmodeldir,
-  "assoc_qt_temp"
-)
+base_input_filename <- paste0(datadir, data)
 message("base_input_filename: ", base_input_filename)
 
 bed_filename <- paste0(base_input_filename, ".bed")
