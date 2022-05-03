@@ -236,27 +236,7 @@ plinkr::save_phe_table(
 message("Done saving 'phe_table' to ", experiment_phe_filename)
 
 message("#####################################################################")
-message("4. Create labels")
-message("#####################################################################")
-
-phe_table <- plinkr::read_plink_phe_file(
-  phe_filename = experiment_phe_filename
-)
-
-labels_table <- tibble::tibble(
-  population = unique(stringr::str_sub(phe_table$IID, end = 4)),
-  super_population = "Sweden"
-)
-gcaer::check_labels_table(labels_table = labels_table)
-gcaer::save_labels_table(
-  labels_table = labels_table,
-  labels_filename = experiment_labels_filename
-)
-
-message("Done saving 'labels_table' to ", experiment_labels_filename)
-
-message("#####################################################################")
-message("5. Resize the data")
+message("4. Resize the data")
 message("#####################################################################")
 
 experiment_gcae_input_filenames <- gcaer::create_gcae_input_filenames(
