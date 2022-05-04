@@ -36,10 +36,7 @@ jobs:
       #  shell: Rscript {0}
 
       - name: Get the SIF
-        run: |
-          cd .. || exit 42
-          singularity pull --arch amd64 library://richelbilderbeek/default/nsphs_ml_qt:0.4
-          cd - || exit 314
+        run: singularity pull --arch amd64 library://richelbilderbeek/default/nsphs_ml_qt:0.4
 
       - name: Create sim dataset 1
         run: |
