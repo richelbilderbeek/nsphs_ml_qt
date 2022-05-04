@@ -76,15 +76,15 @@ fi
 
 singularity run gcae/gcae.sif \
   plot \
-  --datadir $datadir \
-  --data $data \
+  --datadir "$datadir" \
+  --data "$data" \
   --model_id M1 \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
   --superpops "$superpops" \
   --epoch "$epoch" \
-  --trainedmodeldir $trainedmodeldir \
-  --pheno_model_id $pheno_model_id
+  --trainedmodeldir "$trainedmodeldir" \
+  --pheno_model_id "$pheno_model_id"
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"

@@ -46,7 +46,12 @@ echo "unique_id: ${unique_id}"
 echo "zip_filename: ${zip_filename}"
 echo "log_filenames: ${log_filenames}"
 
-zip -r "$zip_filename" $log_filenames "$(basename $datadir)" "$(basename $trainedmodeldir)" --exclude $(find . | grep -E "weights/")
+datadir_basename=$(basename "$datadir")
+trainedmodeldir_basename=$(basename "$trainedmodeldir")
+weight_filenames=$(find . | grep -E "weights/")
+
+# shellcheck disable=SC2046,SC2086 # word splitting is intended for the variables 'log_filenames' and 'weight_filenames', as these are plurals :-)
+zip -r "$zip_filename" $log_filenames "$datadir_basename" "$trainedmodeldir_basename" --exclude $weight_filenames
 
 echo "Duration: $SECONDS seconds"
 

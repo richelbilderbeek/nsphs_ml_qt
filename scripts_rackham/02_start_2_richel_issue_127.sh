@@ -56,23 +56,15 @@ echo "save_interval: ${save_interval}"
 echo "pheno_model_id: ${pheno_model_id}"
 echo "metrics: ${metrics}"
 
-if [ ! -f gcae/gcae.sif ]; then
-  echo "'gcae/gcae.sif' file not found"
-  echo "Showing pwd:"
-  ls
-  echo "Showing content of the 'gcae' folder:"
-  cd nsphs_ml_qt || exit 41
-  ls
-  cd -
-  exit 42
-fi
 if [ ! -f nsphs_ml_qt/nsphs_ml_qt.sif ]; then
   echo "'nsphs_ml_qt/nsphs_ml_qt.sif' file not found"
   echo "Showing pwd:"
   ls
   echo "Showing content of the 'nsphs_ml_qt' folder:"
-  cd nsphs_ml_qt ; ls ; cd -
-  exit 42
+  cd nsphs_ml_qt || exit 41
+  ls
+  cd - || exit 42
+  exit 43
 fi
 
 jobid_16=$(sbatch -A snic2021-22-624                                --output=16_analyse_"${unique_id}".log  ./nsphs_ml_qt/scripts_rackham/16_create_tidy_results.sh $datadir $trainedmodeldir "$unique_id"                                | cut -d ' ' -f 4)

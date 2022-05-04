@@ -66,10 +66,10 @@ echo "pheno_model_id: ${pheno_model_id}"
 if [ ! -f "$superpops" ]; then
   echo "'superpops' file not found at path $superpops"
   echo "Showing content of datadir ($datadir):"
-  cd $datadir || exit 41
+  cd "$datadir" || exit 41
   ls
-  cd -
-  exit 42
+  cd - || exit 42
+  exit 43
 fi
 
 if echo "$HOSTNAME" | grep -E -q "^r[[:digit:]]{1,3}$"; then
@@ -78,15 +78,15 @@ fi
 
 singularity run gcae/gcae.sif \
   project \
-  --datadir $datadir \
-  --data $data \
+  --datadir "$datadir" \
+  --data "$data" \
   --model_id M1 \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
   --superpops "$superpops" \
   --epoch "$epoch" \
-  --trainedmodeldir $trainedmodeldir \
-  --pheno_model_id $pheno_model_id
+  --trainedmodeldir "$trainedmodeldir" \
+  --pheno_model_id "$pheno_model_id"
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"

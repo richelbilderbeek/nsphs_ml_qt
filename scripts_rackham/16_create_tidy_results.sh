@@ -40,7 +40,7 @@ echo "unique_id: ${unique_id}"
 echo "singularity_filename: ${singularity_filename}"
 
 echo "Start Singularity (from bash)"
-singularity run $singularity_filename nsphs_ml_qt/scripts_rackham/16_create_tidy_results.R $datadir $trainedmodeldir $unique_id
+singularity run $singularity_filename nsphs_ml_qt/scripts_rackham/16_create_tidy_results.R "$datadir" "$trainedmodeldir" "$unique_id"
 echo "Singularity done (from bash)"
 
 echo "Duration: $SECONDS seconds"

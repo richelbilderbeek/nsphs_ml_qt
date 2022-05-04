@@ -65,12 +65,12 @@ if echo "$HOSTNAME" | grep -E -q "^r[[:digit:]]{1,3}$"; then
   echo "bash: running on Rackham runner node"
 fi
 
-if [ ! -z $GITHUB_ACTIONS ]; then 
+if [ -n "$GITHUB_ACTIONS" ]; then 
   echo "Running on GitHub Actions"
 fi
 
 
-singularity run $singularity_filename nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R $base_input_filename $n_individuals $n_traits $n_snps_per_trait
+singularity run $singularity_filename nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R "$base_input_filename" "$n_individuals" "$n_traits" "$n_snps_per_trait"
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"

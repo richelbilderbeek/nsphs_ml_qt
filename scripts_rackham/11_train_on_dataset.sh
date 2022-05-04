@@ -99,15 +99,15 @@ fi
 
 singularity run gcae/gcae.sif \
   train \
-  --datadir $datadir \
-  --data $data \
-  --trainedmodeldir $trainedmodeldir \
+  --datadir "$datadir" \
+  --data "$data" \
+  --trainedmodeldir "$trainedmodeldir" \
   --model_id M1 \
   --train_opts_id ex3 \
   --data_opts_id b_0_4 \
-  --epochs $epochs \
-  --save_interval $save_interval \
-  --pheno_model_id $pheno_model_id
+  --epochs "$epochs" \
+  --save_interval "$save_interval" \
+  --pheno_model_id "$pheno_model_id"
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
