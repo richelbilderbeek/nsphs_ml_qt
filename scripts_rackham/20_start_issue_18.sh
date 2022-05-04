@@ -37,10 +37,10 @@ unique_id=$(echo "$gcae_experiment_params_filename" | grep -E -o "issue_[[:digit
 echo "gcae_experiment_params_filename: ${gcae_experiment_params_filename}"
 echo "unique_id: ${unique_id}"
 
-jobid_21=$(sbatch -A snic2021-22-624                                  --output=21_create_${unique_id}_params.log ./nsphs_ml_qt/scripts_rackham/21_create_issue_18_params.sh "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
-jobid_22=$(sbatch -A snic2021-22-624 --dependency=afterok:"$jobid_21" --output=22_create_${unique_id}_data.log   ./nsphs_ml_qt/scripts_rackham/22_create_issue_18_data.sh   "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
-jobid_25=$(sbatch -A snic2021-22-624 --dependency=afterok:"$jobid_22" --output=25_run_${unique_id}.log           ./nsphs_ml_qt/scripts_rackham/25_run.sh                    "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
-jobid_29=$(sbatch -A snic2021-22-624 --dependency=afterok:"$jobid_25" --output=29_zip_${unique_id}.log           ./nsphs_ml_qt/scripts_rackham/29_zip.sh                    "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
+jobid_21=$(sbatch -A snic2021-22-624                                  --output=21_create_"${unique_id}"_params.log ./nsphs_ml_qt/scripts_rackham/21_create_issue_18_params.sh "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
+jobid_22=$(sbatch -A snic2021-22-624 --dependency=afterok:"$jobid_21" --output=22_create_"${unique_id}"_data.log   ./nsphs_ml_qt/scripts_rackham/22_create_issue_18_data.sh   "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
+jobid_25=$(sbatch -A snic2021-22-624 --dependency=afterok:"$jobid_22" --output=25_run_"${unique_id}".log           ./nsphs_ml_qt/scripts_rackham/25_run.sh                    "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
+jobid_29=$(sbatch -A snic2021-22-624 --dependency=afterok:"$jobid_25" --output=29_zip_"${unique_id}".log           ./nsphs_ml_qt/scripts_rackham/29_zip.sh                    "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
 
 echo "jobid_21: ${jobid_21}"
 echo "jobid_22: ${jobid_22}"

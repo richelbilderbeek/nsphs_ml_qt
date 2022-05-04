@@ -50,7 +50,7 @@ echo "zip_filename: ${zip_filename}"
 log_filenames=$(compgen -G "*.log" | grep -E "${unique_id}")
 echo "log_filenames: ${log_filenames}"
 
-zip -r $zip_filename $log_filenames "$(basename $datadir)" "$(basename $trainedmodeldir)" --exclude $(find . | grep -E "weights/")
+zip -r "$zip_filename" $log_filenames "$(basename $datadir)" "$(basename $trainedmodeldir)" --exclude $(find . | grep -E "weights/")
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
