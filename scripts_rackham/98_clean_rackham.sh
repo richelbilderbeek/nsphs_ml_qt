@@ -13,7 +13,7 @@
 SECONDS=0
 
 rm -f nsphs_ml_qt_starter_zip.zip
-rm -f *.log *.png
+rm -f ./*.log ./*.png
 rm -rf GenoCAE  nsphs_ml_qt
 rm -rf nsphs_ml_qt
 rm -rf ~/.local/share/plinkr

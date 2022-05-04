@@ -27,8 +27,8 @@ if [ ! -f nsphs_ml_qt/nsphs_ml_qt.sif ]; then
   echo "Showing content of the 'nsphs_ml_qt' folder:"
   cd nsphs_ml_qt || exit 41
   ls
-  cd -
-  exit 42
+  cd - || exit 42
+  exit 43
 fi
 
 gcae_experiment_params_filename=~/sim_data_issue_18/experiment_params.csv

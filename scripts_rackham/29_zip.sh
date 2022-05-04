@@ -41,7 +41,7 @@ echo "unique_id: ${unique_id}"
 datadir=$(grep -E datadir "$gcae_experiment_params_filename" | cut -d , -f 2)
 echo "datadir: ${datadir}"
 
-trainedmodeldir=$(cat "$gcae_experiment_params_filename" | grep -E trainedmodeldir | cut -d , -f 2)
+trainedmodeldir=$(grep -E trainedmodeldir "$gcae_experiment_params_filename" | cut -d , -f 2)
 echo "trainedmodeldir: ${trainedmodeldir}"
 
 zip_filename=~/${unique_id}.zip
@@ -50,7 +50,16 @@ echo "zip_filename: ${zip_filename}"
 log_filenames=$(compgen -G "*.log" | grep -E "${unique_id}")
 echo "log_filenames: ${log_filenames}"
 
-zip -r "$zip_filename" $log_filenames "$(basename $datadir)" "$(basename $trainedmodeldir)" --exclude $(find . | grep -E "weights/")
+datadir_basename=$(basename "$datadir")
+echo "datadir_basename: ${datadir_basename}"
+
+trainedmodeldir_basename=$(basename "$trainedmodeldir")
+echo "trainedmodeldir_basename: ${trainedmodeldir_basename}"
+
+weight_filenames=$(find . | grep -E "weights/")
+
+# shellcheck disable=SC2046,SC2086 # word splitting is intended for the variables 'log_filenames' and 'weight_filenames', as these are plurals :-)
+zip -r "$zip_filename" $log_filenames "$datadir_basename" "$trainedmodeldir_basename" --exclude $weight_filenames
 
 echo "End time: $(date --iso-8601=seconds)"
 echo "Duration: $SECONDS seconds"
