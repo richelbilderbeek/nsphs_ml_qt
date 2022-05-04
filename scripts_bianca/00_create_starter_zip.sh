@@ -39,10 +39,6 @@ rm -f $zip_filename
 # Go to GitHubs folder, will go back later
 cd ..
 
-# Clone a fresh GenoCAE folder
-rm -rf GenoCAE
-git clone https://github.com/richelbilderbeek/GenoCAE.git --branch Pheno --depth 1
-
 # Copy files for in the zip's root
 cp nsphs_ml_qt/scripts_bianca/README.md README.md
 cp nsphs_ml_qt/scripts_bianca/98_clean_bianca.sh 98_clean_bianca.sh
@@ -52,7 +48,6 @@ cp nsphs_ml_qt/scripts_bianca/98_clean_bianca.sh 98_clean_bianca.sh
 zip -r \
   --must-match $zip_filename \
   nsphs_ml_qt/ \
-  GenoCAE/ \
   README.md 98_clean_bianca.sh \
   --exclude nsphs_ml_qt/.git/**\* \
   --exclude nsphs_ml_qt/.Rproj.user/**\*
