@@ -9,7 +9,6 @@ create_input_data_plots <- function(
   gcae_experiment_params
 ) {
   gcaer::check_gcae_experiment_params(gcae_experiment_params)
-
   base_filename <- paste0(
     gcae_experiment_params$gcae_setup$datadir,
     gcae_experiment_params$gcae_setup$data
@@ -20,9 +19,27 @@ create_input_data_plots <- function(
     gcae_experiment_params$gcae_setup$trainedmodeldir,
     "trait_value_histogram.png"
   )
+  filenames$trait_value_density_plot_filename <- file.path(
+    gcae_experiment_params$gcae_setup$trainedmodeldir,
+    "trait_value_density_plot.png"
+  )
+  filenames$trait_value_box_plot_filename <- file.path(
+    gcae_experiment_params$gcae_setup$trainedmodeldir,
+    "trait_value_box_plot.png"
+  )
 
   dir.create(
-    dirname(trait_value_histogram_filename),
+    dirname(filenames$trait_value_histogram_filename),
+    showWarnings = FALSE,
+    recursive = TRUE
+  )
+  dir.create(
+    dirname(filenames$trait_value_density_plot_filename),
+    showWarnings = FALSE,
+    recursive = TRUE
+  )
+  dir.create(
+    dirname(filenames$trait_value_box_plot_filename),
     showWarnings = FALSE,
     recursive = TRUE
   )
@@ -37,9 +54,40 @@ create_input_data_plots <- function(
   ) + ggplot2::geom_histogram() +
     ggplot2::scale_x_continuous(name = phenotype_name) +
     gcaer::get_gcaer_theme()
+  trait_value_density_plot <- ggplot2::ggplot(
+    phe_table,
+    ggplot2::aes(x = trait_value)
+  ) + ggplot2::geom_density() +
+    ggplot2::scale_x_continuous(name = phenotype_name) +
+    gcaer::get_gcaer_theme()
+  trait_value_box_plot <- ggplot2::ggplot(
+    phe_table,
+    ggplot2::aes(x = 1, y = trait_value)
+  ) + ggplot2::geom_boxplot() +
+    ggplot2::scale_y_continuous(name = phenotype_name) +
+    gcaer::get_gcaer_theme() +
+    ggplot2::theme(
+      axis.title.x = ggplot2::element_blank(),
+      axis.text.x = ggplot2::element_blank(),
+      axis.ticks.x = ggplot2::element_blank()
+    )
+
+
   ggplot2::ggsave(
     plot =  trait_value_histogram,
     filename = filenames$trait_value_histogram_filename,
+    width = 7,
+    height = 7
+  )
+  ggplot2::ggsave(
+    plot =  trait_value_density_plot,
+    filename = filenames$trait_value_density_plot_filename,
+    width = 7,
+    height = 7
+  )
+  ggplot2::ggsave(
+    plot =  trait_value_box_plot,
+    filename = filenames$trait_value_box_plot_filename,
     width = 7,
     height = 7
   )
