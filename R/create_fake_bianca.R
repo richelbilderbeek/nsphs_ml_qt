@@ -1,5 +1,6 @@
 #' Fake the environment on Bianca as realistic as possible,
 #' so the 'scripts_bianca' scripts can be run locally
+#' @author Richèl J.C. Bilderbeek
 #' @export
 create_fake_bianca <- function() {
   if (1 == 2) {

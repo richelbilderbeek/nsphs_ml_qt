@@ -11,3 +11,6 @@ create_fake_bianca()
 Fake the environment on Bianca as realistic as possible,
 so the 'scripts_bianca' scripts can be run locally
 }
+\author{
+Richèl J.C. Bilderbeek
+}

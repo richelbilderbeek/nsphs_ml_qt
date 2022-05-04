@@ -89,3 +89,6 @@ testthat::expect_equal(
   nrow(t_distinct_interesting)
 )
 }
+\author{
+Richèl J.C. Bilderbeek
+}

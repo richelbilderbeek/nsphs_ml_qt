@@ -67,6 +67,7 @@
 #'   71,
 #'   nrow(t_distinct_interesting)
 #' )
+#' @author Richèl J.C. Bilderbeek
 #' @export
 get_kierczak_et_al_2022_table_s2_xlsx <- function( # nolint indeed a long function name
   kierczak_et_al_2022_table_s2_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(), "TableS2.xlsx"),  # nolint indeed a long line
