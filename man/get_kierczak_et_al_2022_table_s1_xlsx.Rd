@@ -17,7 +17,10 @@ get_kierczak_et_al_2022_table_s1_xlsx(
 \item{kierczak_et_al_2022_table_s1_xlsx_filename}{name of the file to
 save the Excel sheet to}
 
-\item{url}{the URL to download the Excel sheet from}
+\item{url}{the URL}
+}
+\value{
+a table
 }
 \description{
 Quote from text: 'In this study, we have analysed SNVs and indels,
@@ -31,4 +34,10 @@ Pre-print of article is at URL \url{10.21203/rs.3.rs-625433/v1}
 
 Also, the protein \verb{IL-12B} is present twice, as it is detected by
 panels \verb{INF_157_IL-12B} and \verb{NEU_186_IL-12B}
+}
+\examples{
+get_kierczak_et_al_2022_table_s1_xlsx()
+}
+\author{
+Richèl J.C. Bilderbeek
 }

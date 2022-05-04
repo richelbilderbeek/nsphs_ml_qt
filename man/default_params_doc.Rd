@@ -16,6 +16,11 @@ by \link[gcaer]{check_gcae_experiment_params}}
 \item{verbose}{the verbosity of a function.
 Set to \link{TRUE} for more output.
 Use \link[plinkr]{check_verbose} to detect if this argument is valid.}
+
+\item{kierczak_et_al_2022_table_s1_xlsx_filename}{name of the file to
+save the Excel sheet to}
+
+\item{url}{the URL}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'
