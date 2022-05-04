@@ -21,34 +21,29 @@ jobs:
       #  with:
       #    singularity-version: 3.8.3
 
-      - name: Install libcurl4-openssl-dev
-        run: sudo apt install -qq libcurl4-openssl-dev
+      #- name: Install libcurl4-openssl-dev
+      #  run: sudo apt install -qq libcurl4-openssl-dev
 
-      - name: Fix rJava error # from https://travis-ci.community/t/cannot-connect-to-java-from-r/9754/8
-        run: sudo $(which R) CMD javareconf
+      #- name: Fix rJava error # from https://travis-ci.community/t/cannot-connect-to-java-from-r/9754/8
+      #  run: sudo $(which R) CMD javareconf
 
-      - name: Install dependencies
-        run: |
-          install.packages(c("remotes", "rcmdcheck"))
-          remotes::install_github("richelbilderbeek/plinkr")
-          remotes::install_github("richelbilderbeek/ormr")
-          remotes::install_github("richelbilderbeek/gcaer")
-        shell: Rscript {0}
-
-      - name: Install gcaer
-        run: |
-          cd ..
-          mkdir gcaer
-          singularity pull --arch amd64 library://richelbilderbeek/default/gcaer:0.6.6
-          mv *.sif gcaer/gcaer.sif
-          cd -
-
-      - name: Clone GenoCAE
-        run: git clone https://github.com/richelbilderbeek/GenoCAE ../GenoCAE
+      #- name: Install dependencies
+      #  run: |
+      #    install.packages(c("remotes", "rcmdcheck"))
+      #    remotes::install_github("richelbilderbeek/plinkr")
+      #    remotes::install_github("richelbilderbeek/ormr")
+      #    remotes::install_github("richelbilderbeek/gcaer")
+      #  shell: Rscript {0}
 
       - name: Get the SIF
-        run: singularity pull --arch amd64 library://richelbilderbeek/default/nsphs_ml_qt:0.4
+        run: |
+          cd .. || exit 42
+          singularity pull --arch amd64 library://richelbilderbeek/default/nsphs_ml_qt:0.4
+          cd - || exit 314
 
       - name: Create sim dataset 1
-        run: cd .. ; ./nsphs_ml_qt/scripts_local/20_start_issue_18.sh ; cd ..
+        run: |
+          cd .. || exit 42
+          ./nsphs_ml_qt/scripts_local/20_start_issue_18.sh
+          cd - || exit 314
 
