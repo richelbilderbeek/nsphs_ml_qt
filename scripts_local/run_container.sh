@@ -10,4 +10,4 @@
 # --bind $PWD/scripts/ : bind the folder, so that it works on GitHub Actions as well
 
 echo "Demo the container"
-singularity run --cleanenv --bind $PWD/scripts_local/ nsphs_ml_qt.sif Rscript scripts_local/demo_container.R
+singularity run --cleanenv --bind "$PWD/scripts_local/" nsphs_ml_qt.sif Rscript scripts_local/demo_container.R

@@ -50,7 +50,7 @@ if [ ! -f gcae/gcae.sif ]; then
   echo "Showing content of the 'gcae' folder:"
   cd gcae || exit 41
   ls
-  cd -
+  cd - || exit 42
   exit 42
 fi
 if [ ! -f nsphs_ml_qt/nsphs_ml_qt.sif ]; then
@@ -60,8 +60,8 @@ if [ ! -f nsphs_ml_qt/nsphs_ml_qt.sif ]; then
   echo "Showing content of the 'nsphs_ml_qt' folder:"
   cd nsphs_ml_qt || exit 41
   ls
-  cd -
-  exit 42
+  cd - || exit 42
+  exit 43
 fi
 
 ./nsphs_ml_qt/scripts_rackham/10_create_dataset_2.sh    "$base_input_filename" $n_individuals $n_random_snps                        

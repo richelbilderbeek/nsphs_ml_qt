@@ -10,4 +10,6 @@
 # 
 #
 #
+
+# shellcheck disable=SC2046 # word splitting is intended for the '$(...)'
 shellcheck $(find . | grep "\\.sh$")
