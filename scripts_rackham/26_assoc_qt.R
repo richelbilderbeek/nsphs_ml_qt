@@ -1,3 +1,5 @@
+message("Running on: ", uppmaxr::get_where_i_am())
+
 args <- commandArgs(trailingOnly = TRUE)
 
 if (1 == 2) {

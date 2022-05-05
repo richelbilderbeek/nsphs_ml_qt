@@ -2,7 +2,10 @@
 # Create simulated data in inst/extdata
 #
 #
+message("Running on: ", uppmaxr::get_where_i_am())
+
 args <- commandArgs(trailingOnly = TRUE)
+
 if (length(args) != 3) {
   stop(
     "Invalid number of arguments: must have 3 parameters: \n",

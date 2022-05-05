@@ -32,3 +32,8 @@ gcaer::gcaer_report(gcae_options = gcae_options)
 # message("-----------------")
 # gcaer::run_gcae(args = "--help", gcae_options = gcae_options, verbose = TRUE)
 
+message("---------------")
+message("Show where I am")
+message("---------------")
+uppmaxr::get_where_i_am()
+
