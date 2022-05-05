@@ -7,7 +7,7 @@ From: richelbilderbeek/default/gcaer:0.6.6
     Rscript -e 'remotes::install_github("richelbilderbeek/ormr")'
     Rscript -e 'remotes::install_github("richelbilderbeek/gcaer")'
     Rscript -e 'remotes::install_github("richelbilderbeek/uppmaxr")'
-
+    
     # The package it is about
     Rscript -e 'remotes::install_github("richelbilderbeek/nsphs_ml_qt")'
 

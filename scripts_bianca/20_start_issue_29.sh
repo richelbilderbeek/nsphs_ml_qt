@@ -42,6 +42,7 @@ do
 
   echo "jobid_21: ${jobid_21}"
   echo "jobid_22: ${jobid_22}"
+  echo "jobid_24: ${jobid_24}"
   echo "jobid_25: ${jobid_25}"
   echo "jobid_26: ${jobid_26}"
   echo "jobid_29: ${jobid_29}"

@@ -7,7 +7,7 @@
 #
 # and saves it to a file named 'pheno'
 #
-message("Running on: ", uppmaxr::get_where_i_am())
+# message("Running on: ", uppmaxr::get_where_i_am())
 
 args <- commandArgs(trailingOnly = TRUE)
 

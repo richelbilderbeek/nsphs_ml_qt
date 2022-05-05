@@ -5,7 +5,7 @@
 #
 #   Rscript nsphs_ml_qt/scripts_rackham/10_create_dataset_1.R
 #
-message("Running on: ", uppmaxr::get_where_i_am())
+# message("Running on: ", uppmaxr::get_where_i_am())
 
 args <- commandArgs(trailingOnly = TRUE)
 
