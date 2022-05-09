@@ -44,7 +44,7 @@ message("base_input_filename: ", base_input_filename)
 gcae_setup <- gcaer::create_test_gcae_setup(
   datadir = datadir,
   data = data,
-  superpops = paste0(base_input_filename, "_labels.csv"),
+  superpops = "",
   model_id = "M1",
   train_opts_id = "ex3",
   data_opts_id = "b_0_4",
@@ -57,7 +57,7 @@ gcae_experiment_params <- gcaer::create_gcae_experiment_params(
   gcae_setup = gcae_setup,
   gcae_options = gcae_options,
   analyse_epochs = seq(10, 100, by = 10),
-  metrics = "f1_score_3,f1_score_5"
+  metrics = ""
 )
 gcaer::save_gcae_experiment_params(
   gcae_experiment_params = gcae_experiment_params,
