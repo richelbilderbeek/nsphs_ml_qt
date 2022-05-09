@@ -21,7 +21,8 @@ if (1 == 2) {
         trainedmodeldir = gcaer::get_gcaer_tempfilename(
           pattern = "local_output",
           fileext = "/"
-        )
+        ),
+        superpops = ""
       )
     ),
     gcae_experiment_params_filename = args[1]
@@ -104,9 +105,6 @@ experiment_plink_bin_filenames <- plinkr::create_plink_bin_filenames(
   fam_filename = paste0(experiment_base_filename, ".fam")
 )
 
-experiment_labels_filename <- paste0(experiment_base_filename, "_labels.csv")
-message("labels_filename: ", experiment_labels_filename)
-gcaer::check_csv_filename(experiment_labels_filename)
 experiment_phe_filename <- paste0(experiment_base_filename, ".phe")
 message("experiment_phe_filename: ", experiment_phe_filename)
 plinkr::check_phe_filename(experiment_phe_filename)
@@ -262,7 +260,7 @@ experiment_gcae_input_filenames <- gcaer::create_gcae_input_filenames(
   bim_filename = experiment_plink_bin_filenames$bim_filename,
   fam_filename = experiment_plink_bin_filenames$fam_filename,
   phe_filename = experiment_phe_filename,
-  labels_filename = experiment_labels_filename
+  labels_filename = ""
 )
 gcaer::check_gcae_input_filenames(experiment_gcae_input_filenames)
 
