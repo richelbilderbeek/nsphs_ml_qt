@@ -12,7 +12,11 @@
 args <- commandArgs(trailingOnly = TRUE)
 
 if (1 == 2) {
-  args <- file.path(gcaer::get_gcaer_tempfilename(), "experiment_params.csv")
+  args <- file.path(
+    gcaer::get_gcaer_tempfilename(),
+    "data_issue_28_1", # It parses info from this path
+    "experiment_params.csv"
+  )
   gcaer::save_gcae_experiment_params(
     gcae_experiment_params = gcaer::create_test_gcae_experiment_params(
       gcae_setup = gcaer::create_test_gcae_setup(
@@ -23,7 +27,8 @@ if (1 == 2) {
           fileext = "/"
         ),
         superpops = ""
-      )
+      ),
+      metrics = ""
     ),
     gcae_experiment_params_filename = args[1]
   )
@@ -77,7 +82,8 @@ testthat::expect_true(column_index >= 1)
 
 snp <- "rs12126142"
 
-if (1 == 2) {
+if (uppmaxr::get_where_i_am() == "unknown") {
+  message("Probably running locally, using a testing SNP")
   snp <- "snp_5"
 }
 
@@ -113,7 +119,8 @@ plinkr::check_phe_filename(experiment_phe_filename)
 plink_optionses <- plinkr::create_plink_optionses(plink_folder = "/opt/plinkr")
 plink_options <- plink_optionses[[2]]
 
-if (1 == 2) {
+if (uppmaxr::get_where_i_am() == "unknown") {
+  message("Probably running locally, using a local PLINK")
   plink_options <- plinkr::create_plink_v1_9_options()
 }
 
@@ -121,7 +128,7 @@ message("#####################################################################")
 message("1. Select the SNPs")
 message("#####################################################################")
 # Where the data is loaded from
-if (1 + 1 == 2) {
+if (uppmaxr::get_where_i_am() == "bianca_runner_node") {
   input_data_basename <- "/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1"
 } else {
   input_data_basename <- tools::file_path_sans_ext(plinkr::get_plinkr_filename("select_snps.bed"))
@@ -135,12 +142,8 @@ input_plink_bin_filenames <- plinkr::create_plink_bin_filenames(
 )
 
 if (1 == 2) {
-  # Don't: It is big :-)
-  # plinkr::read_plink_bin_data(base_input_filename = "/proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1")
-  # * /proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1.bed
-  # * /proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1.bim
-  # * /proj/sens2021565/nobackup/NSPHS_data/NSPHS.WGS.hg38.plink1.fam
-
+  # We do not peek at 'input_plink_bin_filenames':
+  # It is big :-)
 }
 
 message(
@@ -212,15 +215,17 @@ message("#####################################################################")
 message("3. Select the phenotypes")
 message("#####################################################################")
 
-cur_wd <- getwd()
-setwd("/proj/sens2021565/nobackup/NSPHS_data/")
-load("pea_1_2.rntransformed.AJ.RData")
-load("pea3.rntransformed.RData")
-setwd(cur_wd)
+if (uppmaxr::get_where_i_am() == "bianca_runner_node") {
+  cur_wd <- getwd()
+  setwd("/proj/sens2021565/nobackup/NSPHS_data/")
+  load("pea_1_2.rntransformed.AJ.RData")
+  load("pea3.rntransformed.RData")
+  setwd(cur_wd)
 
-message("Picking the table to use")
-raw_table <- pea_3
-if (1 == 2) {
+  message("Picking the table to use")
+  raw_table <- pea_3
+} else {
+  message("Running not on Bianca, using a fake table")
   raw_table <- nsphsr::create_pea_3()
 }
 
