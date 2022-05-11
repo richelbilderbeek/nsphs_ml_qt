@@ -61,7 +61,7 @@ gcae_options <- gcaer::create_gcae_options(gcae_folder = "/opt/gcae_richel")
 gcae_experiment_params <- gcaer::create_gcae_experiment_params(
   gcae_setup = gcae_setup,
   gcae_options = gcae_options,
-  analyse_epochs = seq(10, 1000, by = 10),
+  analyse_epochs = seq(100, 10000, by = 100),
   metrics = ""
 )
 gcaer::save_gcae_experiment_params(
