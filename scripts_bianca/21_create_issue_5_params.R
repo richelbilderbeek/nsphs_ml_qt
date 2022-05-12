@@ -57,7 +57,7 @@ gcae_setup <- gcaer::create_gcae_setup(
   model_id = "M1",
   train_opts_id = "ex3",
   data_opts_id = "b_0_4",
-  pheno_model_id = "p0",
+  pheno_model_id = "p1",
   trainedmodeldir = trainedmodeldir
 )
 gcae_options <- gcaer::create_gcae_options(gcae_folder = "/opt/gcae_richel")
@@ -65,7 +65,7 @@ gcae_options <- gcaer::create_gcae_options(gcae_folder = "/opt/gcae_richel")
 gcae_experiment_params <- gcaer::create_gcae_experiment_params(
   gcae_setup = gcae_setup,
   gcae_options = gcae_options,
-  analyse_epochs = seq(100, 10000, by = 100),
+  analyse_epochs = seq(10, 1000, by = 10),
   metrics = ""
 )
 gcaer::save_gcae_experiment_params(
