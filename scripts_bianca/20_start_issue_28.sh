@@ -28,7 +28,7 @@ for window_kb in 1 10 100 1000
 do
   echo "window_kb: $window_kb"
 
-  gcae_experiment_params_filename=~/data_issue_28_$window_kb/experiment_params.csv
+  gcae_experiment_params_filename=/proj/sens2021565/nobackup/nsphs_ml_qt_results/data_issue_28_$window_kb/experiment_params.csv
   unique_id=$(echo "$gcae_experiment_params_filename" | grep -E -o "issue_[[:digit:]]+_[[:digit:]]+")
   echo "gcae_experiment_params_filename: ${gcae_experiment_params_filename}"
   echo "unique_id: ${unique_id}"
