@@ -12,19 +12,16 @@
 args <- commandArgs(trailingOnly = TRUE)
 
 if (1 == 2) {
-  args <- file.path(gcaer::get_gcaer_tempfilename(), "experiment_params.csv")
+  # There is will be
+  args <- "~/data_issue_42_M1_p1_1000/experiment_params.csv"
+
+  # Create it
+  gcae_experiment_params <- gcaer::create_test_gcae_experiment_params()
+  gcae_experiment_params$gcae_setup$model_id <- "M1"
+  gcae_experiment_params$gcae_setup$pheno_model_id <- "p1"
+  gcae_experiment_params$gcae_setup$window_kb <- "1000" # 'gcaer::read_gcae_experiment_params_file' reads extra elements as strings
   gcaer::save_gcae_experiment_params(
-    gcae_experiment_params = gcaer::create_test_gcae_experiment_params(
-      gcae_setup = gcaer::create_test_gcae_setup(
-        datadir = paste0(dirname(args[1]), "/"),
-        data = "local_data",
-        trainedmodeldir = gcaer::get_gcaer_tempfilename(
-          pattern = "local_output",
-          fileext = "/"
-        ),
-        superpops = ""
-      )
-    ),
+    gcae_experiment_params,
     gcae_experiment_params_filename = args[1]
   )
 }
