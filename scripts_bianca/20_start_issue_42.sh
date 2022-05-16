@@ -40,7 +40,7 @@ do
       echo "gcae_experiment_params_filename: ${gcae_experiment_params_filename}"
 
       jobid_21=$(sbatch -A sens2021565                                              --output=21_create_"${unique_id}"_params.log ./nsphs_ml_qt/scripts_bianca/21_create_issue_42_params.sh              "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
-      jobid_22=$(sbatch -A sens2021565 --dependency=afterok:"$jobid_21"             --output=22_create_"${unique_id}"_data.log   ./nsphs_ml_qt/scripts_bianca/22_create_issue_29_data.sh                "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
+      jobid_22=$(sbatch -A sens2021565 --dependency=afterok:"$jobid_21"             --output=22_create_"${unique_id}"_data.log   ./nsphs_ml_qt/scripts_bianca/22_create_issue_42_data.sh                "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
       jobid_24=$(sbatch -A sens2021565 --dependency=afterok:"$jobid_22"             --output=24_create_input_data_plots_"${unique_id}".log  ./nsphs_ml_qt/scripts_rackham/24_create_input_data_plots.sh "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
       jobid_25=$(sbatch -A sens2021565 --dependency=afterok:"$jobid_22"             --output=25_run_"${unique_id}".log           ./nsphs_ml_qt/scripts_rackham/25_run.sh                                "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
       jobid_26=$(sbatch -A sens2021565 --dependency=afterok:"$jobid_22"             --output=26_assoc_qt_"${unique_id}".log      ./nsphs_ml_qt/scripts_rackham/26_assoc_qt.sh                           "$gcae_experiment_params_filename" | cut -d ' ' -f 4)
