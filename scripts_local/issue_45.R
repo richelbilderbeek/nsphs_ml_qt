@@ -1,17 +1,17 @@
 library(gcaer)
 
-gcae_options <- create_gcae_options("/opt/gcae_richel")
-gcae_experiment_params <- create_gcae_experiment_params(
+gcae_options <- gcaer::create_gcae_options("/opt/gcae_richel")
+gcae_experiment_params <- gcaer::create_gcae_experiment_params(
   gcae_options = gcae_options,
-  gcae_setup = create_test_gcae_setup(
+  gcae_setup = gcaer::create_test_gcae_setup(
     superpops = "", # no labels
   ),
   analyse_epochs = c(1, 2),
   metrics = "" # no metrics
 )
 
-for (model_id in get_gcae_model_ids(gcae_options = gcae_options)) {
-  for (pheno_model_id in get_gcae_pheno_model_ids(gcae_options = gcae_options)) {
+for (model_id in gcaer::get_gcae_model_ids(gcae_options = gcae_options)) {
+  for (pheno_model_id in gcaer::get_gcae_pheno_model_ids(gcae_options = gcae_options)) {
     gcae_experiment_params$trainedmodeldir <- paste0(
       normalizePath(
         gcaer::get_gcaer_tempfilename(),
@@ -25,13 +25,13 @@ for (model_id in get_gcae_model_ids(gcae_options = gcae_options)) {
 
     passes <- FALSE
     tryCatch({
-        do_gcae_experiment(
+        gcaer::do_gcae_experiment(
           gcae_experiment_params = gcae_experiment_params
         )
         passes <- TRUE
       }, error = function(e) {} # nolint do not care about the braces
     )
-    message(paste(model_id, pheno_model_id, passes))
+    message(paste(date(), model_id, pheno_model_id, passes))
   }
 }
 
