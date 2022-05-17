@@ -1,6 +1,13 @@
 library(gcaer)
 
-gcae_options <- gcaer::create_gcae_options("/opt/gcae_richel")
+gcae_options <- gcaer::create_gcae_options(
+  gcae_folder = "/opt/gcae_richel"
+)
+
+if (1 == 2) {
+  gcae_options <- gcaer::create_gcae_options(gcae_folder = "~/GitHubs/gcae")
+}
+
 gcae_experiment_params <- gcaer::create_gcae_experiment_params(
   gcae_options = gcae_options,
   gcae_setup = gcaer::create_test_gcae_setup(
@@ -9,6 +16,10 @@ gcae_experiment_params <- gcaer::create_gcae_experiment_params(
   analyse_epochs = c(1, 2),
   metrics = "" # no metrics
 )
+
+n_models <- length(gcaer::get_gcae_model_ids(gcae_options = gcae_options)) *
+  length(gcaer::get_gcae_pheno_model_ids(gcae_options = gcae_options))
+message("n_models: ", n_models) # 126
 
 for (model_id in gcaer::get_gcae_model_ids(gcae_options = gcae_options)) {
   for (pheno_model_id in gcaer::get_gcae_pheno_model_ids(gcae_options = gcae_options)) {
