@@ -12,3 +12,10 @@ All code for :lock: [article_nsphs_ml_qt](https://github.com/AJResearchGroup/art
  * [Workflow on local computer](scripts_local/README.md)
 
  * Results: [see the 'nsphs_ml_qt_results' repository](https://github.com/richelbilderbeek/nsphs_ml_qt_results)
+
+![](man/figures/example_architecture.png)
+
+![](man/figures/example_dimred.png)
+
+![](man/figures/legend_HO_tiny.png)
+
