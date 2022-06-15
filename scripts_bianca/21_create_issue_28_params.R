@@ -50,7 +50,7 @@ gcae_setup <- gcaer::create_gcae_setup(
   datadir = datadir,
   data = data,
   superpops = "",
-  model_id = "M1",
+  model_id = "M3d",
   train_opts_id = "ex3",
   data_opts_id = "b_0_4",
   pheno_model_id = "p1",

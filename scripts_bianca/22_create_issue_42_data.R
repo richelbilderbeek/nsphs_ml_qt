@@ -18,7 +18,7 @@ if (1 == 2) {
 
   # Create it
   gcae_experiment_params <- gcaer::create_test_gcae_experiment_params()
-  gcae_experiment_params$gcae_setup$model_id <- "M0_1n"
+  gcae_experiment_params$gcae_setup$model_id <- "M3d"
   gcae_experiment_params$gcae_setup$pheno_model_id <- "p1"
   gcae_experiment_params$gcae_setup$window_kb <- "1" # 'gcaer::read_gcae_experiment_params_file' reads extra elements as strings
   gcaer::save_gcae_experiment_params(
