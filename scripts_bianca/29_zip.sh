@@ -80,9 +80,11 @@ superpop_legends_filenames=$(find . | grep -E "${trainedmodeldir_basename}.*_by_
 
 echo "datadir_basename: ${datadir_basename}"
 echo "trainedmodeldir_basename: ${trainedmodeldir_basename}"
-echo "first weights_filenames: $(head $weights_filenames)"
+#first weights_filenames=$(echo $weights_filenames | cut --fields 1-5 --delimiter=" ")
+#echo "first weights_filenames: $first weights_filenames"
 echo "phenotype_predictions_filename: ${phenotype_predictions_filename}"
-echo "first superpop_legends_filenames: $(head $superpop_legends_filenames)"
+#first superpop_legends_filenames=$(echo $superpop_legends_filenames | cut --fields 1-5 --delimiter=" ")
+#echo "first superpop_legends_filenames: ${superpop_legends_filenames}"
 
 # shellcheck disable=SC2086 # word splitting is intended for '$log_filenames'
 zip -r "$zip_filename" $log_filenames "$datadir_basename" "$trainedmodeldir_basename" --exclude ./*.bed ./*.bim ./*.fam ./*.phe ./*.phe ./*.pdf ./*.v2 $weights_filenames $phenotype_predictions_filename $superpop_legends_filenames
