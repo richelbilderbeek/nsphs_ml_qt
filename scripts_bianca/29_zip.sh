@@ -57,9 +57,9 @@ echo "Running at location $(pwd)"
 
 # Log files are in the home folder
 log_filenames=$(compgen -G "*.log" | grep -E "${unique_id}")
-echo "log_filenames: ${log_filenames}"
+echo "log_filenames: $log_filenames"
 
-mv $log_filenames /proj/sens2021565/nobackup/nsphs_ml_qt_results
+mv --target-directory=/proj/sens2021565/nobackup/nsphs_ml_qt_results $log_filenames
 
 echo "datadir: ${datadir}"
 echo "trainedmodeldir: ${trainedmodeldir}"
