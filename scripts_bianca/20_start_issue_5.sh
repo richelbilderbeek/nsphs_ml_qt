@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 # Do the full flow for experiment that GitHub Issue
+# It is a quicky run!
+#
 #
 # Usage:
 #
