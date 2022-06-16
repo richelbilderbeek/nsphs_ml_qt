@@ -55,19 +55,34 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
+# Log files are in the home folder
 log_filenames=$(compgen -G "*.log" | grep -E "${unique_id}")
+echo "log_filenames: ${log_filenames}"
+
+mv $log_filenames /proj/sens2021565/nobackup/nsphs_ml_qt_results
 
 echo "datadir: ${datadir}"
 echo "trainedmodeldir: ${trainedmodeldir}"
 echo "unique_id: ${unique_id}"
 echo "zip_filename: ${zip_filename}"
-echo "log_filenames: ${log_filenames}"
+
+# Zip from here
+cd /proj/sens2021565/nobackup/nsphs_ml_qt_results
+
+log_filenames=$(compgen -G "*.log" | grep -E "${unique_id}")
+echo "log_filenames (in 'nsphs_ml_qt_results'): ${log_filenames}"
 
 datadir_basename=$(basename "$datadir")
 trainedmodeldir_basename=$(basename "$trainedmodeldir")
 weights_filenames=$(find . | grep -E "weights/")
 phenotype_predictions_filename=$(find . | grep -E "${trainedmodeldir_basename}.phenotype_predictions.csv")
 superpop_legends_filenames=$(find . | grep -E "${trainedmodeldir_basename}.*_by_superpop_legends.pdf")
+
+echo "datadir_basename: ${datadir_basename}"
+echo "trainedmodeldir_basename: ${trainedmodeldir_basename}"
+echo "first weights_filenames: $(head $weights_filenames)"
+echo "phenotype_predictions_filename: ${phenotype_predictions_filename}"
+echo "first superpop_legends_filenames: $(head $superpop_legends_filenames)"
 
 # shellcheck disable=SC2086 # word splitting is intended for '$log_filenames'
 zip -r "$zip_filename" $log_filenames "$datadir_basename" "$trainedmodeldir_basename" --exclude ./*.bed ./*.bim ./*.fam ./*.phe ./*.phe ./*.pdf ./*.v2 $weights_filenames $phenotype_predictions_filename $superpop_legends_filenames
