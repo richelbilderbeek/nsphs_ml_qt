@@ -27,12 +27,26 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
+echo "########################################################################"
+echo "# 1/2: from home folder: copy log files"
+echo "########################################################################"
+echo "unique_id: ${unique_id}"
 log_filenames=$(compgen -G "*.log" | grep -E "${unique_id}")
 folder_names=$(ls data_issue_42_* --directory)
 
+# 'mv' will cause 'zi...' files, as log files for runs that are in progress
+# are suddenly moved
+cp --target-directory=/proj/sens2021565/nobackup/nsphs_ml_qt_results $log_filenames
+
+echo "########################################################################"
+echo "# 2/2: from target folder: zip"
+echo "########################################################################"
+echo "Change to new folder: /proj/sens2021565/nobackup/nsphs_ml_qt_results"
+cd /proj/sens2021565/nobackup/nsphs_ml_qt_results
+
 echo "unique_id: ${unique_id}"
 echo "zip_filename: ${zip_filename}"
-echo "log_filenames: ${log_filenames}"
+echo "log_filenames (they will ): ${log_filenames}"
 echo "folder_names: ${folder_names}"
 
 weights_filenames=$(find . | grep -E "weights/")

@@ -55,19 +55,26 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-# Log files are in the home folder
+echo "########################################################################"
+echo "# 1/2: from home folder: copy log files"
+echo "########################################################################"
+echo "unique_id: ${unique_id}"
 log_filenames=$(compgen -G "*.log" | grep -E "${unique_id}")
 echo "log_filenames: $log_filenames"
 
-mv --target-directory=/proj/sens2021565/nobackup/nsphs_ml_qt_results $log_filenames
+# 'mv' will cause 'zi...' files, as log files for runs that are in progress
+# are suddenly moved
+cp --target-directory=/proj/sens2021565/nobackup/nsphs_ml_qt_results $log_filenames
+
+echo "########################################################################"
+echo "# 2/2: from target folder: zip"
+echo "########################################################################"
+echo "Change to new folder: /proj/sens2021565/nobackup/nsphs_ml_qt_results"
+cd /proj/sens2021565/nobackup/nsphs_ml_qt_results
 
 echo "datadir: ${datadir}"
 echo "trainedmodeldir: ${trainedmodeldir}"
-echo "unique_id: ${unique_id}"
 echo "zip_filename: ${zip_filename}"
-
-# Zip from here
-cd /proj/sens2021565/nobackup/nsphs_ml_qt_results
 
 log_filenames=$(compgen -G "*.log" | grep -E "${unique_id}")
 echo "log_filenames (in 'nsphs_ml_qt_results'): ${log_filenames}"
