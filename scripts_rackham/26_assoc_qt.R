@@ -27,9 +27,20 @@ gcae_experiment_params <- gcaer::read_gcae_experiment_params_file(
 )
 
 # Create the parameter file and dataset for #18
+pattern <- "^((.*)(issue_[:digit:]+)_([:digit:]+)/)experiment_params\\.csv"
+
+if (1 == 2) {
+  testthat::expect_true(
+    stringr::str_detect(
+      "/proj/sens2021565/nobackup/nsphs_ml_qt_results/data_issue_5_100/experiment_params.csv",
+      pattern
+    )
+  )
+}
+
 matches <- stringr::str_match(
-  gcae_experiment_params_filename,
-  "^((.*)(issue_[:digit:]+)_([:digit:]+)/)experiment_params\\.csv"
+  string = gcae_experiment_params_filename,
+  pattern = pattern
 )
 message("matches: \n * ", paste0(matches, collapse = "\n * "))
 if (any(is.na(matches))) {

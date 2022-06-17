@@ -4,7 +4,7 @@ args <- commandArgs(trailingOnly = TRUE)
 
 if (1 == 2) {
   # There is will be
-  args <- "~/data_issue_5/experiment_params.csv"
+  args <- "~/data_issue_5_1/experiment_params.csv"
 
   # Create it
   #gcaer::save_gcae_experiment_params(
@@ -28,9 +28,11 @@ gcae_experiment_params_filename <- args[1]
 message("gcae_experiment_params_filename: ", gcae_experiment_params_filename)
 
 # Create the parameter file and dataset for #18
+pattern <- "^((.*)(issue_[:digit:]+)_([:digit:]+)/)experiment_params\\.csv"
+
 matches <- stringr::str_match(
   gcae_experiment_params_filename,
-  "^((.*)(issue_[:digit:]+)/)experiment_params\\.csv"
+  pattern
 )
 message("matches: \n * ", paste0(matches, collapse = "\n * "))
 if (any(is.na(matches))) {

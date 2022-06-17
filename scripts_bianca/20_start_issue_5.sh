@@ -25,7 +25,8 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-gcae_experiment_params_filename=/proj/sens2021565/nobackup/nsphs_ml_qt_results/data_issue_5/experiment_params.csv
+# Add '_1' to issue as other scripts expect the window_kb in the filename
+gcae_experiment_params_filename=/proj/sens2021565/nobackup/nsphs_ml_qt_results/data_issue_5_1/experiment_params.csv
 unique_id=$(echo "$gcae_experiment_params_filename" | grep -E -o "issue_[[:digit:]]+")
 echo "gcae_experiment_params_filename: ${gcae_experiment_params_filename}"
 echo "unique_id: ${unique_id}"
