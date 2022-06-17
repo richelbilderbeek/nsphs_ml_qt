@@ -23,9 +23,9 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-for autoenoder_model in M0_1n M0_2n M0_3n M0_4n M0_5n M0 M1_1n M1_2n M1_3n M1_4n M1_5n M1 M3d_1n M3d_2n M3d_3n M3d_4n M3d_5n M3d M3e_1n M3e_2n M3e_3n M3e_4n M3e_5n M3e M3f_1n M3f_2n M3f_3n M3f_4n M3f_5n M3f M3j10U_1n M3j10U_2n M3j10U_3n M3j10U_4n M3j10U_5n M3j10U M3j10X_1n M3j10X_2n M3j10X_3n M3j10X_4n M3j10X_5n M3j10X
+for autoenoder_model in M1 M3d M3e M3f M3j10U M3j10X
 do
-  for phenotype_prediction_model in p0 p1 p2
+  for phenotype_prediction_model in p1 p2
   do
     for window_kb in 1 10 100 1000
     do
