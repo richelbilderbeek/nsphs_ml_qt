@@ -27,6 +27,23 @@ t <- get_kierczak_et_al_2022_table_s2_xlsx()
 knitr::kable(head(t))
 ```
 
+For readability, we'll only use the columns we need here:
+
+```{r}
+t <- dplyr::select(
+  t, 
+  X.Primary.Conditional.hit, 
+  Protein, 
+  Panel_Position,
+  Cis_Trans,
+  Chr,
+  SNP,
+  Position., # nolint period at the end of 'Position', as in original data
+  P.value
+)
+knitr::kable(head(t))
+```
+
 
 ## Finding the SNP with the strongest assocation
 
