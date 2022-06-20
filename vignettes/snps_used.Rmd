@@ -118,7 +118,72 @@ knitr::kable(t_il_17ra_on_22)
 
 Let's see where these are:
 
+```{r fig.width=7, fig.height=1}
+ggplot2::ggplot(t_il_17ra_on_22, ggplot2::aes(x = Position., y = 0)) + # nolint period at the end of 'Position', as in original data
+  ggplot2::geom_jitter(height = 0.3) + 
+  ggplot2::scale_y_continuous(limits = c(-1, 1.0), name = "", labels = NULL)
+```
+
+As can be seen, 6 out of 7 SNPs are close to one another,
+we'll zoom in now.
+
+First, let's get the primary SNP:
+
 ```{r}
-ggplot2::ggplot(t_il_17ra_on_22, ggplot2::aes(x = Position., y = 1)) +
-  ggplot2::geom_jitter(height = 0.1)
+t_primary_snp <- t_il_17ra_on_22[ 
+  which(t_il_17ra_on_22$X.Primary.Conditional.hit == " Primary"), # nolint extra space in 'Primary', as in original data
+]
+primary_snp_position <- t_primary_snp$Position.
+knitr::kable(t_primary_snp)
+```
+
+The primary SNP is located at position `r primary_snp_position`.
+
+Let's create a distance table:
+
+```{r}
+distances <- abs(t_il_17ra_on_22$Position. - primary_snp_position)
+t_n_in_window <- tibble::tibble(
+  n_1_kb    = sum(distances < 1000),
+  n_10_kb   = sum(distances < 10000),
+  n_100_kb  = sum(distances < 100000),
+  n_1000_kb = sum(distances < 1000000)
+)
+testthat::expect_equal(t_n_in_window$n_1_kb, 2)
+testthat::expect_equal(t_n_in_window$n_10_kb, 5)
+testthat::expect_equal(t_n_in_window$n_100_kb, 5)
+testthat::expect_equal(t_n_in_window$n_1000_kb, 6)
+knitr::kable(t_n_in_window)
+```
+
+So, there are `r t_n_in_window$n_1_kb` SNPs within a window
+of 1 kilobase, which includes the primary SNP.
+Subsequently, there are `r t_n_in_window$n_10_kb`,
+`r t_n_in_window$n_100_kb` and `r t_n_in_window$n_1000_kb`
+SNPs in the 10k, 100k and 1M window respectively.
+
+Note that the 7th SNP is too far away. We'll plot without it:
+
+```{r  fig.width=7, fig.height=1}
+ggplot2::ggplot(
+  dplyr::filter(
+    t_il_17ra_on_22, 
+    X.Primary.Conditional.hit != "Conditional 6"
+  ),
+  ggplot2::aes(x = Position., y = 0)) + # nolint Period at the end of 'Position', as in original data
+  ggplot2::geom_jitter(height = 0.3) + 
+  ggplot2::scale_y_continuous(limits = c(-1, 1.0), name = "", labels = NULL)
+```
+
+The first SNP is now furthest aways, so let's zoom in again:
+
+```{r fig.width=7, fig.height=1}
+ggplot2::ggplot(
+  dplyr::filter(
+    t_il_17ra_on_22, 
+    X.Primary.Conditional.hit != "Conditional 6" & X.Primary.Conditional.hit != "Conditional 5"
+  ),
+  ggplot2::aes(x = Position., y = 0)) + # nolint Period at the end of 'Position', as in original data
+  ggplot2::geom_jitter(height = 0.3) + 
+  ggplot2::scale_y_continuous(limits = c(-1, 1.0), name = "", labels = NULL)
 ```
