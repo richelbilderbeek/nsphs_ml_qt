@@ -1,0 +1,124 @@
+---
+title: "snps_used"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{snps_used}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(nsphsmlqt)
+```
+
+In this study, in the exploratory phase, we used two SNPs.
+
+First, we get Table 2 from Kierczak et al., 2022, and show the top rows:
+
+```{r}
+t <- get_kierczak_et_al_2022_table_s2_xlsx()
+knitr::kable(head(t))
+```
+
+
+## Finding the SNP with the strongest assocation
+
+Finding the lowest p-value results in protein IL-6RA:
+
+```{r}
+lowest_p_value <- min(t$P.value)
+row_with_lowest_p_value <- which(t$P.value == lowest_p_value)
+t_with_lowest_p_value <- t[row_with_lowest_p_value, ]
+testthat::expect_equal(t_with_lowest_p_value$Protein, "IL-6RA")
+testthat::expect_equal(t_with_lowest_p_value$Panel_Position, "CVD3_142")
+knitr::kable(t_with_lowest_p_value)
+```
+
+IL-6RA has three signals in total:
+
+```{r}
+t_is_6ra <- t[which(t$Protein == "IL-6RA"), ]
+testthat::expect_equal(nrow(t_is_6ra), 3)
+knitr::kable(t_is_6ra)
+```
+
+## Finding the SNP with the most cis assocations
+
+Find the number of assocations per protein:
+
+```{r}
+t_n_signals <- dplyr::summarise(
+  dplyr::group_by(
+    dplyr::select(t, "Protein", "Cis_Trans"), 
+    Protein
+  ), 
+  n = dplyr::n()
+)
+knitr::kable(head(t_n_signals))
+```
+
+Find the protein with the most associations:
+
+```{r}
+t_most_signals <- t_n_signals[which(t_n_signals$n == max(t_n_signals$n)), ]
+testthat::expect_equal(t_most_signals$Protein, "IL-17RA")
+knitr::kable(t_most_signals)
+```
+
+So IL-17RA has the most associations, let's see all:
+
+```{r}
+t_il_17ra <- t[t$Protein == t_most_signals$Protein, ]
+testthat::expect_equal(nrow(t_il_17ra), 9)
+knitr::kable(t_il_17ra)
+```
+
+So IL-17RA has 9 associations. 
+Here is how these are distributed over the chromosomes:
+
+```{r}
+t_n_signals_per_chromosome <- dplyr::summarise(
+  dplyr::group_by(
+    dplyr::select(t_il_17ra, "Chr"), 
+    Chr
+  ), 
+  n = dplyr::n()
+)
+knitr::kable(head(t_n_signals_per_chromosome))
+```
+
+Here we pick the chromosome with the most signals:
+
+```{r}
+row_with_max_signals <- which(
+  t_n_signals_per_chromosome$n == max(t_n_signals_per_chromosome$n)
+)
+chromosome_with_most_signals <- t_n_signals_per_chromosome[row_with_max_signals, ]$Chr
+testthat::expect_equal(chromosome_with_most_signals, 22)
+knitr::kable(t_n_signals_per_chromosome)
+```
+
+Now we can get all the associations on 
+chromosome `r chromosome_with_most_signals``:
+
+```{r}
+t_il_17ra_on_22 <- dplyr::filter(
+  t_il_17ra, Chr == chromosome_with_most_signals
+)
+testthat::expect_equal(nrow(t_il_17ra_on_22), 7)
+knitr::kable(t_il_17ra_on_22)
+```
+
+Let's see where these are:
+
+```{r}
+ggplot2::ggplot(t_il_17ra_on_22, ggplot2::aes(x = Position., y = 1)) +
+  ggplot2::geom_jitter(height = 0.1)
+```
