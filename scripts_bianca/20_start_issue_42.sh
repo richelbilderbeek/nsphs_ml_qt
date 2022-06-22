@@ -23,7 +23,8 @@ echo "Starting time: $(date --iso-8601=seconds)"
 echo "Running on computer with HOSTNAME: $HOSTNAME"
 echo "Running at location $(pwd)"
 
-for autoenoder_model in M1 M3d M3e M3f M3j10U M3j10X
+# M3j10U M3j10X are not compatible
+for autoenoder_model in M1 M3d M3e M3f
 do
   for phenotype_prediction_model in p1 p2
   do
