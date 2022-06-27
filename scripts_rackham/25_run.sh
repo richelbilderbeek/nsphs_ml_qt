@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 ## No 'SBATCH -A snic2021-22-624', as this is a general script
-#SBATCH --time=100:00:00
+#SBATCH --time=239:00:00
 #SBATCH --partition core
 #SBATCH --ntasks 1
 #SBATCH --mem=16G
