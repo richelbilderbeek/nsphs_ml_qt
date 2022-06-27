@@ -1,6 +1,6 @@
 ---
 title: "snps_used"
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 vignette: >
   %\VignetteIndexEntry{snps_used}
   %\VignetteEngine{knitr::rmarkdown}
@@ -8,11 +8,18 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+# Use on of these two:
+# output: rmarkdown::html_vignette
+# output: rmarkdown::pdf_document
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
+
+> This document is a vignette of the R package `nsphs_ml_qt`
+> and can be found at [https://github.com/richelbilderbeek/nsphs_ml_qt/blob/master/vignettes/snps_used.Rmd](https://github.com/richelbilderbeek/nsphs_ml_qt/blob/master/vignettes/snps_used.Rmd).
 
 ```{r setup}
 library(nsphsmlqt)
@@ -20,14 +27,19 @@ library(nsphsmlqt)
 
 In this study, in the exploratory phase, we used two SNPs.
 
-First, we get Table 2 from Kierczak et al., 2022, and show the top rows:
+First, we get Table 2 from Kierczak et al., 2022, and show the top 
+rows (this will look messy!):
 
 ```{r}
 t <- get_kierczak_et_al_2022_table_s2_xlsx()
 knitr::kable(head(t))
 ```
 
-For readability, we'll only use the columns we need here:
+We will use the default columns names from this table, even
+though these names do not follow a Tidyverse naming style.
+
+To fix the messiness due to having too much columnsm, 
+we'll only use the columns we need:
 
 ```{r}
 t <- dplyr::select(
@@ -41,6 +53,8 @@ t <- dplyr::select(
   Position., # nolint period at the end of 'Position', as in original data
   P.value
 )
+# p-values are too small to display in default notation
+t$P.value <- format(t$P.value, scientific = TRUE)
 knitr::kable(head(t))
 ```
 
