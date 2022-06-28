@@ -8,7 +8,8 @@ which contains the associations found}
 get_kierczak_et_al_2022_table_s2_xlsx(
  
     kierczak_et_al_2022_table_s2_xlsx_filename = get_local_kierczak_et_al_2022_table_s2_xlsx_filename(),
-  url = get_kierczak_et_al_2022_table_s2_url()
+  url = get_kierczak_et_al_2022_table_s2_url(),
+  verbose = FALSE
 )
 }
 \arguments{
@@ -28,6 +29,11 @@ which contains the associations found
 The article is in pre-print as of 2021. As I predict the publication
 will be in 2022, I will use that in the function name.
 Pre-print of article is at URL \url{10.21203/rs.3.rs-625433/v1}
+
+This function is slow because of parsing the XLSX file,
+not because it is downloading every time (because the download is
+saved locally at
+\link{get_local_kierczak_et_al_2022_table_s2_xlsx_filename})
 }
 \examples{
 t <- get_kierczak_et_al_2022_table_s2_xlsx()

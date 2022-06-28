@@ -4,7 +4,16 @@
 \alias{window_kb_to_n_associations}
 \title{For a protein and a window, get the number of associations}
 \usage{
-window_kb_to_n_associations(protein_name, window_kb)
+window_kb_to_n_associations(
+  protein_name,
+  window_kb,
+ 
+    kierczak_et_al_2022_table_s2_xlsx_filename = get_local_kierczak_et_al_2022_table_s2_xlsx_filename(),
+  url = get_kierczak_et_al_2022_table_s2_url()
+)
+}
+\arguments{
+\item{url}{the URL}
 }
 \value{
 the number of associations found for the primary
@@ -15,7 +24,7 @@ half a \code{window_kb} downstream and half a \code{window_kb} upstream)
 See the vignette \code{snps_used} for the calculation of these numbers
 }
 \examples{
-t <- get_kierczak_et_al_2022_table_s2_xlsx()
+window_kb_to_n_associations("IL-17RA", 10) # 4
 }
 \author{
 Richèl J.C. Bilderbeek

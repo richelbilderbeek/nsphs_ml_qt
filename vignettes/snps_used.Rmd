@@ -175,17 +175,19 @@ Let's create a distance table:
 ```{r}
 distances <- abs(t_il_17ra_on_22$Position. - primary_snp_position)
 t_n_in_window <- tibble::tibble(
-  n_1_kb    = sum(distances < 1000),
-  n_10_kb   = sum(distances < 10000),
-  n_100_kb  = sum(distances < 100000),
-  n_1000_kb = sum(distances < 1000000)
+  n_1_kb    = sum(distances < 1000 / 2),
+  n_10_kb   = sum(distances < 10000 / 2),
+  n_100_kb  = sum(distances < 100000 / 2),
+  n_1000_kb = sum(distances < 1000000 / 2)
 )
 testthat::expect_equal(t_n_in_window$n_1_kb, 2)
-testthat::expect_equal(t_n_in_window$n_10_kb, 5)
+testthat::expect_equal(t_n_in_window$n_10_kb, 4)
 testthat::expect_equal(t_n_in_window$n_100_kb, 5)
 testthat::expect_equal(t_n_in_window$n_1000_kb, 6)
 knitr::kable(t_n_in_window)
 ```
+
+Note that `nsphsmlqt::window_kb_to_n_associations` does exactly the same.
 
 So, there are `r t_n_in_window$n_1_kb` SNPs within a window
 of 1 kilobase, which includes the primary SNP.

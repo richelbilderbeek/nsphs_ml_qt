@@ -1,6 +1,12 @@
 test_that("use", {
   expect_silent(get_kierczak_et_al_2022_table_s2_xlsx())
-  expect_silent(get_kierczak_et_al_2022_table_s2_xlsx())
+
+  expect_message(
+    get_kierczak_et_al_2022_table_s2_xlsx(verbose = TRUE),
+    "'kierczak_et_al_2022_table_s2_xlsx_filename' already present"
+  )
+
+
 })
 
 test_that("data matches manuscript", {
