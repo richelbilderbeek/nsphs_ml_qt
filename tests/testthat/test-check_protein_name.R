@@ -1,0 +1,10 @@
+test_that("use", {
+  expect_silent(check_protein_name("IL-6RA"))
+  expect_silent(check_protein_name("IL-17RA"))
+  expect_error(check_protein_name(c("IL-6RA", "IL-17RA")))
+  expect_error(check_protein_name("nonsense"))
+  expect_error(check_protein_name(""))
+  expect_error(check_protein_name(NA))
+  expect_error(check_protein_name(NULL))
+  expect_error(check_protein_name(Inf))
+})

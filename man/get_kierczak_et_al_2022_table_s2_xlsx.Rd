@@ -7,10 +7,8 @@ which contains the associations found}
 \usage{
 get_kierczak_et_al_2022_table_s2_xlsx(
  
-    kierczak_et_al_2022_table_s2_xlsx_filename = file.path(rappdirs::app_dir("nsphsmlqt")$data(),
-    "TableS2.xlsx"),
- 
-    url = "https://assets.researchsquare.com/files/rs-625433/v1/f4dd96342d574206d6ee9ac2.xlsx"
+    kierczak_et_al_2022_table_s2_xlsx_filename = get_local_kierczak_et_al_2022_table_s2_xlsx_filename(),
+  url = get_kierczak_et_al_2022_table_s2_url()
 )
 }
 \arguments{
@@ -18,6 +16,9 @@ get_kierczak_et_al_2022_table_s2_xlsx(
 save the Excel sheet to}
 
 \item{url}{the URL to download the Excel sheet from}
+}
+\value{
+a \link[tibble]{tibble}
 }
 \description{
 Get Supplementary Table 2 of Kierczak et al., 2022,
