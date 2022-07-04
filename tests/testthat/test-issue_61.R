@@ -8,10 +8,10 @@ test_that("use", {
     message(i)
     base_phenotype_value <- base_phenotype_values[i]
     assoc_qt_data <- plinkr::create_demo_assoc_qt_data(
-      n_individuals = 1000,
+      n_individuals = 100,
       traits = plinkr::create_additive_trait(
         mafs = 0.49,
-        n_snps = 10,
+        n_snps = 1,
         base_phenotype_value = base_phenotype_value,
         phenotype_increase = 0.5
       )
