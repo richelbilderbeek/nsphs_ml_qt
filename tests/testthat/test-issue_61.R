@@ -42,7 +42,7 @@ test_that("use", {
         model_id = "M1",
         pheno_model_id = "p1"
       ),
-      analyse_epochs = c(500, 750, 1000),
+      analyse_epochs = c(100, 200, 400, 800, 1600, 3200),
       metrics = ""
     )
     results <- gcaer::do_gcae_experiment(gcae_experiment_params)
