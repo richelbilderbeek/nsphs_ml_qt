@@ -51,7 +51,8 @@ for (i in seq_along(base_phenotype_values)) {
       pheno_model_id = "p1"
     ),
     analyse_epochs = seq(1000, 10000, by = 10000),
-    metrics = ""
+    metrics = "",
+    gcae_options = gcaer::create_gcae_options(gcae_folder = "/opt/gcae_richel")
   )
   results <- gcaer::do_gcae_experiment(gcae_experiment_params)
 
