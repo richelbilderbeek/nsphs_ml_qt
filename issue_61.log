@@ -1,0 +1,11 @@
+base_input_filename: 
+n_individuals: 
+n_traits: 
+n_snps_per_trait: 
+singularity_filename: 
+Starting time: 2022-07-05T10:26:31+0200
+Running on computer with HOSTNAME: r1224
+Running at location /home/richel/nsphs_ml_qt
+FATAL:   could not open image /home/richel/nsphs_ml_qt/nsphs_ml_qt/nsphs_ml_qt.sif: failed to retrieve path for /home/richel/nsphs_ml_qt/nsphs_ml_qt/nsphs_ml_qt.sif: lstat /domus/h1/richel/nsphs_ml_qt/nsphs_ml_qt: no such file or directory
+End time: 2022-07-05T10:26:31+0200
+Duration: 0 seconds
