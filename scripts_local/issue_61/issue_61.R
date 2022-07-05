@@ -50,7 +50,7 @@ for (i in seq_along(base_phenotype_values)) {
       model_id = "M1",
       pheno_model_id = "p1"
     ),
-    analyse_epochs = seq(1000, 10000, by = 10000),
+    analyse_epochs = seq(1000, 10000, by = 1000),
     metrics = "",
     gcae_options = gcaer::create_gcae_options(gcae_folder = "/opt/gcae_richel")
   )
