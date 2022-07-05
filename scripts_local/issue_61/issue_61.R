@@ -59,6 +59,8 @@ for (i in seq_along(base_phenotype_values)) {
   results_list[[i]] <- results$nmse_in_time_table
 }
 t <- dplyr::bind_rows(results_list)
+readr::write_csv(t, file = "~/issue_61.csv")
+
 t$base_phenotype_value <- as.factor(t$base_phenotype_value)
 ggplot2::ggplot(
   t,
