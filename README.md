@@ -7,6 +7,7 @@ Branch   |[![GitHub Actions logo](man/figures/GitHubActions.png)](https://github
 
 All code for :lock: [article_nsphs_ml_qt](https://github.com/AJResearchGroup/article_nsphs_ml_qt).
 
+ * Video on workflow: [YouTube](https://youtu.be/FSh6i0Vsf54) [download](https://richelbilderbeek.nl/nsphs_ml_qt_workflow.ogv)
  * [Workflow on Bianca](scripts_bianca/README.md)
  * [Workflow on Rackham](scripts_rackham/README.md)
  * [Workflow on local computer](scripts_local/README.md)
