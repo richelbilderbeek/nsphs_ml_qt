@@ -1,22 +1,22 @@
+name: Check bash style
+
 on:
   push:
   pull_request:
+  schedule:
+  - cron: "0 0 16 * *"
 
-name: check_bash_style
 
 jobs:
   check_bash_style:
 
     runs-on: ubuntu-latest
-
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
-      - uses: actions/checkout@v2
 
-      - name: Install shellcheck
-        run: sudo apt install shellcheck
+      - name: Set up Git repository
+        uses: actions/checkout@v2
 
-      - name: Run shellcheck
-        run: ./scripts_local/check_bash_style.sh
+      - name: Check bash scripts for style
+        run: shellcheck *.sh scripts/*.sh
